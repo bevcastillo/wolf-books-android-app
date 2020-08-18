@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -113,7 +114,7 @@ public class SearchResultsActivity extends AppCompatActivity {
                                     if(authorArr.length() == 1){
                                         authors = authorArr.getString(0);
                                     }else {
-                                        authors = authorArr.getString(0) + "," +authorArr.getString(1);
+                                        authors = authorArr.getString(0) + ", " +authorArr.getString(1);
                                     }
 
 
@@ -152,7 +153,6 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 rvBooksResults.setAdapter(adapter);
 
                                 adapter.notifyDataSetChanged();
-
                             }
 
 

@@ -7,7 +7,9 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +21,10 @@ import com.example.bookfinderapp.viewmodels.SearchResultsActivity;
 /* Created by Beverly May Castillo on 8/12/20 */
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private EditText et_search_input;
-    private Button btn_search;
 
 
     @Override
@@ -32,21 +33,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         et_search_input = findViewById(R.id.et_search);
-        btn_search = findViewById(R.id.button);
-        btn_search.setOnClickListener(this);
-    }
 
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
+        et_search_input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-        switch (id) {
-            case R.id.button:
-//                searchBooks();
-
-                getVolumeResponse();
-                break;
-        }
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    getVolumeResponse();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void getVolumeResponse() {
@@ -57,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent queryIntent = new Intent(this, SearchResultsActivity.class);
         queryIntent.putExtra("query_string", queryString);
         startActivity(queryIntent);
-
-
     }
 
 }
