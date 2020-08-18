@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookInfoActivity"></activity>
+        <activity android:name=".BookInfoActivity"
+            android:parentActivityName=".viewmodels.SearchResultsActivity"></activity>
         <activity
             android:name=".NavigationActivity"
             android:theme="@style/WhiteThemeNoActionBar">

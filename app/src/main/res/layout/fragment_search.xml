@@ -15,7 +15,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="72dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,9 +32,9 @@
                 android:gravity="center"
                 android:paddingBottom="32dp"
                 android:text="BookFinder."
+                android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                app:fontFamily="@font/amaranth"
-                android:textColor="@color/colorPrimary"/>
+                app:fontFamily="@font/amaranth" />
 
             <EditText
                 android:id="@+id/et_searchQuery"
@@ -50,7 +54,7 @@
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:padding="12dp"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black" />
 
         </LinearLayout>
 

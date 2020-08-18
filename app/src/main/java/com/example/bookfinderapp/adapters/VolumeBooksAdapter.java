@@ -1,6 +1,7 @@
 package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookfinderapp.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
 
@@ -47,7 +49,36 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         viewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(view.getContext(), "You have pressed me!", Toast.LENGTH_SHORT).show();
+                String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
+                String author = listdata.get(viewHolder.getAdapterPosition()).getAuthors();
+                int ratings = listdata.get(viewHolder.getAdapterPosition()).getAverageRating();
+                String previewLink = listdata.get(viewHolder.getAdapterPosition()).getPreviewLink();
+                String buyLink = listdata.get(viewHolder.getAdapterPosition()).getBuyLink();
+                String description = listdata.get(viewHolder.getAdapterPosition()).getDescription();
+                String publisher = listdata.get(viewHolder.getAdapterPosition()).getPublisher();
+                String publishedOn = listdata.get(viewHolder.getAdapterPosition()).getPublishedDate();
+                int pageCount = listdata.get(viewHolder.getAdapterPosition()).getPageCount();
+                String language = listdata.get(viewHolder.getAdapterPosition()).getLanguage();
+                String price = listdata.get(viewHolder.getAdapterPosition()).getPrice();
+                String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail();
+
+//                passing data to BookInfoActivity
+                Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
+                intent.putExtra("book_title", title);
+                intent.putExtra("book_auth", author);
+                intent.putExtra("book_ratings", ratings);
+                intent.putExtra("book_prevLink", previewLink);
+                intent.putExtra("book_buyLink", buyLink);
+                intent.putExtra("book_desc", description);
+                intent.putExtra("book_publisher", publisher);
+                intent.putExtra("book_publishedOn", publishedOn);
+                intent.putExtra("book_pageCount", pageCount);
+                intent.putExtra("book_lang", language);
+                intent.putExtra("book_price", price);
+                intent.putExtra("book_thumbnail", thumbnail);
+
+                v.getContext().startActivity(intent);
+
             }
         });
 
@@ -60,7 +91,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
 
         holder.tvTitle.setText(volumeBooks.getTitle());
         holder.tvAuthor.setText("by "+volumeBooks.getAuthors());
-        holder.rb_ratings.setNumStars(volumeBooks.getAverageRatings());
+        holder.rb_ratings.setNumStars(volumeBooks.getAverageRating());
 
         Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);
 

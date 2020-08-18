@@ -60,6 +60,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         rvBooksResults.setLayoutManager(new LinearLayoutManager(this));
         volumeBooks = new ArrayList<>();
         mRequestQueue = Volley.newRequestQueue(this);
+
+        volumeBooks.clear(); //clearing the results first to avoid data duplication when re-loaded
     }
 
     @Override
@@ -83,22 +85,21 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        String title = null;
-                        String subtitle = null;
-                        String authors = null; //authors from Json
-                        String description = null;
-                        String publisher = null;
-                        String publishedDate = null;
-                        String categories = null;
+                        String title = "";
+                        String subtitle = "";
+                        String authors = ""; //authors from Json
+                        String description = "No description";
+                        String publisher = "";
+                        String publishedDate = "";
+                        String categories = "";
                         String thumbnail = null;
-                        String previewLink = null;
-                        String infoLink = null;
-                        String price = null;
-                        String currencyCode = null;
-                        String language = null;
-                        int pageCount = 100;
+                        String price = "Not For Sale";
+                        String currencyCode = "Not available";
+                        String language = "Not Available";
+                        String isbn = "Not Available";
+                        int pageCount = 1000;
                         int averageRating = 5;
-                        String buyLink = null;
+                        String buyLink = "Not Available";
 
                         try {
                             JSONArray items = response.getJSONArray("items");
@@ -123,6 +124,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                                     publisher = volumeInfo.getString("publisher");
                                     publishedDate = volumeInfo.getString("publishedDate");
                                     pageCount = volumeInfo.getInt("pageCount");
+
+
                                     JSONObject saleInfo = item.getJSONObject("saleInfo");
                                     JSONObject listPrice = saleInfo.getJSONObject("listPrice");
                                     price = listPrice.getString("amount") + " " +listPrice.getString("currencyCode");
@@ -138,15 +141,15 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                                 thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
-                                previewLink = volumeInfo.getString("previewLink");
-                                infoLink = volumeInfo.getString("infoLink");
+                                String previewLink = volumeInfo.getString("previewLink");
+                                String infoLink = volumeInfo.getString("infoLink");
 
 
                                 volumeBooks.add(new VolumeBooks(title, subtitle, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink,
                                         infoLink, price, currencyCode,
-                                        buyLink, language, pageCount, averageRating));
+                                        buyLink, language, isbn, pageCount, averageRating));
 
 //                                VolumeBooksAdapter adapter = new VolumeBooksAdapter(getApplicationContext(), volumeBooks);
 //                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
