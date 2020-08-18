@@ -20,7 +20,7 @@ import com.example.bookfinderapp.viewmodels.SearchResultsActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
 

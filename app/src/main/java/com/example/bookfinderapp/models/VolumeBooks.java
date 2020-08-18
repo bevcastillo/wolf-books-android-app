@@ -15,12 +15,18 @@ public class VolumeBooks {
     private String price;
     private String currencyCode;
     private String buyLink;
+    private String language;
     private int pageCount;
+    private int averageRating;
 
     public VolumeBooks() {
     }
 
-    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String infoLink, String price, String currencyCode, String buyLink, int pageCount) {
+    public VolumeBooks(String title, String subtitle, String authors,
+                       String description, String publisher, String publishedDate,
+                       String categories, String thumbnail, String previewLink,
+                       String infoLink, String price, String currencyCode,
+                       String buyLink, String language, int pageCount, int averageRating) {
         this.title = title;
         this.subtitle = subtitle;
         this.authors = authors;
@@ -34,7 +40,9 @@ public class VolumeBooks {
         this.price = price;
         this.currencyCode = currencyCode;
         this.buyLink = buyLink;
+        this.language = language;
         this.pageCount = pageCount;
+        this.averageRating = averageRating;
     }
 
     public String getTitle() {
@@ -59,6 +67,14 @@ public class VolumeBooks {
 
     public void setAuthors(String authors) {
         this.authors = authors;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPublisher() {
@@ -125,6 +141,22 @@ public class VolumeBooks {
         this.currencyCode = currencyCode;
     }
 
+    public String getBuyLink() {
+        return buyLink;
+    }
+
+    public void setBuyLink(String buyLink) {
+        this.buyLink = buyLink;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public int getPageCount() {
         return pageCount;
     }
@@ -133,19 +165,11 @@ public class VolumeBooks {
         this.pageCount = pageCount;
     }
 
-    public String getDescription() {
-        return description;
+    public int getAverageRatings() {
+        return averageRating;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getBuyLink() {
-        return buyLink;
-    }
-
-    public void setBuyLink(String buyLink) {
-        this.buyLink = buyLink;
+    public void setAverageRatings(int averageRatings) {
+        this.averageRating = averageRatings;
     }
 }

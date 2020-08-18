@@ -12,30 +12,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <EditText
-            android:id="@+id/et_searchQuery"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/custom_rounded_input"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="4dp"
-            android:hint="Search books"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="72dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/bgColor"
-            style="@style/TextAppearance.AppCompat.Medium"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="32dp"
+                android:text="BookFinder."
+                android:textStyle="bold"
+                app:fontFamily="@font/amaranth"
+                android:textColor="@color/colorPrimary"/>
+
+            <EditText
+                android:id="@+id/et_searchQuery"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/custom_rounded_input"
+                android:backgroundTint="@color/bgColor"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="12dp"
+                android:drawableTint="@color/lighterBlack"
+                android:hint="Search books"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="12dp"
+                android:textColor="@android:color/black"/>
+
+        </LinearLayout>
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

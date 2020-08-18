@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -39,10 +41,10 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         final View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_bookslist, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
-        viewHolder.cvBooks.setOnClickListener(new View.OnClickListener() {
+        viewHolder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(view.getContext(), "You have pressed me!", Toast.LENGTH_SHORT).show();
@@ -57,9 +59,8 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         VolumeBooks volumeBooks = listdata.get(position);
 
         holder.tvTitle.setText(volumeBooks.getTitle());
-        holder.tvAuthor.setText(volumeBooks.getAuthors());
-        holder.tvPublisher.setText(volumeBooks.getPublisher());
-        holder.tvPublished.setText(volumeBooks.getPublishedDate());
+        holder.tvAuthor.setText("by "+volumeBooks.getAuthors());
+        holder.rb_ratings.setNumStars(volumeBooks.getAverageRatings());
 
         Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);
 
@@ -72,19 +73,19 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cvBooks;
+        ConstraintLayout layout;
         ImageView ivThumbnail;
-        TextView tvTitle, tvAuthor, tvPublisher, tvPublished;
+        TextView tvTitle, tvAuthor;
+        RatingBar rb_ratings;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            cvBooks = itemView.findViewById(R.id.card_books);
+            layout = itemView.findViewById(R.id.book_layout);
             ivThumbnail = itemView.findViewById(R.id.iv_book_image);
             tvTitle = itemView.findViewById(R.id.tv_book_title);
             tvAuthor = itemView.findViewById(R.id.tv_book_author);
-            tvPublisher = itemView.findViewById(R.id.tv_book_publisher);
-            tvPublished = itemView.findViewById(R.id.tv_book_published);
+            rb_ratings = itemView.findViewById(R.id.ratingbar_book);
 
 
         }

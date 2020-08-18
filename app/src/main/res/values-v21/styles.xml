@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <style name="WhiteTheme" parent="Theme.AppCompat.DayNight">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+<!--        <item name="android:statusBarColor">@android:color/white</item>-->
+<!--        <item name="colorPrimary">@android:color/white</item>-->
+<!--        <item name="android:elevation">0dp</item>-->
+<!--        <item name="elevation">0dp</item>-->
+<!--    </style>-->
+    <style name="RatingBar">
+        <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
+<!--        <item name="android:colorControlActivated">@android:color/darker_gray</item>-->
+    </style>
+</resources>

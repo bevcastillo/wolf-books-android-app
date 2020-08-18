@@ -69,7 +69,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             strQuery = bundle.getString("query_string");
-            tvResultsFor.setText("Results for: "+strQuery);
+            tvResultsFor.setText("Results for "+strQuery);
         }
 
         search();
@@ -95,7 +95,9 @@ public class SearchResultsActivity extends AppCompatActivity {
                         String infoLink = null;
                         String price = null;
                         String currencyCode = null;
+                        String language = null;
                         int pageCount = 100;
+                        int averageRating = 5;
                         String buyLink = null;
 
                         try {
@@ -127,6 +129,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                                     description = volumeInfo.getString("description");
                                     buyLink = saleInfo.getString("buyLink");
                                     categories = volumeInfo.getJSONArray("categories").getString(0);
+                                    averageRating = volumeInfo.getInt("averageRating");
+                                    language = volumeInfo.getString("language");
 
                                 }catch (Exception e){
 
@@ -138,9 +142,11 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks.add(new VolumeBooks(title, subtitle, authors, description,
-                                        publisher, publishedDate, categories, thumbnail, previewLink,
-                                        infoLink, price, currencyCode, buyLink, pageCount));
+                                volumeBooks.add(new VolumeBooks(title, subtitle, authors,
+                                        description, publisher, publishedDate,
+                                        categories, thumbnail, previewLink,
+                                        infoLink, price, currencyCode,
+                                        buyLink, language, pageCount, averageRating));
 
 //                                VolumeBooksAdapter adapter = new VolumeBooksAdapter(getApplicationContext(), volumeBooks);
 //                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
