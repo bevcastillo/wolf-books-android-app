@@ -49,4 +49,8 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
 
+    // For loading and tinting drawables on older versions of the platform
+    implementation "androidx.appcompat:appcompat-resources:1.2.0"
+
+
 }

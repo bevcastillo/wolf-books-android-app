@@ -17,15 +17,17 @@ import com.bumptech.glide.request.RequestOptions;
 
 public class BookInfoActivity extends AppCompatActivity {
 
-    TextView tvTitle, tvAuthor, tvDesc, tvPublisher, tvPublishedOn, tvisbn, tvPageCount, tvLang, tvPublisherheader;
+    TextView tvTitle, tvAuthor, tvDesc, tvPublisher, tvPublishedOn, tvisbn, tvPageCount, tvLang,
+            tvRatingsCount, tvCategories, tvCategoryChip;
     RatingBar rbRatings;
     ImageView ivThumbnail;
     Button btnPreview, btnBuy;
-    String strTitle, strAuthor, strDesc, strPublisher, strPublishedOn, strIsbn, strPageCount, strLang,
-            strRatings, strPrevLink, strBuyLink, strThumbnail;
-    int pageCount, ratings;
+    String strTitle, strAuthor, strDesc, strPublisher, strPublishedOn, strIsbn, strPrice, strLang,
+            strPrevLink, strBuyLink, strThumbnail, strCategories;
+    int pageCount, ratingsCount;
+    double ratings;
 
-    RequestOptions requestO = new RequestOptions().centerCrop().placeholder(R.drawable.owl_logo).error(R.drawable.owl_logo);
+    RequestOptions requestO = new RequestOptions().centerCrop().placeholder(R.drawable.custom_loading_image).error(R.drawable.custom_loading_image);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,6 @@ public class BookInfoActivity extends AppCompatActivity {
         ivThumbnail = findViewById(R.id.iv_book_thumbnail);
         tvTitle = findViewById(R.id.tv_title);
         tvAuthor = findViewById(R.id.tv_author);
-        rbRatings = findViewById(R.id.ratings);
         btnPreview = findViewById(R.id.btn_preview);
         btnBuy = findViewById(R.id.btn_buy);
         tvDesc = findViewById(R.id.tv_desc);
@@ -44,7 +45,10 @@ public class BookInfoActivity extends AppCompatActivity {
         tvisbn = findViewById(R.id.tv_isbn);
         tvPageCount = findViewById(R.id.tv_pageCount);
         tvLang = findViewById(R.id.tv_language);
-        tvPublisherheader = findViewById(R.id.tv_publisher_1);
+        tvCategories = findViewById(R.id.tv_categories);
+        rbRatings = findViewById(R.id.ratingbar_book);
+        tvRatingsCount = findViewById(R.id.tv_reviews_count);
+        tvCategoryChip = findViewById(R.id.tv_categories_chip);
 
         setTitle("");
     }
@@ -62,25 +66,48 @@ public class BookInfoActivity extends AppCompatActivity {
             strPublisher = bundle.getString("book_publisher");
             strPublishedOn = bundle.getString("book_publishedOn");
             pageCount = bundle.getInt("book_pageCount");
-            ratings = bundle.getInt("book_ratings");
+            ratings = bundle.getDouble("book_ratings");
             strThumbnail = bundle.getString("book_thumbnail");
             strPrevLink = bundle.getString("book_prevLink");
             strBuyLink = bundle.getString("book_buyLink");
+            strPrice = bundle.getString("book_price");
+            strCategories = bundle.getString("book_categories");
+            ratingsCount = bundle.getInt("book_ratingsCount");
+
 
             tvTitle.setText(strTitle);
-            tvAuthor.setText(strAuthor);
-            rbRatings.setNumStars(ratings);
+            tvAuthor.setText("by "+strAuthor);
             tvDesc.setText(strDesc);
             tvPublisher.setText(strPublisher);
             tvPublishedOn.setText(strPublishedOn);
             tvLang.setText(strLang);
-            tvPublisherheader.setText(strPublisher);
+            tvCategories.setText(strCategories);
+            rbRatings.setRating((float) ratings);
+            tvRatingsCount.setText(ratingsCount+" Reviews");
+            tvPageCount.setText(pageCount+"");
+            tvCategoryChip.setText(strCategories);
 //            tvPageCount.setText(pageCount);
+
+
 
             Glide.with(this).load(strThumbnail).apply(requestO).into(ivThumbnail);
 
             final String finalLinkPreview = strPrevLink;
             final String finalBuyLink = strBuyLink;
+
+            if (strPrice.equals("Not For Sale")) {
+                btnBuy.setText(strPrice);
+                btnBuy.setEnabled(false); //disable the link button if the book is not for sale
+            }else {
+                btnBuy.setText("Buy for "+strPrice);
+                btnBuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalBuyLink));
+                        startActivity(intent);
+                    }
+                });
+            }
 
             btnPreview.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -90,13 +117,7 @@ public class BookInfoActivity extends AppCompatActivity {
                 }
             });
 
-            btnBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalBuyLink));
-                    startActivity(intent);
-                }
-            });
+
         }
     }
 }

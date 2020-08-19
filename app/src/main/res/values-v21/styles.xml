@@ -9,8 +9,8 @@
 <!--        <item name="android:elevation">0dp</item>-->
 <!--        <item name="elevation">0dp</item>-->
 <!--    </style>-->
-    <style name="RatingBar">
-        <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
-<!--        <item name="android:colorControlActivated">@android:color/darker_gray</item>-->
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="android:colorControlNormal">@android:color/darker_gray</item>
+        <item name="android:colorControlActivated">@color/colorRating</item>
     </style>
 </resources>

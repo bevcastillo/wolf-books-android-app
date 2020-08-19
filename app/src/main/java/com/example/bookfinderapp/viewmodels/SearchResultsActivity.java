@@ -35,6 +35,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = SearchResultsActivity.class.getSimpleName();
     private static final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="; //base URI
+    private static final String BOOK_MAX_RES = "&maxResults=40";
 
     private String strQuery;
     private TextView tvResultsFor;
@@ -62,20 +63,28 @@ public class SearchResultsActivity extends AppCompatActivity {
         mRequestQueue = Volley.newRequestQueue(this);
 
         volumeBooks.clear(); //clearing the results first to avoid data duplication when re-loaded
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
+        volumeBooks.clear(); //clearing the results first to avoid data duplication when re-loaded
+
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             strQuery = bundle.getString("query_string");
-            tvResultsFor.setText("Results for "+strQuery);
+            tvResultsFor.setText("results for "+"''"+strQuery+"''");
         }
 
         search();
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     private void parseJson(String key) {
@@ -91,14 +100,15 @@ public class SearchResultsActivity extends AppCompatActivity {
                         String description = "No description";
                         String publisher = "";
                         String publishedDate = "";
-                        String categories = "";
+                        String categories = "No Categories";
                         String thumbnail = null;
                         String price = "Not For Sale";
                         String currencyCode = "Not available";
                         String language = "Not Available";
                         String isbn = "Not Available";
-                        int pageCount = 1000;
-                        int averageRating = 5;
+                        int pageCount = 0;
+                        int ratingsCount = 0;
+                        double averageRating = 5.0;
                         String buyLink = "Not Available";
 
                         try {
@@ -128,11 +138,14 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                                     JSONObject saleInfo = item.getJSONObject("saleInfo");
                                     JSONObject listPrice = saleInfo.getJSONObject("listPrice");
+
                                     price = listPrice.getString("amount") + " " +listPrice.getString("currencyCode");
+
                                     description = volumeInfo.getString("description");
                                     buyLink = saleInfo.getString("buyLink");
                                     categories = volumeInfo.getJSONArray("categories").getString(0);
-                                    averageRating = volumeInfo.getInt("averageRating");
+                                    averageRating = volumeInfo.getDouble("averageRating");
+                                    ratingsCount = volumeInfo.getInt("ratingsCount");
                                     language = volumeInfo.getString("language");
 
                                 }catch (Exception e){
@@ -149,14 +162,7 @@ public class SearchResultsActivity extends AppCompatActivity {
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink,
                                         infoLink, price, currencyCode,
-                                        buyLink, language, isbn, pageCount, averageRating));
-
-//                                VolumeBooksAdapter adapter = new VolumeBooksAdapter(getApplicationContext(), volumeBooks);
-//                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-//                                rvBooksResults.setLayoutManager(layoutManager);
-//                                rvBooksResults.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
-//                                rvBooksResults.setItemAnimator(new DefaultItemAnimator());
-//                                rvBooksResults.setAdapter(adapter);
+                                        buyLink, language, isbn, pageCount, averageRating, ratingsCount));
 
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
                                 rvBooksResults.setAdapter(adapter);
@@ -181,18 +187,16 @@ public class SearchResultsActivity extends AppCompatActivity {
     }
 
     private void search(){
-        //  Log.d("QUERY",search_query);
-
-
         if(strQuery.equals("")) {
             Toast.makeText(this,"Please enter your query",Toast.LENGTH_SHORT).show();
             return;
         }
-        String final_query=strQuery.replace(" ","+");
-        Uri uri=Uri.parse(BOOK_BASE_URL+final_query);
-        Uri.Builder buider = uri.buildUpon();
 
-        parseJson(buider.toString());
+        String final_query = strQuery.replace(" ","+");
+        Uri uri = Uri.parse(BOOK_BASE_URL+final_query+BOOK_MAX_RES);
+        Uri.Builder builder = uri.buildUpon();
+
+        parseJson(builder.toString());
 
 
     }

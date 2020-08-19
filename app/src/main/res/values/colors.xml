@@ -7,4 +7,7 @@
     <color name="bgColor">#f9f6f7</color>
     <color name="lighterBlack">#303030</color>
     <color name="secondaryColor">#ffe8d6</color>
+
+    <color name="colorRating">#FDCC0D</color>
+    <color name="colorWatermelon">#ff4757</color>
 </resources>

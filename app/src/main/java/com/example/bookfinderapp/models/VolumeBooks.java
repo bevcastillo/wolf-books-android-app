@@ -18,7 +18,8 @@ public class VolumeBooks {
     private String language;
     private String isbn;
     private int pageCount;
-    private int averageRating;
+    private double averageRating;
+    private int ratingsCount;
 
     public VolumeBooks() {
     }
@@ -27,7 +28,8 @@ public class VolumeBooks {
                        String description, String publisher, String publishedDate,
                        String categories, String thumbnail, String previewLink,
                        String infoLink, String price, String currencyCode,
-                       String buyLink, String language, String isbn, int pageCount, int averageRating) {
+                       String buyLink, String language, String isbn, int pageCount,
+                       double averageRating, int ratingsCount) {
         this.title = title;
         this.subtitle = subtitle;
         this.authors = authors;
@@ -45,6 +47,7 @@ public class VolumeBooks {
         this.isbn = isbn;
         this.pageCount = pageCount;
         this.averageRating = averageRating;
+        this.ratingsCount = ratingsCount;
     }
 
     public String getTitle() {
@@ -175,11 +178,19 @@ public class VolumeBooks {
         this.pageCount = pageCount;
     }
 
-    public int getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(int averageRatings) {
+    public void setAverageRating(double averageRatings) {
         this.averageRating = averageRatings;
+    }
+
+    public int getRatingsCount() {
+        return ratingsCount;
+    }
+
+    public void setRatingsCount(int ratingsCount) {
+        this.ratingsCount = ratingsCount;
     }
 }
