@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SearchFragment"
+    tools:context=".viewmodels.SearchFragment"
     android:fillViewport="true"
     android:background="@android:color/white">
 
@@ -52,93 +52,6 @@
                 android:inputType="text"
                 android:padding="12dp"
                 android:textColor="@android:color/black" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_popular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_search">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Popular Books"
-                style="@style/TextAppearance.AppCompat.Headline"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_popular_books"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:scrollbars="horizontal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_religion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_popular">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Religions"
-                style="@style/TextAppearance.AppCompat.Headline"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_religion_books"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:scrollbars="horizontal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_educational"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_religion">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Educational"
-                style="@style/TextAppearance.AppCompat.Headline"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:scrollbars="horizontal"
-                android:id="@+id/rv_educational_books"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"/>
 
         </LinearLayout>
 

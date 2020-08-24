@@ -45,6 +45,8 @@ public class SearchResultsActivity extends AppCompatActivity {
     private VolumeBooksAdapter adapter;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

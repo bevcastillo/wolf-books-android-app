@@ -11,13 +11,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bookfinderapp.BookInfoActivity;
+import com.example.bookfinderapp.viewmodels.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
 
@@ -103,10 +102,10 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         VolumeBooks volumeBooks = listdata.get(position);
 
         holder.tvTitle.setText(volumeBooks.getTitle());
-        holder.tvAuthor.setText("by "+volumeBooks.getAuthors());
+        holder.tvAuthor.setText("by " + volumeBooks.getAuthors());
         holder.rb_ratings.setRating((float) volumeBooks.getAverageRating());
-        holder.tvRatings.setText(volumeBooks.getAverageRating()+"");
-        holder.tvRatingsCount.setText("/ "+volumeBooks.getRatingsCount()+"");
+        holder.tvRatings.setText(volumeBooks.getAverageRating() + "");
+        holder.tvRatingsCount.setText("/ " + volumeBooks.getRatingsCount() + "");
         holder.tvPublisher.setText(volumeBooks.getPublisher());
 
         Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);

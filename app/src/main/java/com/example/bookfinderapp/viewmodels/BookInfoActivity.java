@@ -1,4 +1,4 @@
-package com.example.bookfinderapp;
+package com.example.bookfinderapp.viewmodels;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookfinderapp.R;
 
 public class BookInfoActivity extends AppCompatActivity {
 

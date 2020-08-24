@@ -1,4 +1,4 @@
-package com.example.bookfinderapp;
+package com.example.bookfinderapp.viewmodels;
 
 
 import android.content.Intent;
@@ -23,8 +23,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.bookfinderapp.adapters.PopularBooksAdapter;
-import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
 import com.example.bookfinderapp.viewmodels.SearchResultsActivity;
 
@@ -41,6 +41,7 @@ public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
     private RecyclerView rvPopBooks, rvReligionBooks, rvEducBooks;
+    private RequestOptions options;
 
     private static final String LOG_TAG = SearchResultsActivity.class.getSimpleName();
     private static final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="; //base URI
@@ -48,13 +49,7 @@ public class SearchFragment extends Fragment{
 
     private RequestQueue mRequestQueue;
 
-    String strPopular = "popularbooks";
-    String strEduc = "educationalbooks";
-    String strReligion = "religion";
-
     private ArrayList<VolumeBooks> volumeBooks;
-    private PopularBooksAdapter pop_adapter;
-
 
 
     public SearchFragment() {
@@ -69,9 +64,6 @@ public class SearchFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
-        rvPopBooks = view.findViewById(R.id.rv_popular_books);
-        rvReligionBooks = view.findViewById(R.id.rv_religion_books);
-        rvEducBooks = view.findViewById(R.id.rv_educational_books);
 
         //
         rvPopBooks.setHasFixedSize(true);
@@ -80,9 +72,6 @@ public class SearchFragment extends Fragment{
         volumeBooks = new ArrayList<>();
         mRequestQueue = Volley.newRequestQueue(getContext());
 
-
-        //methods
-        displayPopularBooks();
 
         et_searchQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -100,15 +89,6 @@ public class SearchFragment extends Fragment{
         return view;
     }
 
-    private void displayPopularBooks() {
-
-        String final_popular_category = strPopular.replace(" ","+");
-        Uri uri = Uri.parse(BOOK_BASE_URL+final_popular_category+BOOK_MAX_RES);
-        Uri.Builder builder = uri.buildUpon();
-
-        parseJson(builder.toString());
-
-    }
 
     private void getVolumeResponse() {
 
@@ -197,10 +177,6 @@ public class SearchFragment extends Fragment{
                                         infoLink, price, currencyCode,
                                         buyLink, language, isbn, pageCount, averageRating, ratingsCount));
 
-                                pop_adapter = new PopularBooksAdapter(getContext(), volumeBooks);
-                                rvPopBooks.setAdapter(pop_adapter);
-
-                                pop_adapter.notifyDataSetChanged();
                             }
 
 
