@@ -162,9 +162,8 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                                 volumeBooks.add(new VolumeBooks(title, subtitle, authors,
                                         description, publisher, publishedDate,
-                                        categories, thumbnail, previewLink,
-                                        infoLink, price, currencyCode,
-                                        buyLink, language, isbn, pageCount, averageRating, ratingsCount));
+                                        categories, thumbnail, previewLink, price, currencyCode,
+                                        buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
 
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
                                 rvBooksResults.setAdapter(adapter);

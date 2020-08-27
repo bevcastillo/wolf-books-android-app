@@ -2,6 +2,7 @@ package com.example.bookfinderapp.models;
 
 public class VolumeBooks {
 
+    private int id;
     private String title;
     private String subtitle;
     private String authors;
@@ -11,25 +12,23 @@ public class VolumeBooks {
     private String categories;
     private String thumbnail;
     private String previewLink;
-    private String infoLink;
     private String price;
     private String currencyCode;
     private String buyLink;
     private String language;
-    private String isbn;
     private int pageCount;
     private double averageRating;
     private int ratingsCount;
+    private boolean isBookmark;
 
     public VolumeBooks() {
     }
 
-    public VolumeBooks(String title, String subtitle, String authors,
-                       String description, String publisher, String publishedDate,
-                       String categories, String thumbnail, String previewLink,
-                       String infoLink, String price, String currencyCode,
-                       String buyLink, String language, String isbn, int pageCount,
-                       double averageRating, int ratingsCount) {
+    public VolumeBooks(int id, String title, String subtitle, String authors, String description,
+                       String publisher, String publishedDate, String categories, String thumbnail,
+                       String previewLink, String price, String currencyCode, String buyLink,
+                       String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
+        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
         this.authors = authors;
@@ -39,15 +38,47 @@ public class VolumeBooks {
         this.categories = categories;
         this.thumbnail = thumbnail;
         this.previewLink = previewLink;
-        this.infoLink = infoLink;
         this.price = price;
         this.currencyCode = currencyCode;
         this.buyLink = buyLink;
         this.language = language;
-        this.isbn = isbn;
         this.pageCount = pageCount;
         this.averageRating = averageRating;
         this.ratingsCount = ratingsCount;
+        this.isBookmark = isBookmark;
+    }
+
+    public VolumeBooks(String title, String subtitle, String authors,
+                       String description, String publisher, String publishedDate,
+                       String categories, String thumbnail, String previewLink,
+                       String price, String currencyCode,
+                       String buyLink, String language, int pageCount,
+                       double averageRating, int ratingsCount, boolean isBookmark) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.authors = authors;
+        this.description = description;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
+        this.categories = categories;
+        this.thumbnail = thumbnail;
+        this.previewLink = previewLink;
+        this.price = price;
+        this.currencyCode = currencyCode;
+        this.buyLink = buyLink;
+        this.language = language;
+        this.pageCount = pageCount;
+        this.averageRating = averageRating;
+        this.ratingsCount = ratingsCount;
+        this.isBookmark = isBookmark;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -122,14 +153,6 @@ public class VolumeBooks {
         this.previewLink = previewLink;
     }
 
-    public String getInfoLink() {
-        return infoLink;
-    }
-
-    public void setInfoLink(String infoLink) {
-        this.infoLink = infoLink;
-    }
-
     public String getPrice() {
         return price;
     }
@@ -162,14 +185,6 @@ public class VolumeBooks {
         this.language = language;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public int getPageCount() {
         return pageCount;
     }
@@ -192,5 +207,13 @@ public class VolumeBooks {
 
     public void setRatingsCount(int ratingsCount) {
         this.ratingsCount = ratingsCount;
+    }
+
+    public boolean isBookmark() {
+        return isBookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        isBookmark = bookmark;
     }
 }

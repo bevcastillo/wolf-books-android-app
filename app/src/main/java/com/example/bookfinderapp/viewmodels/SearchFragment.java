@@ -164,9 +164,8 @@ public class SearchFragment extends Fragment{
 
                                 volumeBooks.add(new VolumeBooks(title, subtitle, authors,
                                         description, publisher, publishedDate,
-                                        categories, thumbnail, previewLink,
-                                        infoLink, price, currencyCode,
-                                        buyLink, language, isbn, pageCount, averageRating, ratingsCount));
+                                        categories, thumbnail, previewLink, price, currencyCode,
+                                        buyLink, language, pageCount, averageRating, ratingsCount, false));
 
                             }
 
