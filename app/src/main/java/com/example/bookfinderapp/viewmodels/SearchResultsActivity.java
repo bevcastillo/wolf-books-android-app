@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
+import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
 import com.google.gson.JsonObject;
 
@@ -43,9 +44,6 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     private ArrayList<VolumeBooks> volumeBooks;
     private VolumeBooksAdapter adapter;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

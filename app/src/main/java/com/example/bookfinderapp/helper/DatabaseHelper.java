@@ -35,7 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_IS_BOOKMARK = "is_bookmark";
 
     public DatabaseHelper(Context context) {
-        super(context, BOOKMARKTBL, null, 1);
+        super(context, DATABASE, null, 1);
     }
 
     private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE "

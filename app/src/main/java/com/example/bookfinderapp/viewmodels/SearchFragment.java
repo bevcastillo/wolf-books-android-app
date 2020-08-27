@@ -159,8 +159,6 @@ public class SearchFragment extends Fragment{
                                 thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
                                 String previewLink = volumeInfo.getString("previewLink");
-                                String infoLink = volumeInfo.getString("infoLink");
-
 
                                 volumeBooks.add(new VolumeBooks(title, subtitle, authors,
                                         description, publisher, publishedDate,

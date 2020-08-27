@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.viewmodels.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
@@ -27,6 +28,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
     private Context context;
     private List<VolumeBooks> listdata;
     private RequestOptions options;
+    private DatabaseHelper db;
 
 
     public VolumeBooksAdapter(Context context, List<VolumeBooks> listdata) {
@@ -50,8 +52,31 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
             public void onClick(View v) {
                 String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
                 String author = listdata.get(viewHolder.getAdapterPosition()).getAuthors();
+                double ratings = listdata.get(viewHolder.getAdapterPosition()).getAverageRating();
+                String previewLink = listdata.get(viewHolder.getAdapterPosition()).getPreviewLink();
+                String buyLink = listdata.get(viewHolder.getAdapterPosition()).getBuyLink();
+                String description = listdata.get(viewHolder.getAdapterPosition()).getDescription();
+                String publisher = listdata.get(viewHolder.getAdapterPosition()).getPublisher();
+                String publishedOn = listdata.get(viewHolder.getAdapterPosition()).getPublishedDate();
+                int pageCount = listdata.get(viewHolder.getAdapterPosition()).getPageCount();
+                String language = listdata.get(viewHolder.getAdapterPosition()).getLanguage();
+                String price = listdata.get(viewHolder.getAdapterPosition()).getPrice();
+                String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail();
+                String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
+                int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
+                String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
 
-                Toast.makeText(context, title+" by "+author+" has been added to bookmarks.", Toast.LENGTH_SHORT).show();
+                db = new DatabaseHelper(v.getContext());
+
+                //adding to sqlite database
+                long result = db.addBookmark(title,author,description,publisher,publishedOn,categories,
+                        thumbnail,previewLink,price,currency,buyLink,language,pageCount,ratings,ratingsCount,true);
+
+                if (result>0) {
+                    Toast.makeText(context, "Added to bookmark.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "There is something wrong. Please try again later.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
