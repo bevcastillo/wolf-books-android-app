@@ -40,12 +40,6 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
-    private RecyclerView rvPopBooks, rvReligionBooks, rvEducBooks;
-    private RequestOptions options;
-
-    private static final String LOG_TAG = SearchResultsActivity.class.getSimpleName();
-    private static final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="; //base URI
-    private static final String BOOK_MAX_RES = "&maxResults=20";
 
     private RequestQueue mRequestQueue;
 
@@ -66,9 +60,6 @@ public class SearchFragment extends Fragment{
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
 
         //
-        rvPopBooks.setHasFixedSize(true);
-        
-        rvPopBooks.setLayoutManager(new LinearLayoutManager(getContext()));
         volumeBooks = new ArrayList<>();
         mRequestQueue = Volley.newRequestQueue(getContext());
 

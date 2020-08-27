@@ -49,6 +49,7 @@
             card_view:layout_constraintTop_toBottomOf="@+id/tv_publisher" />
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/iv_bookmark"
             android:layout_width="30dp"
             android:layout_height="wrap_content"

@@ -12,10 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewmodels.BookInfoActivity"
-            android:parentActivityName=".viewmodels.SearchResultsActivity"></activity>
-        <activity
-            android:name=".viewmodels.NavigationActivity"
+        <activity android:name=".viewmodels.MainActivity"
             android:theme="@style/WhiteThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +21,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".viewmodels.BookInfoActivity"
+            android:parentActivityName=".viewmodels.SearchResultsActivity" />
+        <activity
+            android:name=".viewmodels.NavigationActivity"
+            android:theme="@style/WhiteThemeNoActionBar">
+
+        </activity>
+        <activity
             android:name=".viewmodels.SearchResultsActivity"
-            android:parentActivityName=".viewmodels.NavigationActivity" />
+            android:parentActivityName=".viewmodels.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
