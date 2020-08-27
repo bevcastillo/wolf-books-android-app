@@ -4,7 +4,6 @@ public class VolumeBooks {
 
     private int id;
     private String title;
-    private String subtitle;
     private String authors;
     private String description;
     private String publisher;
@@ -24,13 +23,15 @@ public class VolumeBooks {
     public VolumeBooks() {
     }
 
-    public VolumeBooks(int id, String title, String subtitle, String authors, String description,
+    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String price, String currencyCode, String buyLink, String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
+    }
+
+    public VolumeBooks(int id, String title, String authors, String description,
                        String publisher, String publishedDate, String categories, String thumbnail,
                        String previewLink, String price, String currencyCode, String buyLink,
                        String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
         this.id = id;
         this.title = title;
-        this.subtitle = subtitle;
         this.authors = authors;
         this.description = description;
         this.publisher = publisher;
@@ -48,14 +49,13 @@ public class VolumeBooks {
         this.isBookmark = isBookmark;
     }
 
-    public VolumeBooks(String title, String subtitle, String authors,
+    public VolumeBooks(String title, String authors,
                        String description, String publisher, String publishedDate,
                        String categories, String thumbnail, String previewLink,
                        String price, String currencyCode,
                        String buyLink, String language, int pageCount,
                        double averageRating, int ratingsCount, boolean isBookmark) {
         this.title = title;
-        this.subtitle = subtitle;
         this.authors = authors;
         this.description = description;
         this.publisher = publisher;
@@ -87,14 +87,6 @@ public class VolumeBooks {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
     }
 
     public String getAuthors() {

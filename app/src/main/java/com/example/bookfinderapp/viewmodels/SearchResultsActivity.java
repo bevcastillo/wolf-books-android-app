@@ -158,14 +158,13 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 String infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks.add(new VolumeBooks(title, subtitle, authors,
+                                volumeBooks.add(new VolumeBooks(title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
 
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
                                 rvBooksResults.setAdapter(adapter);
-
                                 adapter.notifyDataSetChanged();
                             }
 

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.bookfinderapp.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.viewmodels.BookInfoActivity;
 import com.example.bookfinderapp.R;
@@ -29,6 +30,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
     private List<VolumeBooks> listdata;
     private RequestOptions options;
     private DatabaseHelper db;
+    private DBManager dbManager;
 
 
     public VolumeBooksAdapter(Context context, List<VolumeBooks> listdata) {
@@ -66,17 +68,25 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
                 String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
 
+                dbManager = new DBManager(v.getContext());
+                dbManager.open();
                 db = new DatabaseHelper(v.getContext());
 
                 //adding to sqlite database
-                long result = db.addBookmark(title,author,description,publisher,publishedOn,categories,
-                        thumbnail,previewLink,price,currency,buyLink,language,pageCount,ratings,ratingsCount,true);
+//                long result = db.addBookmark(title,author,description,publisher,publishedOn,categories,
+//                        thumbnail,previewLink,price,currency,buyLink,language,pageCount,ratings,ratingsCount,true);
+//
+//                if (result>0) {
+//                    Toast.makeText(context, "Added to bookmark.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(context, "There is something wrong. Please try again later.", Toast.LENGTH_SHORT).show();
+//                }
 
-                if (result>0) {
-                    Toast.makeText(context, "Added to bookmark.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(context, "There is something wrong. Please try again later.", Toast.LENGTH_SHORT).show();
-                }
+                VolumeBooks volumeBooks = new VolumeBooks(title,author,description,publisher,publishedOn,categories,
+                                                            thumbnail,previewLink,price,currency,buyLink,language,
+                                                            pageCount,ratings,ratingsCount,true);
+                db.addBookmark(volumeBooks);
+                Toast.makeText(v.getContext(), title+" has been added to bookmarks.", Toast.LENGTH_SHORT).show();
             }
         });
 

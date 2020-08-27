@@ -46,8 +46,10 @@ public class SearchFragment extends Fragment{
     private ArrayList<VolumeBooks> volumeBooks;
 
 
+
     public SearchFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -58,6 +60,8 @@ public class SearchFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
+
+        getActivity().setTitle("Search");
 
         //
         volumeBooks = new ArrayList<>();

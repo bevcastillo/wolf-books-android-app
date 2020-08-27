@@ -24,8 +24,7 @@
             android:name=".viewmodels.BookInfoActivity"
             android:parentActivityName=".viewmodels.SearchResultsActivity" />
         <activity
-            android:name=".viewmodels.NavigationActivity"
-            android:theme="@style/WhiteThemeNoActionBar">
+            android:name=".viewmodels.NavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
