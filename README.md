@@ -1,7 +1,10 @@
-# android-bookfinder
+# Book Finder App
 
 Book finder app that lets the user search for books online with Google Books API.
 
+### This repo contains:
+![Google Books API] (https://developers.google.com/books/docs/v1/reference/volumes)
+![Volley] (https://developer.android.com/training/volley)
 
 # Preview
 ![Search screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/118541312_1067403423674198_4964509709829908958_n.jpg)
