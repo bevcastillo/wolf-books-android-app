@@ -22,14 +22,14 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
-    <style name="WhΩiteTheme" parent="Theme.AppCompat.DayNight" tools:ignore="DuplicateDefinition">
-        <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@android:color/white</item>
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="android:elevation">0dp</item>
-        <item name="elevation">0dp</item>
-    </style>
+<!--    <style name="WhiteTheme" parent="Theme.AppCompat.DayNight" tools:ignore="DuplicateDefinition">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
+<!--        <item name="android:statusBarColor">@android:color/white</item>-->
+<!--        <item name="colorPrimary">@android:color/white</item>-->
+<!--        <item name="android:elevation">0dp</item>-->
+<!--        <item name="elevation">0dp</item>-->
+<!--    </style>-->
 
 
 </resources>

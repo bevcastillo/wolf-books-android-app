@@ -26,6 +26,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="some title"
+        android:textStyle="bold"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="@+id/iv_image"
         card_view:layout_constraintTop_toBottomOf="@+id/iv_image" />

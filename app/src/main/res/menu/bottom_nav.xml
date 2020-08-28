@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/nav_search"
-        android:icon="@drawable/ic_search"
+        android:icon="@drawable/ic_search_black_24dp"
         android:title="Search"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_bookmarks"
-        android:icon="@drawable/ic_bookmark"
+        android:icon="@drawable/ic_bookmark_border_black_24dp"
         android:title="Bookmarks"
         app:showAsAction="ifRoom"/>
 

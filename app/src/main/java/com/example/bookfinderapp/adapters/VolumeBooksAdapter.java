@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -154,7 +155,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ConstraintLayout layout;
+        CardView layout;
         ImageView ivThumbnail, ivBookmark;
         TextView tvTitle, tvAuthor, tvRatings, tvRatingsCount, tvPublisher;
         RatingBar rb_ratings;

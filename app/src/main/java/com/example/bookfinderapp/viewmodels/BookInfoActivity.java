@@ -43,13 +43,11 @@ public class BookInfoActivity extends AppCompatActivity {
         tvDesc = findViewById(R.id.tv_desc);
         tvPublisher = findViewById(R.id.tv_publisher);
         tvPublishedOn = findViewById(R.id.tv_publishedOn);
-        tvisbn = findViewById(R.id.tv_isbn);
         tvPageCount = findViewById(R.id.tv_pageCount);
         tvLang = findViewById(R.id.tv_language);
         tvCategories = findViewById(R.id.tv_categories);
         rbRatings = findViewById(R.id.ratingbar_book);
         tvRatingsCount = findViewById(R.id.tv_reviews_count);
-        tvCategoryChip = findViewById(R.id.tv_categories_chip);
 
         setTitle("");
     }
@@ -84,9 +82,8 @@ public class BookInfoActivity extends AppCompatActivity {
             tvLang.setText(strLang);
             tvCategories.setText(strCategories);
             rbRatings.setRating((float) ratings);
-            tvRatingsCount.setText(ratingsCount+" Reviews");
-            tvPageCount.setText(pageCount+"");
-            tvCategoryChip.setText(strCategories);
+            tvRatingsCount.setText("/"+ratingsCount+" Reviews");
+            tvPageCount.setText(pageCount+" pages");
 //            tvPageCount.setText(pageCount);
 
 

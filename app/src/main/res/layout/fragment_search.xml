@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".viewmodels.SearchFragment"
     android:fillViewport="true"
-    android:background="@android:color/white">
+    android:background="#eeeeee">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,10 +44,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_rounded_input"
                 android:backgroundTint="@color/bgColor"
-                android:drawableLeft="@drawable/ic_search"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
                 android:drawablePadding="12dp"
                 android:drawableTint="@color/lighterBlack"
-                android:hint="Search books"
+                android:hint="Search book author, title, etc."
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:padding="12dp"

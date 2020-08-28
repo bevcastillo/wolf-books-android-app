@@ -9,6 +9,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,7 +67,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        ConstraintLayout layout;
+        CardView layout;
         ImageView ivThumbnail, ivBookmark;
         TextView tvTitle, tvAuthor, tvRatings, tvRatingsCount, tvPublisher;
         RatingBar rb_ratings;
