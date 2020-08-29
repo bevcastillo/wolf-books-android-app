@@ -5,9 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".viewmodels.BookInfoActivity"
-    android:fillViewport="true"
-    android:background="#eeeeee">
+    tools:context=".view.BookInfoActivity"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,8 +14,8 @@
 
         <ImageView
             android:id="@+id/iv_book_thumbnail"
-            android:layout_width="150dp"
-            android:layout_height="220dp"
+            android:layout_width="130dp"
+            android:layout_height="200dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
@@ -46,7 +45,7 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="Some title"
@@ -63,8 +62,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:text="some authors"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
@@ -76,15 +73,13 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:numStars="5"
             android:rating="0"
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_book_thumbnail" />
+            app:layout_constraintStart_toStartOf="@+id/tv_author"
+            app:layout_constraintTop_toBottomOf="@+id/tv_author" />
 
         <TextView
             android:id="@+id/tv_ratings"
@@ -124,7 +119,7 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingbar_book" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_book_thumbnail" />
 
         <TextView
             android:id="@+id/tv_desc"
@@ -273,15 +268,25 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:minHeight="1dp"
-                android:text="Preview" />
+                android:text="preview"
+                android:padding="10dp"
+                android:layout_margin="4dp"
+                android:textColor="@color/colorPrimary"
+                android:background="@drawable/custom_cornered_stroke_btn"
+                android:stateListAnimator="@null"/>
 
             <Button
                 android:id="@+id/btn_buy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="10dp"
+                android:textColor="@android:color/white"
                 android:minHeight="1dp"
-                android:text="Preview" />
+                android:background="@drawable/custom_cornered_btn"
+                android:text=""
+                android:layout_margin="4dp"
+                android:stateListAnimator="@null"/>
 
         </LinearLayout>
 

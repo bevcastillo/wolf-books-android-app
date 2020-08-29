@@ -12,17 +12,15 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bookfinderapp.DBManager;
+import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
-import com.example.bookfinderapp.viewmodels.BookInfoActivity;
+import com.example.bookfinderapp.view.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -78,7 +76,9 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                                                             thumbnail,previewLink,price,currency,buyLink,language,
                                                             pageCount,ratings,ratingsCount,true);
                 db.addBookmark(volumeBooks);
-                Toast.makeText(v.getContext(), title+" has been added to bookmarks.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), title+" has been added to bookmarks list.", Toast.LENGTH_LONG).show();
+
+                viewHolder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
             }
         });
 
@@ -99,6 +99,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail();
                 String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
                 int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
+                String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
 
 //                passing data to BookInfoActivity
                 Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
@@ -116,6 +117,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 intent.putExtra("book_thumbnail", thumbnail);
                 intent.putExtra("book_categories", categories);
                 intent.putExtra("book_ratingsCount", ratingsCount);
+                intent.putExtra("book_currency", currency);
 
                 v.getContext().startActivity(intent);
             }
@@ -152,7 +154,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvPublisher.setText(volumeBooks.getPublisher());
 
         holder.ivBookmark.setBackground(null);
-        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
+        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
 
     }
 

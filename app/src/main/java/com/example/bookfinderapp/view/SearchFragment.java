@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.viewmodels;
+package com.example.bookfinderapp.view;
 
 
 import android.animation.Animator;
@@ -9,12 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,25 +22,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
-import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.viewmodels.SearchResultsActivity;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 /**

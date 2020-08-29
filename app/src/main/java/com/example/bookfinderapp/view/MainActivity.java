@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.viewmodels;
+package com.example.bookfinderapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +13,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.viewmodels.SearchResultsActivity;
 
 import java.util.ArrayList;
 

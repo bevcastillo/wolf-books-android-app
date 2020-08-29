@@ -1,12 +1,10 @@
-package com.example.bookfinderapp;
+package com.example.bookfinderapp.helper;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
-import com.example.bookfinderapp.helper.DatabaseHelper;
 
 public class DBManager {
 

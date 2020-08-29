@@ -13,17 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CollapsingActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
         <activity
-            android:name=".viewmodels.MainActivity"
+            android:name=".view.MainActivity"
             android:theme="@style/WhiteThemeNoActionBar">
         </activity>
         <activity
-            android:name=".viewmodels.BookInfoActivity"
-            android:parentActivityName=".viewmodels.SearchResultsActivity"/>
-        <activity android:name=".viewmodels.NavigationActivity"
+            android:name=".view.BookInfoActivity"
+            android:parentActivityName=".view.SearchResultsActivity"/>
+        <activity android:name=".view.NavigationActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +29,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".viewmodels.SearchResultsActivity"
-            android:parentActivityName=".viewmodels.MainActivity" />
+            android:name=".view.SearchResultsActivity"
+            android:parentActivityName=".view.MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -7,16 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.bookfinderapp.DBManager;
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.helper.DBManager;
+import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
 
 import java.util.List;
@@ -26,6 +27,8 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     private Context context;
     private List<VolumeBooks> listdata;
     private RequestOptions options;
+    private DatabaseHelper db;
+    private DBManager dbManager;
 
     public BookmarksAdapter(Context context, List<VolumeBooks> listdata) {
         this.context = context;
@@ -41,6 +44,38 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
         final View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
+
+        viewHolder.ivBookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
+                String author = listdata.get(viewHolder.getAdapterPosition()).getAuthors();
+                double ratings = listdata.get(viewHolder.getAdapterPosition()).getAverageRating();
+                String previewLink = listdata.get(viewHolder.getAdapterPosition()).getPreviewLink();
+                String buyLink = listdata.get(viewHolder.getAdapterPosition()).getBuyLink();
+                String description = listdata.get(viewHolder.getAdapterPosition()).getDescription();
+                String publisher = listdata.get(viewHolder.getAdapterPosition()).getPublisher();
+                String publishedOn = listdata.get(viewHolder.getAdapterPosition()).getPublishedDate();
+                int pageCount = listdata.get(viewHolder.getAdapterPosition()).getPageCount();
+                String language = listdata.get(viewHolder.getAdapterPosition()).getLanguage();
+                String price = listdata.get(viewHolder.getAdapterPosition()).getPrice();
+                String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail();
+                String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
+                int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
+                String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
+                int id = listdata.get(viewHolder.getAdapterPosition()).getId();
+
+
+                dbManager = new DBManager(v.getContext());
+                dbManager.open();
+                db = new DatabaseHelper(v.getContext());
+
+                db.removeBookmark(id);
+                Toast.makeText(v.getContext(), title+" has been removed to bookmarks list.", Toast.LENGTH_LONG).show();
+
+                viewHolder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
+            }
+        });
 
         return viewHolder;
     }
@@ -72,7 +107,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
         Glide.with(context).load(data.getThumbnail()).apply(options).into(holder.ivThumbnail);
 
         holder.ivBookmark.setBackground(null);
-        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
+        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
 
 
     }

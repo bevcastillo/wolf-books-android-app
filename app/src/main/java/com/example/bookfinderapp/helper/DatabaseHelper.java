@@ -72,37 +72,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-//    public long addBookmark( String title, String authors, String description, String publisher,
-//                             String publishedDate, String categories, String thumbnail, String previewLink,
-//                             String price, String currencyCode, String buyLink, String language,
-//                             int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
-//
-//        SQLiteDatabase db = this.getWritableDatabase();
-//
-//        //creating content values
-//        ContentValues values = new ContentValues();
-//        values.put(COL_TITLE, title);
-//        values.put(COL_AUTHOR, authors);
-//        values.put(COL_DESC, description);
-//        values.put(COL_PUBLISHER, publisher);
-//        values.put(COL_PUBLISHED_DATE, publishedDate);
-//        values.put(COL_CATEGORY, categories);
-//        values.put(COL_THUMBNAIL, thumbnail);
-//        values.put(COL_PREV_LINK, previewLink);
-//        values.put(COL_PRICE, price);
-//        values.put(COL_CURRENCY, currencyCode);
-//        values.put(COL_BUY_LINK, buyLink);
-//        values.put(COL_LANG, language);
-//        values.put(COL_PAGE_COUNT, pageCount);
-//        values.put(COL_RATING, averageRating);
-//        values.put(COL_RATING_COUNT, ratingsCount);
-//        values.put(COL_IS_BOOKMARK, isBookmark);
-//
-//        long insert = db.insert(BOOKMARKTBL,null,values);
-//        return insert;
-//
-//    }
-
     public void addBookmark(VolumeBooks volumeBooks) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
