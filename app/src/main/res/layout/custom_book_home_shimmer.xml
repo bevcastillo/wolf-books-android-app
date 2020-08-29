@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    card_view:cardElevation="0dp"
+    android:id="@+id/book_layout">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textview"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorShimmer"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/textview">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:background="@color/colorShimmer"
+                android:src="@drawable/custom_cornered_image" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorShimmer"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorShimmer"
+                android:text=""
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/linearLayout"
+            card_view:layout_constraintTop_toTopOf="@+id/linearLayout">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:background="@color/colorShimmer"
+                android:src="@drawable/custom_cornered_image" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorShimmer"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorShimmer"
+                android:text=""
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/linearLayout2"
+            card_view:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:background="@color/colorShimmer"
+                android:src="@drawable/custom_cornered_image" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorShimmer"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorShimmer"
+                android:text=""
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/linearLayout3"
+            card_view:layout_constraintTop_toTopOf="@+id/linearLayout3">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:background="@color/colorShimmer"
+                android:src="@drawable/custom_cornered_image" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorShimmer"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorShimmer"
+                android:text=""
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="12dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/linearLayout4"
+            card_view:layout_constraintTop_toTopOf="@+id/linearLayout4"
+            card_view:layout_constraintVertical_bias="0.592">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="110dp"
+                android:background="@color/colorShimmer"
+                android:src="@drawable/custom_cornered_image" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorShimmer"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text=""
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorShimmer"
+                android:text=""
+                android:textAllCaps="true" />
+
+
+        </LinearLayout>
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

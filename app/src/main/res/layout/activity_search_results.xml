@@ -44,6 +44,8 @@
                 <include layout="@layout/custom_book_card" />
                 <include layout="@layout/custom_book_card" />
                 <include layout="@layout/custom_book_card" />
+                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/custom_book_card" />
 
             </LinearLayout>
 

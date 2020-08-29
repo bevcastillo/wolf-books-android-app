@@ -53,7 +53,6 @@ public class SearchFragment extends Fragment{
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
-        ivAmico = view.findViewById(R.id.iv_amico);
         mAdView = view.findViewById(R.id.adView);
 
         MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
@@ -67,10 +66,6 @@ public class SearchFragment extends Fragment{
         mAdView.loadAd(adRequest);
 
         getActivity().setTitle("Search");
-
-        Animator translateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.translate);
-        translateAnimator.setTarget(ivAmico);
-        translateAnimator.start();
 
         et_searchQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
