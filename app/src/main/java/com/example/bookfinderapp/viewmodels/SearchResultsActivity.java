@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -46,6 +49,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private VolumeBooksAdapter adapter;
 
     private LinearLayout layoutNoData;
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         rvBooksResults = findViewById(R.id.rv_search_results);
         tvResultsFor = findViewById(R.id.tv_results);
         layoutNoData = findViewById(R.id.layout_no_data);
+        shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
 
         setTitle("Search Results");
 
@@ -67,26 +72,20 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         volumeBooks.clear(); //clearing the results first to avoid data duplication when re-loaded
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        volumeBooks.clear(); //clearing the results first to avoid data duplication when re-loaded
-
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             strQuery = bundle.getString("query_string");
             tvResultsFor.setText("results for "+"''"+strQuery+"''");
         }
 
-        search();
+        loadSearchResults();
 
     }
 
+
     @Override
     protected void onPause() {
+        shimmerFrameLayout.stopShimmer();
         super.onPause();
     }
 
@@ -167,6 +166,9 @@ public class SearchResultsActivity extends AppCompatActivity {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
 
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
+                                shimmerFrameLayout.stopShimmer();
+                                shimmerFrameLayout.setVisibility(View.GONE);
+
                                 rvBooksResults.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
 
@@ -193,7 +195,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
     }
 
-    private void search(){
+    private void loadSearchResults(){
         if(strQuery.equals("")) {
             Toast.makeText(this,"Please enter your query",Toast.LENGTH_SHORT).show();
             return;
@@ -204,7 +206,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         Uri.Builder builder = uri.buildUpon();
 
         parseJson(builder.toString());
-
 
     }
 

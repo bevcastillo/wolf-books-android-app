@@ -19,6 +19,8 @@ import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.BookmarksAdapter;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class BookmarksFragment extends Fragment {
     TextView tvBookmarkCount;
     RecyclerView rvBookmarks;
     LinearLayout layoutNoData;
+    ShimmerFrameLayout shimmerFrameLayout;
 
     List<VolumeBooks> list;
     BookmarksAdapter adapter;
@@ -54,6 +57,7 @@ public class BookmarksFragment extends Fragment {
         tvBookmarkCount = view.findViewById(R.id.tv_bookmarks_count);
         rvBookmarks = view.findViewById(R.id.rv_bookmarks);
         layoutNoData = view.findViewById(R.id.layout_no_data);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
 
         getActivity().setTitle("My Bookmarks");
 
@@ -65,17 +69,33 @@ public class BookmarksFragment extends Fragment {
 
         tvBookmarkCount.setText(list.size()+" items found");
 
-        adapter = new BookmarksAdapter(view.getContext(), list);
+        loadBookmarks();
+
+
+        return view;
+    }
+
+    private void loadBookmarks() {
+
+        adapter = new BookmarksAdapter(getActivity(), list);
+
+        shimmerFrameLayout.stopShimmer();
+        shimmerFrameLayout.setVisibility(View.GONE);
+
         rvBookmarks.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         if (list.isEmpty()) {
             layoutNoData.setVisibility(View.VISIBLE);
         } else {
             layoutNoData.setVisibility(View.GONE);
         }
+    }
 
-
-        return view;
+    @Override
+    public void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
     }
 
 }

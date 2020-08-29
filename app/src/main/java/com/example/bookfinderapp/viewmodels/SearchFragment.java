@@ -1,7 +1,12 @@
 package com.example.bookfinderapp.viewmodels;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,8 +19,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +40,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,12 +49,6 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
-
-    private RequestQueue mRequestQueue;
-
-    private ArrayList<VolumeBooks> volumeBooks;
-
-
 
     public SearchFragment() {
         // Required empty public constructor
@@ -57,22 +60,26 @@ public class SearchFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
 
         getActivity().setTitle("Bookify");
-
-        //
-        volumeBooks = new ArrayList<>();
-        mRequestQueue = Volley.newRequestQueue(getContext());
-
 
         et_searchQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+
+                    try {
+                        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken()
+                                ,InputMethodManager.HIDE_NOT_ALWAYS);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     getVolumeResponse();
                     return true;
                 }
@@ -89,102 +96,40 @@ public class SearchFragment extends Fragment{
 
         String queryString = et_searchQuery.getText().toString();
 
-        //get the queryString data and pass it to SearchResultsActivity
-        Intent queryIntent = new Intent(getActivity(), SearchResultsActivity.class);
-        queryIntent.putExtra("query_string", queryString);
-        startActivity(queryIntent);
+        //check if the user is connected to the internet
+        if (isInternetAvailable(getActivity())) {
+            //get the queryString data and pass it to SearchResultsActivity
+            Intent queryIntent = new Intent(getActivity(), SearchResultsActivity.class);
+            queryIntent.putExtra("query_string", queryString);
+            startActivity(queryIntent);
+        }
+
+
     }
 
-    private void parseJson(String key) {
+    private static boolean isInternetAvailable(Context context) {
+        NetworkInfo info = (NetworkInfo) ((ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
-        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
-                new Response.Listener<JSONObject>() {
+        if (info == null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        String title = "";
-                        String subtitle = "";
-                        String authors = ""; //authors from Json
-                        String description = "No description";
-                        String publisher = "";
-                        String publishedDate = "";
-                        String categories = "No Categories";
-                        String thumbnail = null;
-                        String price = "Not For Sale";
-                        String currencyCode = "Not available";
-                        String language = "Not Available";
-                        String isbn = "Not Available";
-                        int pageCount = 0;
-                        int ratingsCount = 0;
-                        double averageRating = 5.0;
-                        String buyLink = "Not Available";
+            builder.setTitle("No Internet Connection");
+            builder.setMessage("Unable to connect to Bookify. Please check your internet connection and try again.");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
 
-                        try {
-                            JSONArray items = response.getJSONArray("items");
-
-                            for (int i = 0 ; i< items.length() ;i++) {
-                                JSONObject item = items.getJSONObject(i);
-                                JSONObject volumeInfo = item.getJSONObject("volumeInfo");
-
-                                //
-                                try{
-                                    title = volumeInfo.getString("title");
-
-                                    //author === json array of authors
-                                    JSONArray authorArr = volumeInfo.getJSONArray("authors");
-                                    if(authorArr.length() == 1){
-                                        authors = authorArr.getString(0);
-                                    }else {
-                                        authors = authorArr.getString(0) + ", " +authorArr.getString(1);
-                                    }
-
-
-                                    publisher = volumeInfo.getString("publisher");
-                                    publishedDate = volumeInfo.getString("publishedDate");
-                                    pageCount = volumeInfo.getInt("pageCount");
-
-
-                                    JSONObject saleInfo = item.getJSONObject("saleInfo");
-                                    JSONObject listPrice = saleInfo.getJSONObject("listPrice");
-
-                                    price = listPrice.getString("amount") + " " +listPrice.getString("currencyCode");
-
-                                    description = volumeInfo.getString("description");
-                                    buyLink = saleInfo.getString("buyLink");
-                                    categories = volumeInfo.getJSONArray("categories").getString(0);
-                                    averageRating = volumeInfo.getDouble("averageRating");
-                                    ratingsCount = volumeInfo.getInt("ratingsCount");
-                                    language = volumeInfo.getString("language");
-
-                                }catch (Exception e){
-
-                                }
-
-                                thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
-
-                                String previewLink = volumeInfo.getString("previewLink");
-
-                                volumeBooks.add(new VolumeBooks(title, subtitle, authors,
-                                        description, publisher, publishedDate,
-                                        categories, thumbnail, previewLink, price, currencyCode,
-                                        buyLink, language, pageCount, averageRating, ratingsCount, false));
-
-                            }
-
-
-                        } catch (Exception e) {
-
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        mRequestQueue.add(request);
-
+            builder.show();
+            return false;
+        }
+        
+        return true;
     }
+
+
 
 }

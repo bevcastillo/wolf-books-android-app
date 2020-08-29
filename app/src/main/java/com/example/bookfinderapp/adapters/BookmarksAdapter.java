@@ -49,14 +49,31 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         VolumeBooks data = listdata.get(position);
 
+        holder.tvTitle.setBackground(null);
         holder.tvTitle.setText(data.getTitle());
+
+        holder.tvAuthor.setBackground(null);
         holder.tvAuthor.setText("by " + data.getAuthors());
+
+        holder.rb_ratings.setBackground(null);
+        holder.rb_ratings.setVisibility(View.VISIBLE);
         holder.rb_ratings.setRating((float) data.getAverageRating());
+
+        holder.tvRatings.setBackground(null);
         holder.tvRatings.setText(data.getAverageRating() + "");
+
+        holder.tvRatingsCount.setBackground(null);
         holder.tvRatingsCount.setText("/ " + data.getRatingsCount() + "");
+
+        holder.tvPublisher.setBackground(null);
         holder.tvPublisher.setText(data.getPublisher());
 
+        holder.ivThumbnail.setBackground(null);
         Glide.with(context).load(data.getThumbnail()).apply(options).into(holder.ivThumbnail);
+
+        holder.ivBookmark.setBackground(null);
+        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
+
 
     }
 

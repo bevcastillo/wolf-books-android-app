@@ -22,6 +22,7 @@ import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.viewmodels.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -72,16 +73,6 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 dbManager = new DBManager(v.getContext());
                 dbManager.open();
                 db = new DatabaseHelper(v.getContext());
-
-                //adding to sqlite database
-//                long result = db.addBookmark(title,author,description,publisher,publishedOn,categories,
-//                        thumbnail,previewLink,price,currency,buyLink,language,pageCount,ratings,ratingsCount,true);
-//
-//                if (result>0) {
-//                    Toast.makeText(context, "Added to bookmark.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(context, "There is something wrong. Please try again later.", Toast.LENGTH_SHORT).show();
-//                }
 
                 VolumeBooks volumeBooks = new VolumeBooks(title,author,description,publisher,publishedOn,categories,
                                                             thumbnail,previewLink,price,currency,buyLink,language,
@@ -135,22 +126,42 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
         VolumeBooks volumeBooks = listdata.get(position);
 
+        holder.ivThumbnail.setBackground(null);
+        Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);
+
+        holder.tvTitle.setBackground(null);
         holder.tvTitle.setText(volumeBooks.getTitle());
+
+        holder.tvAuthor.setBackground(null);
         holder.tvAuthor.setText("by " + volumeBooks.getAuthors());
+
+        holder.rb_ratings.setBackground(null);
+        holder.rb_ratings.setVisibility(View.VISIBLE);
         holder.rb_ratings.setRating((float) volumeBooks.getAverageRating());
+
+        holder.tvRatings.setBackground(null);
         holder.tvRatings.setText(volumeBooks.getAverageRating() + "");
+
+        holder.tvRatingsCount.setBackground(null);
         holder.tvRatingsCount.setText("/ " + volumeBooks.getRatingsCount() + "");
+
+        holder.tvPublisher.setBackground(null);
         holder.tvPublisher.setText(volumeBooks.getPublisher());
 
-        Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);
+        holder.ivBookmark.setBackground(null);
+        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_black_24dp);
 
     }
 
     @Override
     public int getItemCount() {
+//        return listdata.size();
+
         return listdata.size();
+
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

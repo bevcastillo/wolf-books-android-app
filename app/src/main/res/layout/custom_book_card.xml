@@ -8,6 +8,7 @@
     card_view:cardElevation="0dp"
     android:id="@+id/book_layout">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -24,7 +25,8 @@
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintCircleRadius="10dp"
                     card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent" />
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    android:background="@color/colorShimmer"/>
 
                 <TextView
                     android:id="@+id/tv_publisher"
@@ -35,11 +37,12 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="publisher"
+                    android:text=""
                     android:textAllCaps="true"
                     card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
                     card_view:layout_constraintStart_toEndOf="@+id/iv_book_image"
-                    card_view:layout_constraintTop_toTopOf="@+id/iv_book_image" />
+                    card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
+                    android:background="@color/colorShimmer"/>
 
                 <TextView
                     android:id="@+id/tv_book_title"
@@ -51,22 +54,23 @@
                     android:layout_marginRight="8dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Some title"
+                    android:text=""
                     android:textStyle="bold"
                     card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
                     card_view:layout_constraintStart_toStartOf="@+id/tv_publisher"
-                    card_view:layout_constraintTop_toBottomOf="@+id/tv_publisher" />
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_publisher"
+                    android:background="@color/colorShimmer"/>
 
                 <ImageView
                     android:id="@+id/iv_bookmark"
                     android:layout_width="30dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:src="@drawable/ic_bookmark_border_black_24dp"
-                    android:tint="#303030"
+                    android:src="@drawable/custom_cornered_image"
                     card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintTop_toTopOf="@+id/iv_book_image" />
+                    card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
+                    android:background="@color/colorShimmer"/>
 
                 <TextView
                     android:id="@+id/tv_book_author"
@@ -76,11 +80,12 @@
                     android:layout_marginTop="4dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="some authors"
+                    android:text=""
                     android:textColor="@android:color/darker_gray"
                     card_view:layout_constraintEnd_toEndOf="@+id/tv_book_title"
                     card_view:layout_constraintStart_toStartOf="@+id/tv_book_title"
-                    card_view:layout_constraintTop_toBottomOf="@+id/tv_book_title" />
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+                    android:background="@color/colorShimmer"/>
 
                 <RatingBar
                     android:id="@+id/ratingbar_book"
@@ -88,12 +93,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:numStars="5"
+                    android:visibility="invisible"
+                    android:numStars="0"
                     android:rating="0"
                     android:stepSize="0.5"
                     android:theme="@style/RatingBar"
                     card_view:layout_constraintStart_toStartOf="@+id/tv_book_author"
-                    card_view:layout_constraintTop_toBottomOf="@+id/tv_book_author" />
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_book_author"
+                    android:background="@color/colorShimmer"/>
 
                 <TextView
                     android:id="@+id/tv_ratings"
@@ -101,13 +108,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:text="4.5"
+                    android:text=""
                     android:textStyle="bold"
                     card_view:layout_constraintBottom_toBottomOf="@+id/ratingbar_book"
                     card_view:layout_constraintStart_toEndOf="@+id/ratingbar_book"
                     card_view:layout_constraintTop_toTopOf="@+id/ratingbar_book"
                     style="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/lighterBlack"/>
+                    android:textColor="@color/lighterBlack"
+                    android:background="@color/colorShimmer"/>
 
                 <TextView
                     android:id="@+id/tv_ratingsCount"
@@ -116,10 +124,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:text="/ 100"
+                    android:text=""
                     card_view:layout_constraintBottom_toBottomOf="@+id/tv_ratings"
                     card_view:layout_constraintStart_toEndOf="@+id/tv_ratings"
-                    card_view:layout_constraintTop_toTopOf="@+id/tv_ratings" />
+                    card_view:layout_constraintTop_toTopOf="@+id/tv_ratings"
+                    android:background="@color/colorShimmer"/>
 
 
                 <View
@@ -134,5 +143,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.cardview.widget.CardView>
