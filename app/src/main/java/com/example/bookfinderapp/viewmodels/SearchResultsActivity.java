@@ -45,6 +45,8 @@ public class SearchResultsActivity extends AppCompatActivity {
     private ArrayList<VolumeBooks> volumeBooks;
     private VolumeBooksAdapter adapter;
 
+    private LinearLayout layoutNoData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         rvBooksResults = findViewById(R.id.rv_search_results);
         tvResultsFor = findViewById(R.id.tv_results);
+        layoutNoData = findViewById(R.id.layout_no_data);
 
         setTitle("Search Results");
 
@@ -166,6 +169,12 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
                                 rvBooksResults.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
+
+                                if (volumeBooks.isEmpty()) {
+                                    layoutNoData.setVisibility(View.VISIBLE);
+                                } else {
+                                    layoutNoData.setVisibility(View.GONE);
+                                }
                             }
 
 

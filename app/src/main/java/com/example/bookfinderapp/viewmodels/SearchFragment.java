@@ -61,7 +61,7 @@ public class SearchFragment extends Fragment{
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
 
-        getActivity().setTitle("Search");
+        getActivity().setTitle("Bookify");
 
         //
         volumeBooks = new ArrayList<>();

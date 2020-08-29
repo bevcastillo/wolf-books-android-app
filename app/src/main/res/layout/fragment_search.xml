@@ -21,39 +21,53 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="22dp"
-                android:text="BookFinder."
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:fontFamily="@font/amaranth" />
+                android:text="Howdy, Welcome to Bookify."
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_weight="2"
+                style="@style/TextAppearance.AppCompat.Headline"/>
 
-            <EditText
-                android:id="@+id/et_searchQuery"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/custom_rounded_input"
-                android:backgroundTint="@color/bgColor"
-                android:drawableLeft="@drawable/ic_search_black_24dp"
-                android:drawablePadding="12dp"
-                android:drawableTint="@color/lighterBlack"
-                android:hint="Search book author, title, etc."
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:padding="12dp"
-                android:textColor="@android:color/black" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_chilling_amico"/>
+
 
         </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/et_searchQuery"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/custom_rounded_input"
+            android:backgroundTint="@android:color/white"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawablePadding="12dp"
+            android:drawableTint="@color/colorPrimary"
+            android:hint="Search book author, title, etc."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_search" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

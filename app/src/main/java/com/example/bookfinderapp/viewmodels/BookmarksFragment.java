@@ -32,6 +32,7 @@ public class BookmarksFragment extends Fragment {
 
     TextView tvBookmarkCount;
     RecyclerView rvBookmarks;
+    LinearLayout layoutNoData;
 
     List<VolumeBooks> list;
     BookmarksAdapter adapter;
@@ -52,8 +53,9 @@ public class BookmarksFragment extends Fragment {
 
         tvBookmarkCount = view.findViewById(R.id.tv_bookmarks_count);
         rvBookmarks = view.findViewById(R.id.rv_bookmarks);
+        layoutNoData = view.findViewById(R.id.layout_no_data);
 
-        getActivity().setTitle("Bookmarks");
+        getActivity().setTitle("My Bookmarks");
 
         db = new DatabaseHelper(view.getContext());
         list = new ArrayList<>();
@@ -61,24 +63,16 @@ public class BookmarksFragment extends Fragment {
         rvBookmarks.setLayoutManager(layoutManager);
         list = db.getAll();
 
-        tvBookmarkCount.setText(list.size()+" items found.");
+        tvBookmarkCount.setText(list.size()+" items found");
 
         adapter = new BookmarksAdapter(view.getContext(), list);
         rvBookmarks.setAdapter(adapter);
 
-//        list = new ArrayList<>();
-//        list = db.getAll();
-//        adapter = new BookmarksAdapter(view.getContext(), list);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-//        rvBookmarks.setLayoutManager(layoutManager);
-//        rvBookmarks.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, true));
-//        rvBookmarks.setItemAnimator(new DefaultItemAnimator());
-//
-//        rvBookmarks.setAdapter(adapter);
-//
-//        adapter.notifyDataSetChanged();
-
-
+        if (list.isEmpty()) {
+            layoutNoData.setVisibility(View.VISIBLE);
+        } else {
+            layoutNoData.setVisibility(View.GONE);
+        }
 
 
         return view;
