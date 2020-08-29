@@ -24,6 +24,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.bookfinderapp.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
 /**
@@ -33,6 +38,7 @@ public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
     private ImageView ivAmico;
+    private AdView mAdView;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -48,6 +54,17 @@ public class SearchFragment extends Fragment{
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
         ivAmico = view.findViewById(R.id.iv_amico);
+        mAdView = view.findViewById(R.id.adView);
+
+        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+
+            }
+        });
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         getActivity().setTitle("Bookify");
 

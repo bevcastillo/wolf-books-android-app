@@ -8,6 +8,6 @@
         android:valueTo="30"
         android:valueType="floatType"
         android:repeatMode="reverse"
-        android:repeatCount="infinite"/>
+        android:repeatCount="3"/>
 
 </set>
