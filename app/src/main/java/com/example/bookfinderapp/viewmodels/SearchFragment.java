@@ -1,6 +1,8 @@
 package com.example.bookfinderapp.viewmodels;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -21,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +52,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
+    private ImageView ivAmico;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -63,8 +67,13 @@ public class SearchFragment extends Fragment{
         final View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
+        ivAmico = view.findViewById(R.id.iv_amico);
 
         getActivity().setTitle("Bookify");
+
+        Animator translateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.translate);
+        translateAnimator.setTarget(ivAmico);
+        translateAnimator.start();
 
         et_searchQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
