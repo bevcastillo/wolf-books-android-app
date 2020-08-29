@@ -66,7 +66,7 @@ public class SearchFragment extends Fragment{
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        getActivity().setTitle("Bookify");
+        getActivity().setTitle("Search");
 
         Animator translateAnimator = AnimatorInflater.loadAnimator(getActivity(), R.animator.translate);
         translateAnimator.setTarget(ivAmico);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="12dp"
+    android:id="@+id/home_book_layout">
+
+    <ImageView
+        android:id="@+id/iv_book_image"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorShimmer"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/tv_book_title"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text=""
+        android:textStyle="bold"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorShimmer"
+        android:textColor="@color/lighterBlack"/>
+
+    <TextView
+        android:id="@+id/tv_book_author"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="@android:color/darker_gray"
+        android:background="@color/colorShimmer"/>
+
+    <RatingBar
+        android:id="@+id/ratingbar_book"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:visibility="invisible"
+        android:numStars="0"
+        android:rating="0"
+        android:stepSize="0.5"
+        android:theme="@style/RatingBar"
+        android:background="@color/colorShimmer"/>
+
+</LinearLayout>

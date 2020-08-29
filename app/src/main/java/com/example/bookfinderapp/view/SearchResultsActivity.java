@@ -19,6 +19,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
+import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.models.VolumeBooks;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -30,10 +31,6 @@ import java.util.ArrayList;
 public class SearchResultsActivity extends AppCompatActivity {
 
     private RecyclerView rvBooksResults;
-
-    private static final String LOG_TAG = SearchResultsActivity.class.getSimpleName();
-    private static final String BOOK_BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="; //base URI
-    private static final String BOOK_MAX_RES = "&maxResults=40";
 
     private String strQuery;
     private TextView tvResultsFor;
@@ -58,7 +55,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         setTitle("Search Results");
 
 
-        //ne
+        //
         rvBooksResults.setHasFixedSize(true);
         rvBooksResults.setLayoutManager(new LinearLayoutManager(this));
         volumeBooks = new ArrayList<>();
@@ -196,7 +193,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
 
         String final_query = strQuery.replace(" ","+");
-        Uri uri = Uri.parse(BOOK_BASE_URL+final_query+BOOK_MAX_RES);
+        Uri uri = Uri.parse(Constant.BOOK_SEARCH_BASE_URL +final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
 
         parseJson(builder.toString());
