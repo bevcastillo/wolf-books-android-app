@@ -31,6 +31,22 @@
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="#1"
+            android:textColor="@android:color/white"
+            card_view:layout_constraintStart_toStartOf="@+id/iv_book_image"
+            card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
+            style="@style/TextAppearance.AppCompat.Caption"/>
+
+
+        <TextView
             android:id="@+id/tv_desc"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"

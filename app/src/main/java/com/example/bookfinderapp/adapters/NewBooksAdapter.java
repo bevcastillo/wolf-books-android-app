@@ -107,6 +107,11 @@ public class NewBooksAdapter extends RecyclerView.Adapter<NewBooksAdapter.ViewHo
 
         holder.tvDesc.setBackground(null);
         holder.tvDesc.setText(volumeBooks.getDescription());
+
+        int mposition = position + 1; //we add 1 so that the position counting will start to 1 instead of 0
+
+        holder.tvNumber.setText("#"+mposition);
+
     }
 
     @Override
@@ -118,7 +123,7 @@ public class NewBooksAdapter extends RecyclerView.Adapter<NewBooksAdapter.ViewHo
 
         CardView layout;
         ImageView ivThumbnail;
-        TextView tvTitle, tvAuthor, tvRatings, tvRatingsCount, tvDesc;
+        TextView tvTitle, tvAuthor, tvRatings, tvRatingsCount, tvDesc, tvNumber;
         RatingBar rb_ratings;
 
         public ViewHolder(@NonNull View itemView) {
@@ -132,6 +137,7 @@ public class NewBooksAdapter extends RecyclerView.Adapter<NewBooksAdapter.ViewHo
             tvRatings = itemView.findViewById(R.id.tv_ratings);
             tvRatingsCount = itemView.findViewById(R.id.tv_ratingsCount);
             tvDesc = itemView.findViewById(R.id.tv_desc);
+            tvNumber = itemView.findViewById(R.id.tv_number);
 
         }
     }
