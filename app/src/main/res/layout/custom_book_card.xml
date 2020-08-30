@@ -4,8 +4,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="6dp"
     card_view:cardElevation="0dp"
+    card_view:cardCornerRadius="6dp"
     android:id="@+id/book_layout">
 
 
@@ -59,7 +60,8 @@
                     card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
                     card_view:layout_constraintStart_toStartOf="@+id/tv_publisher"
                     card_view:layout_constraintTop_toBottomOf="@+id/tv_publisher"
-                    android:background="@color/colorShimmer"/>
+                    android:background="@color/colorShimmer"
+                    android:textColor="@color/colorTextBlack"/>
 
                 <ImageView
                     android:id="@+id/iv_bookmark"
@@ -129,17 +131,6 @@
                     card_view:layout_constraintStart_toEndOf="@+id/tv_ratings"
                     card_view:layout_constraintTop_toTopOf="@+id/tv_ratings"
                     android:background="@color/colorShimmer"/>
-
-
-                <View
-                    style="@style/Divider"
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="16dp"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/iv_book_image" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,9 +9,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,14 +24,32 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.adapters.NewBooksAdapter;
+import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
+import com.example.bookfinderapp.helper.Constant;
+import com.example.bookfinderapp.models.VolumeBooks;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 
 /**
@@ -37,8 +58,15 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 public class SearchFragment extends Fragment{
 
     private EditText et_searchQuery;
-    private ImageView ivAmico;
     private AdView mAdView;
+
+    private RecyclerView rvNewBooks;
+
+    private RequestQueue mRequestQueue;
+
+    private ArrayList<VolumeBooks> volumeBooks;
+    private NewBooksAdapter adapter;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -54,6 +82,15 @@ public class SearchFragment extends Fragment{
 
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
         mAdView = view.findViewById(R.id.adView);
+        rvNewBooks = view.findViewById(R.id.rv_new_books);
+
+        //
+        rvNewBooks.setHasFixedSize(true);
+        rvNewBooks.setLayoutManager(new LinearLayoutManager(getActivity()));
+        volumeBooks = new ArrayList<>();
+        mRequestQueue = Volley.newRequestQueue(getActivity());
+
+        loadSearchResults();
 
         MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
             @Override
@@ -129,6 +166,112 @@ public class SearchFragment extends Fragment{
         }
         
         return true;
+    }
+
+    private void parseJson(String key) {
+
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String title = "";
+                        String subtitle = "";
+                        String authors = ""; //authors from Json
+                        String description = "No description";
+                        String publisher = "";
+                        String publishedDate = "";
+                        String categories = "No Categories";
+                        String thumbnail = null;
+                        String price = "Not For Sale";
+                        String currencyCode = "Not available";
+                        String language = "Not Available";
+                        String isbn = "Not Available";
+                        int pageCount = 0;
+                        int ratingsCount = 0;
+                        double averageRating = 5.0;
+                        String buyLink = "Not Available";
+
+                        try {
+                            JSONArray items = response.getJSONArray("items");
+
+                            for (int i = 0 ; i< items.length() ;i++) {
+                                JSONObject item = items.getJSONObject(i);
+                                JSONObject volumeInfo = item.getJSONObject("volumeInfo");
+
+                                //
+                                try{
+                                    title = volumeInfo.getString("title");
+
+                                    //author === json array of authors
+                                    JSONArray authorArr = volumeInfo.getJSONArray("authors");
+                                    if(authorArr.length() == 1){
+                                        authors = authorArr.getString(0);
+                                    }else {
+                                        authors = authorArr.getString(0) + ", " +authorArr.getString(1);
+                                    }
+
+
+                                    publisher = volumeInfo.getString("publisher");
+                                    publishedDate = volumeInfo.getString("publishedDate");
+                                    pageCount = volumeInfo.getInt("pageCount");
+
+
+                                    JSONObject saleInfo = item.getJSONObject("saleInfo");
+                                    JSONObject listPrice = saleInfo.getJSONObject("listPrice");
+
+                                    price = listPrice.getString("amount") + " " +listPrice.getString("currencyCode");
+
+                                    description = volumeInfo.getString("description");
+                                    buyLink = saleInfo.getString("buyLink");
+                                    categories = volumeInfo.getJSONArray("categories").getString(0);
+                                    averageRating = volumeInfo.getDouble("averageRating");
+                                    ratingsCount = volumeInfo.getInt("ratingsCount");
+                                    language = volumeInfo.getString("language");
+
+                                }catch (Exception e){
+
+                                }
+
+                                thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
+
+                                String previewLink = volumeInfo.getString("previewLink");
+                                String infoLink = volumeInfo.getString("infoLink");
+
+
+                                volumeBooks.add(new VolumeBooks(title, authors,
+                                        description, publisher, publishedDate,
+                                        categories, thumbnail, previewLink, price, currencyCode,
+                                        buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
+
+                                adapter = new NewBooksAdapter(getActivity(), volumeBooks);
+
+                                rvNewBooks.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();
+                            }
+
+
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mRequestQueue.add(request);
+
+    }
+
+    private void loadSearchResults(){
+        Uri uri = Uri.parse(Constant.BOOK_NEW_URL);
+        Uri.Builder builder = uri.buildUpon();
+
+        parseJson(builder.toString());
+
     }
 
 

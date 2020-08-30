@@ -56,12 +56,16 @@
             android:id="@+id/rv_search_results"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_results"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_results" />
 
         <LinearLayout
             android:visibility="invisible"

@@ -98,18 +98,11 @@ public class HomeFragment extends Fragment {
 
     ShimmerFrameLayout shimmerFrameLayout;
 
-    LinearLayout layout, layout1, layout2, layout3, layout4, layout5, layout6, layout7, layout8,
-                layout9, layout10, layout11, layout12;
+    LinearLayout parentLayout;
 
 
     public HomeFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onPause() {
-        shimmerFrameLayout.stopShimmer();
-        super.onPause();
     }
 
 
@@ -136,19 +129,7 @@ public class HomeFragment extends Fragment {
         rvChildren = view.findViewById(R.id.rv_childrens_books);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
 
-        layout = view.findViewById(R.id.layout);
-        layout1 = view.findViewById(R.id.layout1);
-        layout2 = view.findViewById(R.id.layout2);
-        layout3 = view.findViewById(R.id.layout3);
-        layout4 = view.findViewById(R.id.layout4);
-        layout5 = view.findViewById(R.id.layout5);
-        layout6 = view.findViewById(R.id.layout6);
-        layout7 = view.findViewById(R.id.layout7);
-        layout8 = view.findViewById(R.id.layout8);
-        layout9 = view.findViewById(R.id.layout9);
-        layout10 = view.findViewById(R.id.layout10);
-        layout11 = view.findViewById(R.id.layout11);
-        layout12 = view.findViewById(R.id.layout12);
+        parentLayout = view.findViewById(R.id.layout_parent);
 
         //
         rvFiction.setHasFixedSize(true);
@@ -240,6 +221,18 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
     private void parseFictionRequest(String key) {
 
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
@@ -315,9 +308,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 adapter = new FictionBooksAdapter(getActivity(), volumeBooks);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout.setVisibility(View.VISIBLE);
                                 rvFiction.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
 
@@ -414,9 +404,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 fantasyAdapter = new FantasyBooksAdapter(getActivity(), volumeBooks1);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout1.setVisibility(View.VISIBLE);
                                 rvFantasy.setAdapter(fantasyAdapter);
                                 fantasyAdapter.notifyDataSetChanged();
                             }
@@ -511,9 +498,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 motivationalAdapter = new MotivationalBooksAdapter(getActivity(), volumeBooks2);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout2.setVisibility(View.VISIBLE);
                                 rvMotivational.setAdapter(motivationalAdapter);
                                 motivationalAdapter.notifyDataSetChanged();
 
@@ -609,12 +593,8 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 adventureBooksAdapter = new AdventureBooksAdapter(getActivity(), volumeBooks3);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout3.setVisibility(View.VISIBLE);
                                 rvAdventure.setAdapter(adventureBooksAdapter);
                                 adventureBooksAdapter.notifyDataSetChanged();
-
                             }
 
 
@@ -707,9 +687,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 romanceBookAdapter = new RomanceBookAdapter(getActivity(), volumeBooks4);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout4.setVisibility(View.VISIBLE);
                                 rvRomance.setAdapter(romanceBookAdapter);
                                 romanceBookAdapter.notifyDataSetChanged();
 
@@ -805,9 +782,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 contemporaryBooksAdapter = new ContemporaryBooksAdapter(getActivity(), volumeBooks5);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout5.setVisibility(View.VISIBLE);
                                 rvContemporary.setAdapter(contemporaryBooksAdapter);
                                 contemporaryBooksAdapter.notifyDataSetChanged();
 
@@ -903,9 +877,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 mysteryBooksAdapter = new MysteryBooksAdapter(getActivity(), volumeBooks6);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout6.setVisibility(View.VISIBLE);
                                 rvMystery.setAdapter(mysteryBooksAdapter);
                                 mysteryBooksAdapter.notifyDataSetChanged();
 
@@ -1001,9 +972,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 horrorBooksAdapter = new HorrorBooksAdapter(getActivity(), volumeBooks7);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout7.setVisibility(View.VISIBLE);
                                 rvHorror.setAdapter(horrorBooksAdapter);
                                 horrorBooksAdapter.notifyDataSetChanged();
 
@@ -1099,9 +1067,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 thrillerBooksAdapter = new ThrillerBooksAdapter(getActivity(), volumeBooks8);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout8.setVisibility(View.VISIBLE);
                                 rvThriller.setAdapter(thrillerBooksAdapter);
                                 thrillerBooksAdapter.notifyDataSetChanged();
 
@@ -1197,9 +1162,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 scienceFictionBooksAdapter= new ScienceFictionBooksAdapter(getActivity(), volumeBooks9);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout9.setVisibility(View.VISIBLE);
                                 rvScience.setAdapter(scienceFictionBooksAdapter);
                                 scienceFictionBooksAdapter.notifyDataSetChanged();
 
@@ -1295,9 +1257,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 healthBooksAdapter = new HealthBooksAdapter(getActivity(), volumeBooks10);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout10.setVisibility(View.VISIBLE);
                                 rvHealth.setAdapter(healthBooksAdapter);
                                 healthBooksAdapter.notifyDataSetChanged();
 
@@ -1393,9 +1352,6 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 historyBooksAdapter = new HistoryBooksAdapter(getActivity(), volumeBooks11);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout11.setVisibility(View.VISIBLE);
                                 rvHistory.setAdapter(historyBooksAdapter);
                                 historyBooksAdapter.notifyDataSetChanged();
 
@@ -1491,11 +1447,12 @@ public class HomeFragment extends Fragment {
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
 
                                 childrensBookAdapter = new ChildrensBookAdapter(getActivity(), volumeBooks12);
-                                shimmerFrameLayout.stopShimmer();
-                                shimmerFrameLayout.setVisibility(View.GONE);
-                                layout12.setVisibility(View.VISIBLE);
                                 rvChildren.setAdapter(childrensBookAdapter);
                                 childrensBookAdapter.notifyDataSetChanged();
+
+                                shimmerFrameLayout.stopShimmer();
+                                shimmerFrameLayout.setVisibility(View.GONE);
+                                parentLayout.setVisibility(View.VISIBLE);
 
                             }
 

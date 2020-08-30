@@ -15,4 +15,5 @@
     <color name="colorLightBlue">#c1e0ff</color>
     <color name="colorShimmer">#dddddd</color>
     <color name="colorBookmarkTint">#303030</color>
+    <color name="colorTextBlack">#303030</color>
 </resources>
