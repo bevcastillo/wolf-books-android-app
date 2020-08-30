@@ -39,6 +39,8 @@ import com.example.bookfinderapp.adapters.NewBooksAdapter;
 import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
 import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
@@ -67,6 +69,8 @@ public class SearchFragment extends Fragment{
     private ArrayList<VolumeBooks> volumeBooks;
     private NewBooksAdapter adapter;
 
+    private ShimmerFrameLayout shimmerFrameLayout;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -83,6 +87,7 @@ public class SearchFragment extends Fragment{
         et_searchQuery = view.findViewById(R.id.et_searchQuery);
         mAdView = view.findViewById(R.id.adView);
         rvNewBooks = view.findViewById(R.id.rv_new_books);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
 
         //
         rvNewBooks.setHasFixedSize(true);
@@ -127,6 +132,18 @@ public class SearchFragment extends Fragment{
         });
 
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
     }
 
 
@@ -248,6 +265,9 @@ public class SearchFragment extends Fragment{
 
                                 rvNewBooks.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();
+
+                                shimmerFrameLayout.stopShimmer();
+                                shimmerFrameLayout.setVisibility(View.GONE);
                             }
 
 
