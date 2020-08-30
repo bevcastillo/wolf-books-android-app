@@ -3,6 +3,7 @@ package com.example.bookfinderapp.models;
 public class VolumeBooks {
 
     private int id;
+    private String volumeId;
     private String title;
     private String authors;
     private String description;
@@ -23,14 +24,15 @@ public class VolumeBooks {
     public VolumeBooks() {
     }
 
-    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String price, String currencyCode, String buyLink, String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
-    }
+//    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String price, String currencyCode, String buyLink, String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
+//    }
 
-    public VolumeBooks(int id, String title, String authors, String description,
+    public VolumeBooks(int id, String volumeId, String title, String authors, String description,
                        String publisher, String publishedDate, String categories, String thumbnail,
                        String previewLink, String price, String currencyCode, String buyLink,
                        String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
         this.id = id;
+        this.volumeId = volumeId;
         this.title = title;
         this.authors = authors;
         this.description = description;
@@ -49,12 +51,13 @@ public class VolumeBooks {
         this.isBookmark = isBookmark;
     }
 
-    public VolumeBooks(String title, String authors,
+    public VolumeBooks(String volumeId, String title, String authors,
                        String description, String publisher, String publishedDate,
                        String categories, String thumbnail, String previewLink,
                        String price, String currencyCode,
                        String buyLink, String language, int pageCount,
                        double averageRating, int ratingsCount, boolean isBookmark) {
+        this.volumeId = volumeId;
         this.title = title;
         this.authors = authors;
         this.description = description;
@@ -75,6 +78,14 @@ public class VolumeBooks {
 
     public int getId() {
         return id;
+    }
+
+    public String getVolumeId() {
+        return volumeId;
+    }
+
+    public void setVolumeId(String volumeId) {
+        this.volumeId = volumeId;
     }
 
     public void setId(int id) {

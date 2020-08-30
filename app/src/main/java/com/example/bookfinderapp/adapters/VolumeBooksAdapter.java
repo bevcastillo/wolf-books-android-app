@@ -67,12 +67,13 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
                 int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
                 String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
+                String volumeId = listdata.get(viewHolder.getAdapterPosition()).getVolumeId();
 
                 dbManager = new DBManager(v.getContext());
                 dbManager.open();
                 db = new DatabaseHelper(v.getContext());
 
-                VolumeBooks volumeBooks = new VolumeBooks(title,author,description,publisher,publishedOn,categories,
+                VolumeBooks volumeBooks = new VolumeBooks(volumeId, title,author,description,publisher,publishedOn,categories,
                                                             thumbnail,previewLink,price,currency,buyLink,language,
                                                             pageCount,ratings,ratingsCount,true);
                 db.addBookmark(volumeBooks);
@@ -100,6 +101,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
                 int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
                 String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
+                String volumeId = listdata.get(viewHolder.getAdapterPosition()).getVolumeId();
 
 //                passing data to BookInfoActivity
                 Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
@@ -118,6 +120,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 intent.putExtra("book_categories", categories);
                 intent.putExtra("book_ratingsCount", ratingsCount);
                 intent.putExtra("book_currency", currency);
+                intent.putExtra("book_vol_id", volumeId);
 
                 v.getContext().startActivity(intent);
             }
@@ -138,7 +141,8 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvTitle.setText(volumeBooks.getTitle());
 
         holder.tvAuthor.setBackground(null);
-        holder.tvAuthor.setText("by " + volumeBooks.getAuthors());
+//        holder.tvAuthor.setText("by " + volumeBooks.getAuthors());
+        holder.tvAuthor.setText(volumeBooks.getVolumeId());
 
         holder.rb_ratings.setBackground(null);
         holder.rb_ratings.setVisibility(View.VISIBLE);
@@ -148,7 +152,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvRatings.setText(volumeBooks.getAverageRating() + "");
 
         holder.tvRatingsCount.setBackground(null);
-        holder.tvRatingsCount.setText("/ " + volumeBooks.getRatingsCount() + "");
+        holder.tvRatingsCount.setText("");
 
         holder.tvPublisher.setBackground(null);
         holder.tvPublisher.setText(volumeBooks.getPublisher());

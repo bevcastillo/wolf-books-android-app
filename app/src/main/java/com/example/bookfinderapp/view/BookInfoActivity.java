@@ -25,12 +25,12 @@ import com.example.bookfinderapp.models.VolumeBooks;
 public class BookInfoActivity extends AppCompatActivity {
 
     TextView tvTitle, tvAuthor, tvDesc, tvPublisher, tvPublishedOn, tvisbn, tvPageCount, tvLang,
-            tvRatingsCount, tvCategories, tvCategoryChip;
+            tvRatingsCount, tvCategories, tvRatings, tvCategoryChip;
     RatingBar rbRatings;
     ImageView ivThumbnail;
     Button btnPreview, btnBuy;
     String strTitle, strAuthor, strDesc, strPublisher, strPublishedOn, strCurrency, strPrice, strLang,
-            strPrevLink, strBuyLink, strThumbnail, strCategories;
+            strPrevLink, strBuyLink, strThumbnail, strCategories, strVolumeId, strRatings;
     int pageCount, ratingsCount;
     double ratings;
 
@@ -57,6 +57,8 @@ public class BookInfoActivity extends AppCompatActivity {
         tvCategories = findViewById(R.id.tv_categories);
         rbRatings = findViewById(R.id.ratingbar_book);
         tvRatingsCount = findViewById(R.id.tv_reviews_count);
+        tvRatings = findViewById(R.id.tv_ratings);
+
 
         setTitle("Book Details");
     }
@@ -86,7 +88,7 @@ public class BookInfoActivity extends AppCompatActivity {
         dbManager.open();
         db = new DatabaseHelper(this);
 
-        VolumeBooks volumeBooks = new VolumeBooks(strTitle,strAuthor,strDesc,strPublisher,strPublishedOn,strCategories,
+        VolumeBooks volumeBooks = new VolumeBooks(strVolumeId, strTitle,strAuthor,strDesc,strPublisher,strPublishedOn,strCategories,
                 strThumbnail,strPrevLink,strPrice,strCurrency,strBuyLink,strLang,
                 pageCount,ratings,ratingsCount,true);
 
@@ -115,6 +117,7 @@ public class BookInfoActivity extends AppCompatActivity {
             strCategories = bundle.getString("book_categories");
             ratingsCount = bundle.getInt("book_ratingsCount");
             strCurrency = bundle.getString("book_currency");
+            strVolumeId = bundle.getString("book_vol_id");
 
 
             tvTitle.setText(strTitle);
@@ -127,6 +130,7 @@ public class BookInfoActivity extends AppCompatActivity {
             rbRatings.setRating((float) ratings);
             tvRatingsCount.setText("/"+ratingsCount+" Reviews");
             tvPageCount.setText(pageCount+" pages");
+            tvRatings.setText(ratings+"");
 
             Glide.with(this).load(strThumbnail).apply(requestO).into(ivThumbnail);
 

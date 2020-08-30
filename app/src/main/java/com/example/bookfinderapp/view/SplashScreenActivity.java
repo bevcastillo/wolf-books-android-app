@@ -1,4 +1,4 @@
-package com.example.bookfinderapp;
+package com.example.bookfinderapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,8 +10,8 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.view.NavigationActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 

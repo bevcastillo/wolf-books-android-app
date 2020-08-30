@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/iv_book_image"
-            android:layout_width="90dp"
-            android:layout_height="130dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
@@ -39,7 +39,6 @@
             android:paddingRight="10dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"
-            android:text="#1"
             android:textColor="@android:color/white"
             card_view:layout_constraintStart_toStartOf="@+id/iv_book_image"
             card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"

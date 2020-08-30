@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -85,8 +86,10 @@ public class SearchResultsActivity extends AppCompatActivity {
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
                 new Response.Listener<JSONObject>() {
 
+
                     @Override
                     public void onResponse(JSONObject response) {
+                        String volumeId = "";
                         String title = "";
                         String subtitle = "";
                         String authors = ""; //authors from Json
@@ -106,6 +109,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                         try {
                             JSONArray items = response.getJSONArray("items");
+
 
                             for (int i = 0 ; i< items.length() ;i++) {
                                 JSONObject item = items.getJSONObject(i);
@@ -129,6 +133,7 @@ public class SearchResultsActivity extends AppCompatActivity {
                                     pageCount = volumeInfo.getInt("pageCount");
 
 
+
                                     JSONObject saleInfo = item.getJSONObject("saleInfo");
                                     JSONObject listPrice = saleInfo.getJSONObject("listPrice");
 
@@ -141,6 +146,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                                     ratingsCount = volumeInfo.getInt("ratingsCount");
                                     language = volumeInfo.getString("language");
 
+                                    volumeId = item.getString("id");
+
                                 }catch (Exception e){
 
                                 }
@@ -151,7 +158,7 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 String infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks.add(new VolumeBooks(title, authors,
+                                volumeBooks.add(new VolumeBooks(volumeId, title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
@@ -182,6 +189,11 @@ public class SearchResultsActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
+
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.add(request);
 
     }

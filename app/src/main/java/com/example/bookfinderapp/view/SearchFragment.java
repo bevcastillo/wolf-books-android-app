@@ -192,6 +192,7 @@ public class SearchFragment extends Fragment{
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        String volumeId = "";
                         String title = "";
                         String subtitle = "";
                         String authors = ""; //authors from Json
@@ -250,13 +251,14 @@ public class SearchFragment extends Fragment{
 
                                 }
 
+                                volumeId = item.getString("id");
                                 thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
                                 String previewLink = volumeInfo.getString("previewLink");
                                 String infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks.add(new VolumeBooks(title, authors,
+                                volumeBooks.add(new VolumeBooks(volumeId,title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark

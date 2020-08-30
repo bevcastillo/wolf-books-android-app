@@ -240,6 +240,7 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        String volumeId = "";
                         String title = "";
                         String authors = ""; //authors from Json
                         String description = "No description";
@@ -296,13 +297,14 @@ public class HomeFragment extends Fragment {
 
                                 }
 
+                                volumeId = item.getString("id");
                                 thumbnail = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
 
                                 String previewLink = volumeInfo.getString("previewLink");
                                 String infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks.add(new VolumeBooks(title, authors,
+                                volumeBooks.add(new VolumeBooks(volumeId, title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -398,7 +400,7 @@ public class HomeFragment extends Fragment {
                                 String infoLink = volumeInfo.getString("infoLink");
 
 
-                                volumeBooks1.add(new VolumeBooks(title, authors,
+                                volumeBooks1.add(new VolumeBooks("", title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -492,7 +494,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks2.add(new VolumeBooks(title, authors,
+                                volumeBooks2.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -587,7 +589,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks3.add(new VolumeBooks(title, authors,
+                                volumeBooks3.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -681,7 +683,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks4.add(new VolumeBooks(title, authors,
+                                volumeBooks4.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -776,7 +778,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks5.add(new VolumeBooks(title, authors,
+                                volumeBooks5.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -871,7 +873,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks6.add(new VolumeBooks(title, authors,
+                                volumeBooks6.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -966,7 +968,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks7.add(new VolumeBooks(title, authors,
+                                volumeBooks7.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -1061,7 +1063,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks8.add(new VolumeBooks(title, authors,
+                                volumeBooks8.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -1156,7 +1158,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks9.add(new VolumeBooks(title, authors,
+                                volumeBooks9.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -1251,7 +1253,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks10.add(new VolumeBooks(title, authors,
+                                volumeBooks10.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -1346,7 +1348,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks11.add(new VolumeBooks(title, authors,
+                                volumeBooks11.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
@@ -1441,7 +1443,7 @@ public class HomeFragment extends Fragment {
                                 String previewLink = volumeInfo.getString("previewLink");
 
 
-                                volumeBooks12.add(new VolumeBooks(title, authors,
+                                volumeBooks12.add(new VolumeBooks("",title, authors,
                                         description, publisher, publishedDate,
                                         categories, thumbnail, previewLink, price, currencyCode,
                                         buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark\
