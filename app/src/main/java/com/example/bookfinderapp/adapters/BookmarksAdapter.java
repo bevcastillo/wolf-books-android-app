@@ -51,22 +51,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
             @Override
             public void onClick(View v) {
                 String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
-                String author = listdata.get(viewHolder.getAdapterPosition()).getAuthors();
-                double ratings = listdata.get(viewHolder.getAdapterPosition()).getAverageRating();
-                String previewLink = listdata.get(viewHolder.getAdapterPosition()).getPreviewLink();
-                String buyLink = listdata.get(viewHolder.getAdapterPosition()).getBuyLink();
-                String description = listdata.get(viewHolder.getAdapterPosition()).getDescription();
-                String publisher = listdata.get(viewHolder.getAdapterPosition()).getPublisher();
-                String publishedOn = listdata.get(viewHolder.getAdapterPosition()).getPublishedDate();
-                int pageCount = listdata.get(viewHolder.getAdapterPosition()).getPageCount();
-                String language = listdata.get(viewHolder.getAdapterPosition()).getLanguage();
-                String price = listdata.get(viewHolder.getAdapterPosition()).getPrice();
-                String thumbnail = listdata.get(viewHolder.getAdapterPosition()).getThumbnail();
-                String categories = listdata.get(viewHolder.getAdapterPosition()).getCategories();
-                int ratingsCount = listdata.get(viewHolder.getAdapterPosition()).getRatingsCount();
-                String currency = listdata.get(viewHolder.getAdapterPosition()).getCurrencyCode();
                 int id = listdata.get(viewHolder.getAdapterPosition()).getId();
-
 
                 dbManager = new DBManager(v.getContext());
                 dbManager.open();

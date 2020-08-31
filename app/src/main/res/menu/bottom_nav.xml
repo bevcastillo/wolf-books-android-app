@@ -15,13 +15,13 @@
 
     <item
         android:id="@+id/nav_bookmarks"
-        android:icon="@drawable/ic_bookmark_black"
+        android:icon="@drawable/ic_bookmark_border_black"
         android:title="Bookmarks"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_about"
-        android:icon="@drawable/ic_info_black_24dp"
+        android:icon="@drawable/ic_info_outline_black"
         android:title="About"
         app:showAsAction="ifRoom"/>
 

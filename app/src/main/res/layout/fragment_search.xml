@@ -28,14 +28,15 @@
             android:drawableLeft="@drawable/ic_search_black_24dp"
             android:drawablePadding="12dp"
             android:drawableTint="@color/colorPrimary"
-            android:hint="Search book author, title, etc."
+            android:hint="Search book title, author, etc."
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:padding="12dp"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/textview"
@@ -49,7 +50,8 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_searchQuery" />
+            app:layout_constraintTop_toBottomOf="@+id/et_searchQuery"
+            android:fontFamily="@font/karla_regular"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_new_books"

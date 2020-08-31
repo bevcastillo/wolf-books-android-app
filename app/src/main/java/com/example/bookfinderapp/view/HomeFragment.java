@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -327,6 +328,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         fictionRequest.add(request);
 
     }
@@ -422,6 +427,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         fantasyRequest.add(request);
 
     }
@@ -517,6 +526,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         motivationalRequest.add(request);
 
     }
@@ -611,6 +624,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         adventureRequest.add(request);
 
     }
@@ -706,6 +723,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         romanceRequest.add(request);
 
     }
@@ -801,6 +822,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         contempRequest.add(request);
 
     }
@@ -896,6 +921,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mysteryRequest.add(request);
 
     }
@@ -991,6 +1020,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         horrorRequest.add(request);
 
     }
@@ -1086,6 +1119,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         thrillerRequest.add(request);
 
     }
@@ -1181,6 +1218,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         scienceRequest.add(request);
 
     }
@@ -1276,6 +1317,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         healthRequest.add(request);
 
     }
@@ -1371,6 +1416,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         historyRequest.add(request);
 
     }
@@ -1470,6 +1519,10 @@ public class HomeFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                3000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         childrenRequest.add(request);
 
     }

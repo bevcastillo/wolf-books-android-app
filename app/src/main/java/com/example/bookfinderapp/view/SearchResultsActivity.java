@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
 import com.example.bookfinderapp.helper.Constant;
+import com.example.bookfinderapp.helper.DBManager;
+import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
@@ -28,6 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
@@ -38,10 +42,14 @@ public class SearchResultsActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue;
 
     private ArrayList<VolumeBooks> volumeBooks;
+    private List<VolumeBooks> bookmarksList;
     private VolumeBooksAdapter adapter;
 
     private LinearLayout layoutNoData;
     private ShimmerFrameLayout shimmerFrameLayout;
+
+    private DatabaseHelper db;
+    private DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +93,6 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, key.toString(), null,
                 new Response.Listener<JSONObject>() {
-
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -157,11 +164,25 @@ public class SearchResultsActivity extends AppCompatActivity {
                                 String previewLink = volumeInfo.getString("previewLink");
                                 String infoLink = volumeInfo.getString("infoLink");
 
-
-                                volumeBooks.add(new VolumeBooks(volumeId, title, authors,
-                                        description, publisher, publishedDate,
-                                        categories, thumbnail, previewLink, price, currencyCode,
-                                        buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
+//                                dbManager = new DBManager(getApplicationContext());
+//                                dbManager.open();
+//                                db = new DatabaseHelper(getApplicationContext());
+//
+//                                if (db.getVolumeId(volumeId).isEmpty()) {
+//                                    volumeBooks.add(new VolumeBooks(volumeId, title, authors,
+//                                            description, publisher, publishedDate,
+//                                            categories, thumbnail, previewLink, price, currencyCode,
+//                                            buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
+//                                }
+                                    volumeBooks.add(new VolumeBooks(volumeId, title, authors,
+                                            description, publisher, publishedDate,
+                                            categories, thumbnail, previewLink, price, currencyCode,
+                                            buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
+                                //
+//                                volumeBooks.add(new VolumeBooks(volumeId, title, authors,
+//                                        description, publisher, publishedDate,
+//                                        categories, thumbnail, previewLink, price, currencyCode,
+//                                        buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
 
                                 adapter = new VolumeBooksAdapter(SearchResultsActivity.this, volumeBooks);
                                 shimmerFrameLayout.stopShimmer();

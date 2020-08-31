@@ -26,7 +26,7 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void inserBookmark( String title, String authors, String description, String publisher,
+    public void insertBookmark( String title, String authors, String description, String publisher,
                              String publishedDate, String categories, String thumbnail, String previewLink,
                              String price, String currencyCode, String buyLink, String language,
                              int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {

@@ -28,6 +28,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
 
     private Context context;
     private List<VolumeBooks> listdata;
+    private List<VolumeBooks> list;
     private RequestOptions options;
     private DatabaseHelper db;
     private DBManager dbManager;
@@ -133,6 +134,11 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         VolumeBooks volumeBooks = listdata.get(position);
+        Boolean isBookmark = volumeBooks.isBookmark();
+
+        dbManager = new DBManager(context);
+        dbManager.open();
+        db = new DatabaseHelper(context);
 
         holder.ivThumbnail.setBackground(null);
         Glide.with(context).load(volumeBooks.getThumbnail()).apply(options).into(holder.ivThumbnail);
@@ -141,8 +147,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvTitle.setText(volumeBooks.getTitle());
 
         holder.tvAuthor.setBackground(null);
-//        holder.tvAuthor.setText("by " + volumeBooks.getAuthors());
-        holder.tvAuthor.setText(volumeBooks.getVolumeId());
+        holder.tvAuthor.setText(volumeBooks.getAuthors());
 
         holder.rb_ratings.setBackground(null);
         holder.rb_ratings.setVisibility(View.VISIBLE);
@@ -158,8 +163,13 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvPublisher.setText(volumeBooks.getPublisher());
 
         holder.ivBookmark.setBackground(null);
-        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
+//        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
 
+        if (db.getVolumeId(volumeBooks.getVolumeId())!=null) {
+            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
+        } else {
+            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
+        }
     }
 
     @Override

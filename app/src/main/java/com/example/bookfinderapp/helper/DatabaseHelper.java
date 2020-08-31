@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.example.bookfinderapp.models.VolumeBooks;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -17,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE = "bookmarksdb";
     public static final String BOOKMARKTBL = "bookmarks_tbl";
     public static final String COL_ID = "ID";
+    public static final String COL_VOL_ID = "volume_id";
     public static final String COL_TITLE = "title";
     public static final String COL_AUTHOR = "author";
     public static final String COL_THUMBNAIL = "thumbnail_link";
@@ -41,6 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE "
             + BOOKMARKTBL
             + "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_VOL_ID + " TEXT, "
             + COL_TITLE + " TEXT, "
             + COL_AUTHOR + " TEXT, "
             + COL_DESC + " TEXT, "
@@ -77,6 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COL_TITLE, volumeBooks.getTitle());
+        values.put(COL_VOL_ID, volumeBooks.getVolumeId());
         values.put(COL_AUTHOR, volumeBooks.getAuthors());
         values.put(COL_DESC, volumeBooks.getDescription());
         values.put(COL_PUBLISHER, volumeBooks.getPublisher());
@@ -98,25 +102,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    //getting the VolumeId
+    public ArrayList<VolumeBooks> getVolumeId(String volumeId) {
+        ArrayList<VolumeBooks> volumeBooksArrayList = new ArrayList<VolumeBooks>();
+
+        String selectQuery = " SELECT * FROM " + BOOKMARKTBL + " WHERE " + DatabaseHelper.COL_VOL_ID + " = " + volumeId;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                VolumeBooks volumeBooks = new VolumeBooks();
+                volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
+                volumeBooksArrayList.add(volumeBooks);
+            } while (cursor.moveToNext());
+        }
+        return volumeBooksArrayList;
+    }
 
     //displaying all data
     public ArrayList<VolumeBooks> getAll() {
         ArrayList<VolumeBooks> volumeBooksArrayList = new ArrayList<VolumeBooks>();
 
-        String selecctQuery = "SELECT * FROM " + BOOKMARKTBL;
+        String selectQuery = "SELECT * FROM " + BOOKMARKTBL;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selecctQuery,null);
+        Cursor cursor = db.rawQuery(selectQuery,null);
 
         //
         if (cursor.moveToFirst()) {
             do {
                 VolumeBooks volumeBooks = new VolumeBooks();
                 volumeBooks.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-//                String title, String authors, String description, String publisher,
-//                        String publishedDate, String categories, String thumbnail, String previewLink,
-//                        String price, String currencyCode, String buyLink, String language,
-//                int pageCount, double averageRating, int ratingsCount, boolean isBookmark
-
+                volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
                 volumeBooks.setTitle(cursor.getString(cursor.getColumnIndex(COL_TITLE)));
                 volumeBooks.setAuthors(cursor.getString(cursor.getColumnIndex(COL_AUTHOR)));
                 volumeBooks.setDescription(cursor.getString(cursor.getColumnIndex(COL_DESC)));
@@ -145,16 +162,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(BOOKMARKTBL,COL_ID+" = ? ", new String[]{String.valueOf(id)});
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

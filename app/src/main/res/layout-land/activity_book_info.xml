@@ -38,22 +38,24 @@
             android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_book_thumbnail"
-            app:layout_constraintTop_toTopOf="@+id/iv_book_thumbnail" />
+            app:layout_constraintTop_toTopOf="@+id/iv_book_thumbnail"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_title"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:textColor="@color/colorTextBlack"
             android:text="Some title"
+            android:textColor="@color/colorTextBlack"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_publisher"
-            app:layout_constraintTop_toBottomOf="@+id/tv_publisher" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_publisher"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_author"
@@ -66,7 +68,8 @@
             android:text="some authors"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            android:fontFamily="@font/karla_regular"/>
 
 
         <RatingBar
@@ -80,7 +83,8 @@
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="@+id/tv_author"
-            app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_author"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_ratings"
@@ -94,7 +98,8 @@
             card_view:layout_constraintStart_toEndOf="@+id/ratingbar_book"
             card_view:layout_constraintTop_toTopOf="@+id/ratingbar_book"
             style="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/lighterBlack"/>
+            android:textColor="@color/lighterBlack"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_reviews_count"
@@ -106,7 +111,8 @@
             android:text="/ 100"
             card_view:layout_constraintBottom_toBottomOf="@+id/tv_ratings"
             card_view:layout_constraintStart_toEndOf="@+id/tv_ratings"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_ratings" />
+            card_view:layout_constraintTop_toTopOf="@+id/tv_ratings"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/textview"
@@ -120,7 +126,8 @@
             android:textColor="@color/colorTextBlack"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_book_thumbnail" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_book_thumbnail"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_desc"

@@ -34,6 +34,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:fontFamily="@font/karla_regular"
             android:text="publisher"
             android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,10 +46,11 @@
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="Some title"
+            android:fontFamily="@font/karla_regular"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_publisher"
@@ -63,6 +65,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="some authors"
+            android:fontFamily="@font/karla_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -74,8 +77,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:numStars="5"
-            android:rating="0"
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
             app:layout_constraintStart_toStartOf="@+id/tv_author"
@@ -114,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
+            android:fontFamily="@font/karla_regular"
             android:layout_marginTop="24dp"
             android:text="Plot Sypnosis"
             android:textColor="@android:color/black"
@@ -133,7 +135,8 @@
             android:text="lorem ipsum dolor sit amet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
+            app:layout_constraintTop_toBottomOf="@+id/textview"
+            style="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
             android:id="@+id/textview1"
@@ -145,6 +148,7 @@
             android:layout_marginTop="16dp"
             android:text="Genre"
             android:textColor="@android:color/black"
+            android:fontFamily="@font/karla_regular"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
@@ -173,6 +177,7 @@
             android:layout_marginTop="16dp"
             android:text="Published Date"
             android:textColor="@android:color/black"
+            android:fontFamily="@font/karla_regular"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_categories" />
@@ -203,7 +208,8 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_publishedOn" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_publishedOn"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_pageCount"
@@ -231,7 +237,8 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pageCount" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_pageCount"
+            android:fontFamily="@font/karla_regular"/>
 
         <TextView
             android:id="@+id/tv_language"
