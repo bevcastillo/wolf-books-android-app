@@ -7,15 +7,15 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 * [Volley](https://developer.android.com/training/volley)
 
 # Preview
-![Home Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/home_screen.jpg)
+![Home Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/home_screen.jpg)
 
-![Search Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/search_screen.jpg)
+![Search Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/search_screen.jpg)
 
-![Search Results Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/search_results.jpg)
+![Search Results Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/search_results.jpg)
 
-![Book Info Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/book_details.jpg)
+![Book Info Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/book_details.jpg)
 
-![Bookmark Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/bookmarks.jpg)
+![Bookmark Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/bookmarks.jpg)
 
 To download this app, please go to this link:
 (https://we.tl/t-BzYy8ji0K8)
