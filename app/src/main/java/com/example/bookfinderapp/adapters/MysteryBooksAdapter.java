@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.view.BookInfoActivity;
+import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;
 
@@ -39,10 +39,10 @@ public class MysteryBooksAdapter extends RecyclerView.Adapter<MysteryBooksAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card_home, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_vertical, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
-        viewHolder.layout.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
@@ -111,16 +111,12 @@ public class MysteryBooksAdapter extends RecyclerView.Adapter<MysteryBooksAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        LinearLayout layout;
         ImageView ivThumbnail;
         TextView tvTitle, tvAuthor;
         RatingBar rb_ratings;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            layout = itemView.findViewById(R.id.home_book_layout);
             ivThumbnail = itemView.findViewById(R.id.iv_book_image);
             tvTitle = itemView.findViewById(R.id.tv_book_title);
             tvAuthor = itemView.findViewById(R.id.tv_book_author);

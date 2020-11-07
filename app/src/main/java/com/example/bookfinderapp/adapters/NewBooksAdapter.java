@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.view.BookInfoActivity;
+import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class NewBooksAdapter extends RecyclerView.Adapter<NewBooksAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_new_books, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_new_books, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         viewHolder.layout.setOnClickListener(new View.OnClickListener() {

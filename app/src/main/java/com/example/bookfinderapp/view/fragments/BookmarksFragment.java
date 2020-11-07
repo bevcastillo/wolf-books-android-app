@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.fragments;
 
 
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +27,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BookmarksFragment extends Fragment {
+public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     TextView tvBookmarkCount;
     RecyclerView rvBookmarks;
     LinearLayout layoutNoData;
     ShimmerFrameLayout shimmerFrameLayout;
+    SwipeRefreshLayout bookmarksSRL;
 
     List<VolumeBooks> list;
     BookmarksAdapter adapter;
@@ -54,6 +56,7 @@ public class BookmarksFragment extends Fragment {
         rvBookmarks = view.findViewById(R.id.rv_bookmarks);
         layoutNoData = view.findViewById(R.id.layout_no_data);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        bookmarksSRL = view.findViewById(R.id.bookmarksSRL);
 
         getActivity().setTitle("My Bookmarks");
 
@@ -63,15 +66,15 @@ public class BookmarksFragment extends Fragment {
         rvBookmarks.setLayoutManager(layoutManager);
         list = db.getAll();
 
-        tvBookmarkCount.setText(list.size()+" items found");
+        tvBookmarkCount.setText(list.size()+" item/s found");
+        bookmarksSRL.setOnRefreshListener(this);
 
         loadBookmarks();
-
-
         return view;
     }
 
     private void loadBookmarks() {
+        bookmarksSRL.setRefreshing(false);
 
         adapter = new BookmarksAdapter(getActivity(), list);
 
@@ -94,4 +97,8 @@ public class BookmarksFragment extends Fragment {
         super.onPause();
     }
 
+    @Override
+    public void onRefresh() {
+        loadBookmarks();
+    }
 }

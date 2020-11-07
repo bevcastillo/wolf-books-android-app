@@ -5,6 +5,6 @@
         <!-- Customize your theme here. -->
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:fontFamily">@font/my_fonts</item>
+        <item name="android:fontFamily">@font/karla_regular</item>
     </style>
 </resources>

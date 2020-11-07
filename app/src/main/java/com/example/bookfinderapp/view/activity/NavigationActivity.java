@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.view.fragments.AboutAppFragment;
+import com.example.bookfinderapp.view.fragments.BookmarksFragment;
+import com.example.bookfinderapp.view.fragments.HomeFragment;
+import com.example.bookfinderapp.view.fragments.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {

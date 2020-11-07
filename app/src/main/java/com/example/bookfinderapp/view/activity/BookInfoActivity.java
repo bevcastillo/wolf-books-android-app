@@ -1,6 +1,7 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -21,11 +22,13 @@ import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.google.android.material.snackbar.Snackbar;
 
 public class BookInfoActivity extends AppCompatActivity {
 
     TextView tvTitle, tvAuthor, tvDesc, tvPublisher, tvPublishedOn, tvisbn, tvPageCount, tvLang,
             tvRatingsCount, tvCategories, tvRatings, tvCategoryChip;
+    ConstraintLayout view;
     RatingBar rbRatings;
     ImageView ivThumbnail;
     Button btnPreview, btnBuy;
@@ -58,6 +61,7 @@ public class BookInfoActivity extends AppCompatActivity {
         rbRatings = findViewById(R.id.ratingbar_book);
         tvRatingsCount = findViewById(R.id.tv_reviews_count);
         tvRatings = findViewById(R.id.tv_ratings);
+        view = findViewById(R.id.view);
 
 
         setTitle("Book Details");
@@ -93,7 +97,7 @@ public class BookInfoActivity extends AppCompatActivity {
                 pageCount,ratings,ratingsCount,true);
 
         db.addBookmark(volumeBooks);
-        Toast.makeText(this, strTitle+" has been added to bookmarks.", Toast.LENGTH_LONG).show();
+        Snackbar.make(view, strTitle+" has been added to bookmarks", Snackbar.LENGTH_LONG).show();
     }
 
     @Override

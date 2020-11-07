@@ -20,7 +20,8 @@ import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.view.BookInfoActivity;
+import com.example.bookfinderapp.view.activity.BookInfoActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -44,7 +45,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_horizontal, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         viewHolder.ivBookmark.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +62,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
                 db.removeBookmark(id); //removing from sqlite database
                 notifyItemRemoved(viewHolder.getAdapterPosition());
 
-                Toast.makeText(v.getContext(), title+" has been removed to bookmarks list.", Toast.LENGTH_LONG).show();
-
+                Snackbar.make(view, title+" has been removed to bookmarks list", Snackbar.LENGTH_LONG).show();
                 viewHolder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
             }
         });
@@ -140,7 +140,6 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
 
         holder.ivBookmark.setBackground(null);
         holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
-
 
     }
 

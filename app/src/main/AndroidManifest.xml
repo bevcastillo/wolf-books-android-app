@@ -12,9 +12,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SplashScreenActivity"
-            android:theme="@style/WhiteThemeNoActionBar">
+        <activity android:name=".view.activity.SplashScreenActivity"
+            android:theme="@style/WhiteThemeNoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,15 +29,18 @@
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
-            android:name=".view.BookInfoActivity"
-            android:parentActivityName=".view.SearchResultsActivity" />
+            android:name=".view.activity.BookInfoActivity"
+            android:parentActivityName=".view.activity.SearchResultsActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.NavigationActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize">
+            android:name=".view.activity.NavigationActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".view.SearchResultsActivity"
-            android:parentActivityName=".view.NavigationActivity" />
+            android:name=".view.activity.SearchResultsActivity"
+            android:parentActivityName=".view.activity.NavigationActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"

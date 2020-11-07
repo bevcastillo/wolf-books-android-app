@@ -2,7 +2,6 @@ package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.example.bookfinderapp.view.BookInfoActivity;
+import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;
 
@@ -41,10 +39,10 @@ public class AdventureBooksAdapter extends RecyclerView.Adapter<AdventureBooksAd
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card_home, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_vertical, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
-        viewHolder.layout.setOnClickListener(new View.OnClickListener() {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
@@ -114,16 +112,12 @@ public class AdventureBooksAdapter extends RecyclerView.Adapter<AdventureBooksAd
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        LinearLayout layout;
         ImageView ivThumbnail;
         TextView tvTitle, tvAuthor;
         RatingBar rb_ratings;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            layout = itemView.findViewById(R.id.home_book_layout);
             ivThumbnail = itemView.findViewById(R.id.iv_book_image);
             tvTitle = itemView.findViewById(R.id.tv_book_title);
             tvAuthor = itemView.findViewById(R.id.tv_book_author);

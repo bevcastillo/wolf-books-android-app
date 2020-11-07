@@ -1,8 +1,6 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.fragments;
 
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +13,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,10 +22,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -37,10 +33,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.NewBooksAdapter;
-import com.example.bookfinderapp.adapters.VolumeBooksAdapter;
 import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.models.VolumeBooks;
-import com.facebook.shimmer.Shimmer;
+import com.example.bookfinderapp.view.activity.SearchResultsActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -50,7 +45,6 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -58,20 +52,16 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment{
+public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private EditText et_searchQuery;
     private AdView mAdView;
-
     private RecyclerView rvNewBooks;
-
     private RequestQueue mRequestQueue;
-
     private ArrayList<VolumeBooks> volumeBooks;
     private NewBooksAdapter adapter;
-
     private ShimmerFrameLayout shimmerFrameLayout;
-
+    SwipeRefreshLayout searchSRL;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -89,6 +79,9 @@ public class SearchFragment extends Fragment{
         mAdView = view.findViewById(R.id.adView);
         rvNewBooks = view.findViewById(R.id.rv_new_books);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        searchSRL = view.findViewById(R.id.searchSRL);
+
+        searchSRL.setOnRefreshListener(this);
 
         //
         rvNewBooks.setHasFixedSize(true);
@@ -110,7 +103,7 @@ public class SearchFragment extends Fragment{
 
         getActivity().setTitle("Search");
 
-        et_searchQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        et_searchQuery.setOnEditorActionListener(   new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
@@ -294,13 +287,16 @@ public class SearchFragment extends Fragment{
     }
 
     private void loadSearchResults(){
+        searchSRL.setRefreshing(false);
         Uri uri = Uri.parse(Constant.BOOK_NEW_URL);
         Uri.Builder builder = uri.buildUpon();
 
         parseJson(builder.toString());
-
     }
 
 
-
+    @Override
+    public void onRefresh() {
+        loadSearchResults();
+    }
 }

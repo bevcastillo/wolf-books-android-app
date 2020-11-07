@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:fontFamily">@font/my_fonts</item>
+        <item name="android:fontFamily">@font/karla_regular</item>
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -14,7 +14,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:fontFamily">@font/my_fonts</item>
+        <item name="android:fontFamily">@font/karla_regular</item>
     </style>
 
     <style name="Divider">

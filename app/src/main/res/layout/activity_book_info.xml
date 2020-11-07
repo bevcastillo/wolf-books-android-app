@@ -5,12 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.BookInfoActivity"
+    tools:context=".view.activity.BookInfoActivity"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/view">
 
         <ImageView
             android:id="@+id/iv_book_thumbnail"
@@ -34,7 +35,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:fontFamily="@font/karla_regular"
+            android:fontFamily="@font/lato"
             android:text="publisher"
             android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +51,9 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="Some title"
-            android:fontFamily="@font/karla_regular"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:fontFamily="@font/chivo"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_publisher"
@@ -65,7 +68,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="some authors"
-            android:fontFamily="@font/karla_regular"
+            android:fontFamily="@font/lato"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
@@ -104,6 +107,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text="/ 100"
+            android:fontFamily="@font/lato"
             card_view:layout_constraintBottom_toBottomOf="@+id/tv_ratings"
             card_view:layout_constraintStart_toEndOf="@+id/tv_ratings"
             card_view:layout_constraintTop_toTopOf="@+id/tv_ratings" />
@@ -132,11 +136,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:fontFamily="@font/lato"
             android:text="lorem ipsum dolor sit amet"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview"
-            style="@style/TextAppearance.AppCompat.Small"/>
+            app:layout_constraintTop_toBottomOf="@+id/textview" />
 
         <TextView
             android:id="@+id/textview1"
@@ -163,9 +168,11 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text="lorem ipsum dolor sit amet"
+            android:fontFamily="@font/lato"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview1" />
+            app:layout_constraintTop_toBottomOf="@+id/textview1"
+            style="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
             android:id="@+id/textview2"
@@ -194,7 +201,8 @@
             android:text="lorem ipsum dolor sit amet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview2" />
+            app:layout_constraintTop_toBottomOf="@+id/textview2"
+            style="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
             android:id="@+id/textview3"
@@ -223,7 +231,9 @@
             android:text="lorem ipsum dolor sit amet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview3" />
+            app:layout_constraintTop_toBottomOf="@+id/textview3"
+            android:fontFamily="@font/lato"
+            style="@style/TextAppearance.AppCompat.Small"/>
 
         <TextView
             android:id="@+id/textview4"
@@ -252,7 +262,9 @@
             android:text="lorem ipsum dolor sit amet"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview4" />
+            app:layout_constraintTop_toBottomOf="@+id/textview4"
+            android:fontFamily="@font/lato"
+            style="@style/TextAppearance.AppCompat.Small"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -278,9 +290,11 @@
                 android:text="preview"
                 android:padding="10dp"
                 android:layout_margin="4dp"
+                android:fontFamily="@font/karla_regular"
                 android:textColor="@color/colorPrimary"
                 android:background="@drawable/custom_cornered_stroke_btn"
-                android:stateListAnimator="@null"/>
+                android:stateListAnimator="@null"
+                android:textStyle="bold"/>
 
             <Button
                 android:id="@+id/btn_buy"
@@ -293,13 +307,9 @@
                 android:background="@drawable/custom_cornered_btn"
                 android:text=""
                 android:layout_margin="4dp"
+                android:fontFamily="@font/karla_regular"
+                android:textStyle="bold"
                 android:stateListAnimator="@null"/>
-
         </LinearLayout>
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

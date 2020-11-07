@@ -18,9 +18,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
-import com.example.bookfinderapp.view.BookInfoActivity;
+import com.example.bookfinderapp.view.activity.BookInfoActivity;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         final View view;
-        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card, parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_horizontal, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         viewHolder.ivBookmark.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +79,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                                                             thumbnail,previewLink,price,currency,buyLink,language,
                                                             pageCount,ratings,ratingsCount,true);
                 db.addBookmark(volumeBooks);
-                Toast.makeText(v.getContext(), title+" has been added to bookmarks list.", Toast.LENGTH_LONG).show();
+                Snackbar.make(view, title+" has been added to bookmark list", Snackbar.LENGTH_LONG).show();
 
                 viewHolder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
             }
@@ -163,19 +164,17 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         holder.tvPublisher.setText(volumeBooks.getPublisher());
 
         holder.ivBookmark.setBackground(null);
-//        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
+        holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
 
-        if (db.getVolumeId(volumeBooks.getVolumeId())!=null) {
-            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
-        } else {
-            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
-        }
+//        if (db.getVolumeId(volumeBooks.getVolumeId())!=null) {
+//            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_border_primary);
+//        } else {
+//            holder.ivBookmark.setImageResource(R.drawable.ic_bookmark_primary);
+//        }
     }
 
     @Override
     public int getItemCount() {
-//        return listdata.size();
-
         return listdata.size();
 
     }

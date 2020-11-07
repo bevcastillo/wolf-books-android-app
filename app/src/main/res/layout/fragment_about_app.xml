@@ -4,37 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.AboutAppFragment"
+    tools:context=".view.fragments.AboutAppFragment"
     android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/bookify_rounded_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/bookify_logo"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:elevation="5dp"/>
+
+        <TextView
+            android:id="@+id/TXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:fontFamily="@font/karla_regular"
+            android:textStyle="bold"
+            android:text="Bookify © 2020"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:gravity="center"
-            android:text="Bookify © 2020"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            android:fontFamily="@font/karla_regular"
+            android:text="Version 1.1.0"
+            android:layout_below="@+id/TXT"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </ScrollView>

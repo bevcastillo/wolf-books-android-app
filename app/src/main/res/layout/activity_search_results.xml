@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.SearchResultsActivity"
+    tools:context=".view.activity.SearchResultsActivity"
     android:fillViewport="true"
     android:background="#eeeeee">
 
@@ -23,6 +23,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text=""
+            android:fontFamily="@font/karla_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,15 +43,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/adapter_book_card_horizontal" />
 
-                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/adapter_book_card_horizontal" />
 
-                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/adapter_book_card_horizontal" />
 
-                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/adapter_book_card_horizontal" />
 
-                <include layout="@layout/custom_book_card" />
+                <include layout="@layout/adapter_book_card_horizontal" />
 
             </LinearLayout>
 
@@ -70,7 +71,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_results" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_results"
+            android:scrollbars="none"/>
 
         <LinearLayout
             android:visibility="invisible"
@@ -95,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="No Data Found"
+                android:fontFamily="@font/karla_regular"
                 style="@style/TextAppearance.AppCompat.Small"/>
 
         </LinearLayout>

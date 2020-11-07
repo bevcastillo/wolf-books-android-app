@@ -48,10 +48,8 @@ dependencies {
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
-
     // For loading and tinting drawables on older versions of the platform
     implementation "androidx.appcompat:appcompat-resources:1.2.0"
-
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
 
 

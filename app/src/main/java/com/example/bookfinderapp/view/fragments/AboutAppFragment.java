@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.fragments;
 
 
 import android.os.Bundle;

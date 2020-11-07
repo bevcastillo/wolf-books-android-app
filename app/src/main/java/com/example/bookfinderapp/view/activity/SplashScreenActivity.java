@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

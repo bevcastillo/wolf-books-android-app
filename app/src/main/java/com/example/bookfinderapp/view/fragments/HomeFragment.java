@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.fragments;
 
 
 import android.net.Uri;
@@ -7,11 +7,13 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,7 +49,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     RecyclerView rvFiction, rvFantasy, rvMotivational, rvAdventure, rvRomance, rvContemporary,
                 rvMystery, rvHorror, rvThriller, rvScience, rvHealth, rvHistory, rvChildren;
@@ -98,8 +100,8 @@ public class HomeFragment extends Fragment {
     private ChildrensBookAdapter childrensBookAdapter;
 
     ShimmerFrameLayout shimmerFrameLayout;
-
     LinearLayout parentLayout;
+    SwipeRefreshLayout homeSRL;
 
 
     public HomeFragment() {
@@ -113,7 +115,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        getActivity().setTitle("Home");
+        getActivity().setTitle("Howdy, Welcome to Bookify");
 
         rvFiction = view.findViewById(R.id.rv_trending_books);
         rvFantasy = view.findViewById(R.id.rv_fantasy_books);
@@ -129,73 +131,88 @@ public class HomeFragment extends Fragment {
         rvHistory = view.findViewById(R.id.rv_history_books);
         rvChildren = view.findViewById(R.id.rv_childrens_books);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        homeSRL = view.findViewById(R.id.homeSRL);
 
         parentLayout = view.findViewById(R.id.layout_parent);
+        homeSRL.setOnRefreshListener(this);
 
         //
         rvFiction.setHasFixedSize(true);
+        rvFiction.setNestedScrollingEnabled(false);
         rvFiction.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks = new ArrayList<>();
         fictionRequest = Volley.newRequestQueue(getActivity());
 
         //
         rvFantasy.setHasFixedSize(true);
+        rvFantasy.setNestedScrollingEnabled(false);
         rvFantasy.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks1 = new ArrayList<>();
         fantasyRequest = Volley.newRequestQueue(getActivity());
 
         //
         rvMotivational.setHasFixedSize(true);
+        rvMotivational.setNestedScrollingEnabled(false);
         rvMotivational.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks2 = new ArrayList<>();
         motivationalRequest = Volley.newRequestQueue(getActivity());
 
         rvAdventure.setHasFixedSize(true);
+        rvAdventure.setNestedScrollingEnabled(false);
         rvAdventure.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks3 = new ArrayList<>();
         adventureRequest = Volley.newRequestQueue(getActivity());
 
         rvRomance.setHasFixedSize(true);
+        rvRomance.setNestedScrollingEnabled(false);
         rvRomance.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks4 = new ArrayList<>();
         romanceRequest = Volley.newRequestQueue(getActivity());
 
         rvContemporary.setHasFixedSize(true);
+        rvContemporary.setNestedScrollingEnabled(false);
         rvContemporary.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks5 = new ArrayList<>();
         contempRequest = Volley.newRequestQueue(getActivity());
 
         rvMystery.setHasFixedSize(true);
+        rvMotivational.setNestedScrollingEnabled(false);
         rvMystery.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks6 = new ArrayList<>();
         mysteryRequest = Volley.newRequestQueue(getActivity());
 
         rvHorror.setHasFixedSize(true);
+        rvHorror.setNestedScrollingEnabled(false);
         rvHorror.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks7 = new ArrayList<>();
         horrorRequest = Volley.newRequestQueue(getActivity());
 
         rvThriller.setHasFixedSize(true);
+        rvThriller.setNestedScrollingEnabled(false);
         rvThriller.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks8 = new ArrayList<>();
         thrillerRequest = Volley.newRequestQueue(getActivity());
 
         rvScience.setHasFixedSize(true);
+        rvScience.setNestedScrollingEnabled(false);
         rvScience.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks9 = new ArrayList<>();
         scienceRequest = Volley.newRequestQueue(getActivity());
 
         rvHealth.setHasFixedSize(true);
+        rvHealth.setNestedScrollingEnabled(false);
         rvHealth.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks10 = new ArrayList<>();
         healthRequest = Volley.newRequestQueue(getActivity());
 
         rvHistory.setHasFixedSize(true);
+        rvHistory.setNestedScrollingEnabled(false);
         rvHistory.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks11 = new ArrayList<>();
         historyRequest = Volley.newRequestQueue(getActivity());
 
         rvChildren.setHasFixedSize(true);
+        rvChildren.setNestedScrollingEnabled(false);
         rvChildren.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.HORIZONTAL, false));
         volumeBooks12 = new ArrayList<>();
         childrenRequest = Volley.newRequestQueue(getActivity());
@@ -254,7 +271,7 @@ public class HomeFragment extends Fragment {
                         String language = "Not Available";
                         int pageCount = 0;
                         int ratingsCount = 0;
-                        double averageRating = 5.0;
+                        double averageRating = 0.0;
                         String buyLink = "Not Available";
 
                         try {
@@ -1530,7 +1547,8 @@ public class HomeFragment extends Fragment {
 
 
     private void loadFictionBooks(){
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strFiction.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL +final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1540,7 +1558,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadFantasyBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strFantasy.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1550,7 +1569,8 @@ public class HomeFragment extends Fragment {
     }
 //
     private void loadMotivationalBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strMotivational.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1559,7 +1579,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadAdventurelBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strAdventure.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1568,7 +1589,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadRomanceBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strRomance.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1577,7 +1599,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadContempBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strContemp.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1587,7 +1610,8 @@ public class HomeFragment extends Fragment {
 
 
     private void loadMysteryBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strMystery.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1596,7 +1620,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadHorrorBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strHorror.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1605,7 +1630,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadThrillerBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strThriller.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1614,7 +1640,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadScienceBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strScience.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1623,7 +1650,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadHealthBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strHealth.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1632,7 +1660,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadHistoryBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strHistory.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1641,7 +1670,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadChildrenBooks() {
-
+        homeSRL.setRefreshing(false);
+        shimmerFrameLayout.stopShimmer();
         String final_query = strChildren.replace(" ","+");
         Uri uri = Uri.parse(Constant.BOOK_SUBJECT_URL+final_query+Constant.BOOK_MAX_RES);
         Uri.Builder builder = uri.buildUpon();
@@ -1649,4 +1679,21 @@ public class HomeFragment extends Fragment {
         parseChildrenRequest(builder.toString());
     }
 
+    @Override
+    public void onRefresh() {
+        shimmerFrameLayout.startShimmer();
+        loadFictionBooks();
+        loadFantasyBooks();
+        loadMotivationalBooks();
+        loadAdventurelBooks();
+        loadRomanceBooks();
+        loadContempBooks();
+        loadMysteryBooks();
+        loadHorrorBooks();
+        loadThrillerBooks();
+        loadScienceBooks();
+        loadHealthBooks();
+        loadHistoryBooks();
+        loadChildrenBooks();
+    }
 }

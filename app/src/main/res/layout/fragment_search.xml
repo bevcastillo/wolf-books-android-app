@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.SearchFragment"
-    android:fillViewport="true"
-    android:background="#eeeeee">
+    tools:context=".view.fragments.SearchFragment"
+    android:id="@+id/searchSRL">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#eeeeee">
 
 
         <EditText
             android:id="@+id/et_searchQuery"
-            style="@style/TextAppearance.AppCompat.Small"
+            style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -65,7 +65,8 @@
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview" />
+            app:layout_constraintTop_toBottomOf="@+id/textview"
+            android:scrollbars="none"/>
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_view_container"
@@ -82,13 +83,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/custom_new_books" />
+                <include layout="@layout/adapter_new_books" />
 
-                <include layout="@layout/custom_new_books" />
+                <include layout="@layout/adapter_new_books" />
 
-                <include layout="@layout/custom_new_books" />
+                <include layout="@layout/adapter_new_books" />
 
-                <include layout="@layout/custom_new_books" />
+                <include layout="@layout/adapter_new_books" />
 
 
             </LinearLayout>
@@ -111,4 +112,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,10 +1,9 @@
-package com.example.bookfinderapp.view;
+package com.example.bookfinderapp.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -62,7 +61,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
 
         setTitle("Search Results");
-
 
         //
         rvBooksResults.setHasFixedSize(true);
