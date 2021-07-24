@@ -1,14 +1,12 @@
-package com.example.bookfinderapp.adapterV2;
+package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 
@@ -34,7 +32,7 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card_layout, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_vert, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener() {

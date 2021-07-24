@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.adapterV2;
+package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.modelV2.Item;
-import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.model.api.Item;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 import com.example.bookfinderapp.request.RequestService;
 import com.example.bookfinderapp.request.RetrofitClass;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
@@ -95,18 +94,9 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
                         Glide.with(context).load(Constant.N0_IMAGE_PLACEHOLDER)
                                 .centerCrop().into(holder.imageView);
                     }
-                    try {
-                        holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
-                        holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
-                    }catch (Exception e) {
-                        holder.ratingsTV.setVisibility(View.INVISIBLE);
-                        holder.noRatingTV.setTypeface(null, Typeface.ITALIC);
-                        holder.noRatingTV.setText("No Rating");
-                        holder.RatingRB.setVisibility(View.INVISIBLE);
-                    }
 
                     try {
-                        holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+")");
+                        holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
                         holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
                     }catch (Exception e) {
                         holder.ratingsTV.setVisibility(View.INVISIBLE);

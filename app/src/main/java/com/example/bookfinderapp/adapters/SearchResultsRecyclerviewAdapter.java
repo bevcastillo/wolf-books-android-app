@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.adapterV2;
+package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;

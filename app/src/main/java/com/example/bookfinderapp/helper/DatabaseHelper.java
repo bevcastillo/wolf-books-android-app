@@ -6,12 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 
-import com.example.bookfinderapp.modelV2.Item;
-import com.example.bookfinderapp.models.VolumeBooks;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {

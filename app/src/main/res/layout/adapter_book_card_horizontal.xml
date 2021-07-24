@@ -15,13 +15,13 @@
 
         <com.github.siyamed.shapeimageview.RoundedImageView
             android:id="@+id/imageView"
-            android:layout_width="110dp"
-            android:layout_height="175dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/default_dimen"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            card_view:siRadius="@dimen/default_dimen"
+            card_view:siRadius="@dimen/half_dimen"
+            android:scaleType="centerCrop"
             android:src="@drawable/image_placeholder_gray"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintCircleRadius="10dp"
@@ -57,7 +57,7 @@
             android:layout_marginRight="8dp"
             android:ellipsize="end"
             android:fontFamily="@font/bold"
-            android:textSize="@dimen/heading"
+            android:textSize="@dimen/headingMedium"
             android:maxLines="2"
             android:text=""
             card_view:layout_constraintEnd_toStartOf="@+id/bookmarkIV"
@@ -69,10 +69,19 @@
             android:id="@+id/bookmarkIV"
             android:layout_width="24dp"
             android:layout_height="26dp"
+            android:layout_marginRight="@dimen/default_dimen"
+            android:src="@drawable/ic_bookmark_border_white"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/imageView"/>
+
+        <ImageView
+            android:id="@+id/bookmarkActiveIV"
+            android:layout_width="24dp"
+            android:layout_height="26dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:alpha="0.7"
-            android:src="@drawable/ic_bookmark_border_white"
+            android:visibility="gone"
+            android:src="@drawable/ic_bookmark_filled"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/imageView"/>
 
@@ -139,7 +148,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:text=""
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/regular"
             android:textColor="@color/colorWhite"
             card_view:layout_constraintBottom_toBottomOf="@+id/ratingsTV"
             card_view:layout_constraintStart_toEndOf="@+id/ratingsTV"

@@ -1,7 +1,7 @@
 package com.example.bookfinderapp.request;
 
-import com.example.bookfinderapp.modelV2.Books;
-import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.model.api.Books;
+import com.example.bookfinderapp.model.api.Item;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

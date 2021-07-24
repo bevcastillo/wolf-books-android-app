@@ -54,7 +54,7 @@ a
         android:ellipsize="end"
         android:maxLines="1"
         android:text=""
-        android:fontFamily="@font/lato"
+        android:fontFamily="@font/regular"
         android:textColor="@android:color/darker_gray"
         android:background="@color/colorShimmer"
         android:layout_below="@+id/tv_book_title"

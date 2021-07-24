@@ -1,4 +1,6 @@
-package com.example.bookfinderapp.modelV2;
+package com.example.bookfinderapp.model.api;
+import com.example.bookfinderapp.model.api.Epub;
+import com.example.bookfinderapp.model.api.Pdf;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

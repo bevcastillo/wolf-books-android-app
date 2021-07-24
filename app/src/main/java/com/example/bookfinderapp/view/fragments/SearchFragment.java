@@ -1,13 +1,8 @@
 package com.example.bookfinderapp.view.fragments;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,21 +20,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.bookfinderapp.R;
-import com.example.bookfinderapp.adapterV2.CategoriesRecyclerviewAdapter;
-import com.example.bookfinderapp.adapterV2.NewReleaseRecyclerviewAdapter;
-import com.example.bookfinderapp.adapters.NewBooksAdapter;
-import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.helper.InternetConnection;
-import com.example.bookfinderapp.modelV2.Books;
-import com.example.bookfinderapp.modelV2.Item;
-import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.adapters.NewReleaseRecyclerviewAdapter;
+import com.example.bookfinderapp.model.api.Books;
+import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.request.RequestService;
 import com.example.bookfinderapp.request.RetrofitClass;
 import com.example.bookfinderapp.view.activity.SearchResultsActivity;
@@ -50,10 +34,6 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -75,7 +55,6 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     SwipeRefreshLayout searchSRL;
     Call<Books> newReleaseBooksCall;
     RequestService requestService;
-    Books booksClear;
 
     public SearchFragment() {
         // Required empty public constructor

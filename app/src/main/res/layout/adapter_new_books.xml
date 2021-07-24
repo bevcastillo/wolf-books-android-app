@@ -23,7 +23,7 @@
             android:layout_marginLeft="@dimen/default_dimen"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            card_view:siRadius="@dimen/default_dimen"
+            card_view:siRadius="@dimen/half_dimen"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintCircleRadius="10dp"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -59,7 +59,7 @@
             android:layout_marginEnd="@dimen/default_dimen"
             android:textSize="@dimen/paragraph"
             android:ellipsize="end"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/regular"
             android:textColor="@color/colorWhite"
             android:maxLines="3"
             android:alpha="0.7"
@@ -77,9 +77,9 @@
             android:layout_marginEnd="@dimen/default_dimen"
             android:ellipsize="end"
             android:maxLines="2"
-            android:fontFamily="@font/open_sans_bold"
+            android:fontFamily="@font/bold"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/headingSmall"
+            android:textSize="@dimen/headingMedium"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/imageIV"
             card_view:layout_constraintTop_toTopOf="@+id/imageIV" />
@@ -93,7 +93,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:fontFamily="@font/open_sans"
+            android:fontFamily="@font/regular"
             android:textColor="@color/colorWhite"
             android:alpha="0.7"
             android:textSize="@dimen/paragraph"
@@ -120,6 +120,21 @@
             android:visibility="invisible"
             card_view:layout_constraintStart_toStartOf="@+id/authorTV"
             card_view:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
+
+        <TextView
+            android:id="@+id/ratingsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/half_dimen"
+            android:text=""
+            android:fontFamily="@font/regular"
+            android:textSize="@dimen/paragraphMedium"
+            android:textStyle="bold"
+            card_view:layout_constraintBottom_toBottomOf="@+id/ratingsRB"
+            card_view:layout_constraintStart_toEndOf="@+id/ratingsRB"
+            card_view:layout_constraintTop_toTopOf="@+id/ratingsRB"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/colorWhite"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

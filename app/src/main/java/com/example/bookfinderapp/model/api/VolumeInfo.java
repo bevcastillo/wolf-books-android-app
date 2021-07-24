@@ -1,6 +1,4 @@
-package com.example.bookfinderapp.modelV2;
-
-import androidx.annotation.Dimension;
+package com.example.bookfinderapp.model.api;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

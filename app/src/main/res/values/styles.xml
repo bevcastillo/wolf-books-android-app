@@ -28,7 +28,7 @@
     </style>
 
     <style name="customfontstyle" parent="@android:style/TextAppearance.Small">
-        <item name="android:fontFamily">@font/karla_regular</item>
+        <item name="android:fontFamily">@font/regular</item>
     </style>
 
 

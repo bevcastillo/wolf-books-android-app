@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.modelV2;
+package com.example.bookfinderapp.model.api;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

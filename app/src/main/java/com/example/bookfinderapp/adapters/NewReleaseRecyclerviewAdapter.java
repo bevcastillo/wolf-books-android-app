@@ -1,7 +1,8 @@
-package com.example.bookfinderapp.adapterV2;
+package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;
@@ -80,11 +81,20 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
             holder.ratingsRB.setVisibility(View.VISIBLE);
             holder.ratingsRB.setRating(item.getVolumeInfo().getAverageRating());
         }catch (Exception e) {
-            holder.ratingsRB.setVisibility(View.VISIBLE);
-            holder.ratingsRB.setRating(0);
+            holder.ratingsRB.setVisibility(View.GONE);
+            holder.ratingsTV.setVisibility(View.GONE);
         }
 
-        //todo display authors
+        try {
+            holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
+            holder.ratingsRB.setRating(item.getVolumeInfo().getAverageRating());
+        }catch (Exception e) {
+            holder.ratingsTV.setVisibility(View.INVISIBLE);
+            holder.ratingsTV.setTypeface(null, Typeface.ITALIC);
+            holder.ratingsTV.setText("No Rating");
+            holder.ratingsRB.setVisibility(View.INVISIBLE);
+        }
+
         try {
             switch (item.getVolumeInfo().getAuthors().size()) {
                 case 1:
@@ -109,7 +119,8 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
                     holder.authorTV.setText("By "+item.getVolumeInfo().getAuthors().get(0));
             }
         }catch (Exception e) {
-            holder.authorTV.setText("No Author");
+            holder.authorTV.setTypeface(null, Typeface.ITALIC);
+            holder.authorTV.setText("Not Available");
         }
     }
 
@@ -119,7 +130,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder;
+        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder, ratingsTV;
         ImageView imageIV;
         RatingBar ratingsRB;
 
@@ -132,7 +143,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
             imageIV = itemView.findViewById(R.id.imageIV);
             ratingsRB = itemView.findViewById(R.id.ratingsRB);
             placeholder = itemView.findViewById(R.id.placeholder);
-
+            ratingsTV = itemView.findViewById(R.id.ratingsTV);
         }
     }
 }

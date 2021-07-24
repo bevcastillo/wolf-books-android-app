@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.modelV2;
+package com.example.bookfinderapp.model.api;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

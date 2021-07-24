@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".HomeFragmentV2"
+    tools:context=".view.fragments.HomeFragmentV2"
     android:id="@+id/homeSRL"
     android:background="@color/colorBlackBG">
 
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Can't Connect to Bookify"
-                    android:fontFamily="@font/open_sans"
+                    android:fontFamily="@font/regular"
                     android:textSize="@dimen/headingSmall"
                     android:gravity="center"
                     android:textColor="@color/colorWhite"/>
@@ -60,7 +60,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/default_dimen"
                     android:orientation="vertical">
 
                     <TextView
@@ -68,10 +67,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:layout_marginLeft="@dimen/dimen_15"
-                        android:textSize="@dimen/headingBig"
-                        android:text="Fantasy Books"
+                        android:textSize="@dimen/heading"
+                        android:text="Fantasy"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -92,7 +91,7 @@
                         app:shimmer_highlight_alpha="0"
                         app:shimmer_base_color="@color/colorBlackBG">
 
-                            <include layout="@layout/custom_book_home_shimmer" />
+                            <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -118,8 +117,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dimen_15"
-                        android:textSize="@dimen/headingBig"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:textSize="@dimen/heading"
+                        android:fontFamily="@font/bold"
                         android:text="Adventure"
                         android:textColor="@color/colorWhite" />
 
@@ -138,7 +137,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -163,10 +162,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
-                        android:textSize="@dimen/headingBig"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/heading"
                         android:text="Romance"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -184,7 +183,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -209,10 +208,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:layout_marginLeft="@dimen/dimen_15"
                         android:text="Horror"
-                        android:fontFamily="@font/open_sans_bold"
-                        android:textSize="@dimen/headingBig"
+                        android:fontFamily="@font/bold"
+                        android:textSize="@dimen/heading"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -230,7 +229,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -255,10 +254,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
-                        android:textSize="@dimen/headingBig"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/heading"
                         android:text="Thriller"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -276,7 +275,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -301,10 +300,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
-                        android:textSize="@dimen/headingBig"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/heading"
                         android:text="Fiction"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -322,7 +321,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -347,9 +346,9 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:layout_marginLeft="@dimen/dimen_15"
                         android:text="Health"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -367,7 +366,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -392,10 +391,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
-                        android:textSize="@dimen/headingBig"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/heading"
                         android:text="History"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -413,7 +412,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -438,10 +437,10 @@
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:layout_marginLeft="@dimen/dimen_15"
                         android:text="Children's"
-                        android:textSize="@dimen/headingBig"
-                        android:fontFamily="@font/open_sans_bold"
+                        android:textSize="@dimen/heading"
+                        android:fontFamily="@font/bold"
                         android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -459,7 +458,7 @@
                         android:layout_height="wrap_content"
                         app:shimmer_duration="800">
 
-                        <include layout="@layout/custom_book_home_shimmer" />
+                        <include layout="@layout/shimmer_custom_book_home" />
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 

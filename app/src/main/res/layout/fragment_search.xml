@@ -31,7 +31,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/open_sans"/>
+            android:fontFamily="@font/regular"/>
 
         <TextView
             android:id="@+id/textview"
@@ -39,10 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_dimen"
-            android:fontFamily="@font/open_sans_bold"
-            android:paddingLeft="16dp"
+            android:fontFamily="@font/bold"
+            android:layout_marginLeft="@dimen/dimen_15"
             android:text="New Releases"
-            android:textSize="@dimen/headingBig"
+            android:textSize="@dimen/heading"
             android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchQueryET" />

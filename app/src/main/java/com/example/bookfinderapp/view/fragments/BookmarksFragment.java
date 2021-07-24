@@ -15,11 +15,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bookfinderapp.R;
-import com.example.bookfinderapp.adapterV2.BookmarksRecyclerviewAdapter;
-import com.example.bookfinderapp.adapterV2.SearchResultsRecyclerviewAdapter;
-import com.example.bookfinderapp.adapters.BookmarksAdapter;
+import com.example.bookfinderapp.adapters.BookmarksRecyclerviewAdapter;
 import com.example.bookfinderapp.helper.DatabaseHelper;
-import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
@@ -38,7 +36,6 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
     SwipeRefreshLayout bookmarksSRL;
     BookmarksRecyclerviewAdapter bookmarksAdapter; //re-use the existing adapter
     List<VolumeBooks> list;
-    BookmarksAdapter adapter;
     DatabaseHelper db;
 
     public BookmarksFragment() {

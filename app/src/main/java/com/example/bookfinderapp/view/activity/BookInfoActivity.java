@@ -3,42 +3,34 @@ package com.example.bookfinderapp.view.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
-import com.example.bookfinderapp.modelV2.AccessInfo;
-import com.example.bookfinderapp.modelV2.Books;
-import com.example.bookfinderapp.modelV2.Item;
-import com.example.bookfinderapp.modelV2.SaleInfo;
-import com.example.bookfinderapp.modelV2.VolumeInfo;
-import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.model.api.AccessInfo;
+import com.example.bookfinderapp.model.api.Item;
+import com.example.bookfinderapp.model.api.SaleInfo;
+import com.example.bookfinderapp.model.api.VolumeInfo;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 import com.example.bookfinderapp.request.RequestService;
 import com.example.bookfinderapp.request.RetrofitClass;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.siyamed.shapeimageview.RoundedImageView;
-import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -73,7 +65,6 @@ public class BookInfoActivity extends AppCompatActivity {
         titleTV = findViewById(R.id.titleTV);
         authorTV = findViewById(R.id.authorTV);
         noRatingPlaceholderTV = findViewById(R.id.noRatingPlaceholderTV);
-        reviewCountTV = findViewById(R.id.reviewCountTV);
         descriptionTV = findViewById(R.id.descriptionTV);
         categoriesTV = findViewById(R.id.categoriesTV);
         publishedDateTV = findViewById(R.id.publishedDateTV);
@@ -244,8 +235,9 @@ public class BookInfoActivity extends AppCompatActivity {
                     }
 
                     if (accessInfo.getPdf().getIsAvailable()) {
-                        previewBTN.setText("Preview PDF");
+                        previewBTN.setText("Free Sample");
                     }else {
+                        previewBTN.setVisibility(View.INVISIBLE);
                         previewBTN.setEnabled(false);
                     }
                 }
@@ -259,6 +251,13 @@ public class BookInfoActivity extends AppCompatActivity {
                 });
 
                 if (item.getSaleInfo().getSaleability().equals("FOR_SALE")) {
+
+                    if (saleInfo.getIsEbook()) {
+                        buyLinkBTN.setText("Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                    }else {
+                        buyLinkBTN.setText("Book "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                    }
+
                     buyLinkBTN.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -267,26 +266,9 @@ public class BookInfoActivity extends AppCompatActivity {
                         }
                     });
 
-                    if (saleInfo.getIsEbook()) {
-                        buyLinkBTN.setText("Buy Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
-                    }else {
-                        buyLinkBTN.setText(saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
-                    }
                 }else {
-                    try {
-                        buyLinkBTN.setText("Preview");
-                        buyLinkBTN.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getVolumeInfo().getPreviewLink()));
-                                startActivity(intent);
-                            }
-                        });
-                    }catch (Exception e) {
-                        buyLinkBTN.setText("Not For Sale");
-                        buyLinkBTN.setEnabled(false);
-                    }
-
+                    buyLinkBTN.setText("Not For Sale");
+                    buyLinkBTN.setBackground(getResources().getDrawable(R.drawable.button_bg_disabled));
                 }
 
                 try {

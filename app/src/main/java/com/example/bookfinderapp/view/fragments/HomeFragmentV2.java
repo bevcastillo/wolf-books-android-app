@@ -1,4 +1,4 @@
-package com.example.bookfinderapp;
+package com.example.bookfinderapp.view.fragments;
 
 import android.os.Bundle;
 
@@ -13,17 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.bookfinderapp.adapterV2.CategoriesRecyclerviewAdapter;
+import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.adapters.CategoriesRecyclerviewAdapter;
 import com.example.bookfinderapp.helper.InternetConnection;
-import com.example.bookfinderapp.modelV2.Books;
-import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.model.api.Books;
+import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.request.RequestService;
 import com.example.bookfinderapp.request.RetrofitClass;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
-import java.lang.ref.Reference;
 import java.util.List;
 
 import retrofit2.Call;
