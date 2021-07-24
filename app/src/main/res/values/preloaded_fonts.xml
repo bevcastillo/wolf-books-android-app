@@ -4,5 +4,6 @@
         <!--        <item>@font/amaranth</item>-->
         <!--        <item>@font/chivo</item>-->
         <item>@font/lato</item>
+        <item>@font/open_sans_bold</item>
     </array>
 </resources>

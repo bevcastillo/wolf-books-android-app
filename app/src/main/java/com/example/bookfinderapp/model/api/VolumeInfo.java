@@ -1,5 +1,7 @@
 package com.example.bookfinderapp.modelV2;
 
+import androidx.annotation.Dimension;
+
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -27,6 +29,9 @@ public class VolumeInfo {
     @SerializedName("readingModes")
     @Expose
     private ReadingModes readingModes;
+    @SerializedName("dimensions")
+    @Expose
+    private Dimensions dimension;
     @SerializedName("pageCount")
     @Expose
     private Integer pageCount;
@@ -125,6 +130,7 @@ public class VolumeInfo {
         return readingModes;
     }
 
+
     public void setReadingModes(ReadingModes readingModes) {
         this.readingModes = readingModes;
     }
@@ -181,8 +187,16 @@ public class VolumeInfo {
         return imageLinks;
     }
 
+    public Dimensions getDimension() {
+        return dimension;
+    }
+
     public void setImageLinks(ImageLinks imageLinks) {
         this.imageLinks = imageLinks;
+    }
+
+    public void setDimension(Dimensions dimensions) {
+        this.dimension = dimensions;
     }
 
     public String getLanguage() {

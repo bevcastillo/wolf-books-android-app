@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorPrimaryDark"
+    tools:targetApi="lollipop">
+    <item android:id="@+id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary" />
+            <corners android:radius="@dimen/half_dimen" />
+            <padding
+                android:left="@dimen/dimen_20"
+                android:right="@dimen/dimen_20"
+                android:top="@dimen/default_dimen"
+                android:bottom="@dimen/default_dimen"/>
+        </shape>
+    </item>
+</ripple>

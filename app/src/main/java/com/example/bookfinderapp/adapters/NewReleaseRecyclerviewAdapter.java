@@ -2,29 +2,31 @@ package com.example.bookfinderapp.adapterV2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.modelV2.Item;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
 import java.util.List;
 
-public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<CategoriesRecyclerviewAdapter.ViewHolder> {
+public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewReleaseRecyclerviewAdapter.ViewHolder> {
     private Context context;
     private List<Item> items;
 
-    public CategoriesRecyclerviewAdapter(Context context, List<Item> items) {
+    public NewReleaseRecyclerviewAdapter(Context context, List<Item> items) {
         this.context = context;
         this.items = items;
     }
@@ -32,7 +34,7 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_book_card_layout, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_new_books, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -51,17 +53,38 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoriesRecyclerviewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewReleaseRecyclerviewAdapter.ViewHolder holder, int position) {
         Item item = items.get(position);
         holder.titleTV.setText(item.getVolumeInfo().getTitle());
+        int pos = position+1;
+        holder.numberTV.setText("#"+pos);
 
         try {
-            Glide.with(context).load(item.getVolumeInfo().getImageLinks().getSmallThumbnail()).centerCrop().into(holder.imageView);
+            Glide.with(context).load(item.getVolumeInfo().getImageLinks().getSmallThumbnail()).centerCrop().into(holder.imageIV);
         }catch (Exception e) {
-            Glide.with(context).load("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/488px-No-Image-Placeholder.svg.png")
-                    .centerCrop().into(holder.imageView);
+            Glide.with(context).load(Constant.N0_IMAGE_PLACEHOLDER)
+                    .centerCrop().into(holder.imageIV);
         }
 
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                holder.descriptionTV.setText(Html.fromHtml(item.getSearchInfo().getTextSnippet(), Html.FROM_HTML_MODE_COMPACT));
+            } else {
+                holder.descriptionTV.setText(Html.fromHtml(item.getSearchInfo().getTextSnippet()));
+            }
+        }catch (Exception e) {
+            holder.descriptionTV.setText("No description");
+        }
+
+        try {
+            holder.ratingsRB.setVisibility(View.VISIBLE);
+            holder.ratingsRB.setRating(item.getVolumeInfo().getAverageRating());
+        }catch (Exception e) {
+            holder.ratingsRB.setVisibility(View.VISIBLE);
+            holder.ratingsRB.setRating(0);
+        }
+
+        //todo display authors
         try {
             switch (item.getVolumeInfo().getAuthors().size()) {
                 case 1:
@@ -86,7 +109,7 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
                     holder.authorTV.setText("By "+item.getVolumeInfo().getAuthors().get(0));
             }
         }catch (Exception e) {
-                holder.authorTV.setText("No Author");
+            holder.authorTV.setText("No Author");
         }
     }
 
@@ -96,16 +119,20 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTV, authorTV;
-        ImageView imageView;
-        RatingBar averageRatingRB;
+        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder;
+        ImageView imageIV;
+        RatingBar ratingsRB;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTV = itemView.findViewById(R.id.titleTV);
+            numberTV = itemView.findViewById(R.id.numberTV);
             authorTV = itemView.findViewById(R.id.authorTV);
-            imageView = itemView.findViewById(R.id.imageView);
-            averageRatingRB = itemView.findViewById(R.id.averageRatingRB);
+            descriptionTV = itemView.findViewById(R.id.descriptionTV);
+            imageIV = itemView.findViewById(R.id.imageIV);
+            ratingsRB = itemView.findViewById(R.id.ratingsRB);
+            placeholder = itemView.findViewById(R.id.placeholder);
+
         }
     }
 }

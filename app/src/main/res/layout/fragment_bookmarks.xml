@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragments.BookmarksFragment"
-    android:id="@+id/bookmarksSRL">
+    android:id="@+id/bookmarksSRL"
+    android:background="@color/colorBlackBG">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#eeeeee">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_bookmarks_count"
@@ -21,6 +21,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:textColor="@color/colorWhite"
+            android:alpha="0.7"
             android:text=""
             android:fontFamily="@font/karla_regular"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count"
-            app:shimmer_duration="800">
+            app:shimmer_duration="800"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -60,30 +63,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count"
+            android:visibility="visible"
             android:scrollbars="none"/>
 
-
-
         <LinearLayout
-            android:visibility="invisible"
             android:id="@+id/layout_no_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:gravity="center"
             android:orientation="vertical"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.437">
+            app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count">
 
             <TextView
+                android:id="@+id/placeholderTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Bookmarks Found"
-                android:fontFamily="@font/karla_regular"
-                style="@style/TextAppearance.AppCompat.Small"/>
+                android:fontFamily="@font/open_sans"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/headingSmall" />
+
+            <TextView
+                android:id="@+id/retryTV"
+                style="?android:selectableItemBackgroundBorderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/half_dimen"
+                android:alpha="0.7"
+                android:padding="@dimen/default_dimen"
+                android:text="Retry"
+                android:textColor="@color/colorWhite"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
 

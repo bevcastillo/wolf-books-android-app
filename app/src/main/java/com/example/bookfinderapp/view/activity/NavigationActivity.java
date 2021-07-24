@@ -28,7 +28,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new HomeFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_container, new HomeFragmentV2()).commit();
         }
 
     }
@@ -42,7 +42,6 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
         switch (id) {
             case R.id.nav_home:
-//                selectedFragment = new HomeFragment();
                 selectedFragment = new HomeFragmentV2();
                 break;
             case R.id.nav_search:

@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".HomeFragmentV2"
-    android:id="@+id/homeSRL">
+    android:id="@+id/homeSRL"
+    android:background="@color/colorBlackBG">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -16,50 +17,80 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#eeeeee">
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/noConnectionLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Can't Connect to Bookify"
+                    android:fontFamily="@font/open_sans"
+                    android:textSize="@dimen/headingSmall"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"/>
+
+                <TextView
+                    android:id="@+id/retryTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/default_dimen"
+                    android:text="Retry"
+                    android:textColor="@color/colorWhite"
+                    android:alpha="0.7"
+                    style="?android:selectableItemBackgroundBorderless"
+                    android:layout_marginTop="@dimen/half_dimen"
+                    tools:targetApi="lollipop" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:orientation="vertical"
                 android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview1"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:text="Fantasy"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/headingBig"
+                        android:text="Fantasy Books"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/fantasyRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:scrollbars="none"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:visibility="gone"/>
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/fantasyShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:shimmer_duration="800">
+                        app:shimmer_duration="800"
+                        android:background="@color/colorBlackBG"
+                        app:shimmer_highlight_alpha="0"
+                        app:shimmer_base_color="@color/colorBlackBG">
 
                             <include layout="@layout/custom_book_home_shimmer" />
 
@@ -78,27 +109,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview3"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
-                        android:fontFamily="@font/karla_regular"
+                        android:layout_marginLeft="@dimen/dimen_15"
+                        android:textSize="@dimen/headingBig"
+                        android:fontFamily="@font/open_sans_bold"
                         android:text="Adventure"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/adventureRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -106,7 +136,6 @@
                         android:id="@+id/adventureShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -126,27 +155,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview4"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:textSize="@dimen/headingBig"
                         android:text="Romance"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/romanceRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -154,7 +182,6 @@
                         android:id="@+id/romanceShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -174,27 +201,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview7"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
                         android:text="Horror"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textSize="@dimen/headingBig"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/horrorRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -202,7 +228,6 @@
                         android:id="@+id/horrorShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -222,27 +247,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview8"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:textSize="@dimen/headingBig"
                         android:text="Thriller"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/thrillerRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -250,7 +274,6 @@
                         android:id="@+id/thrillerShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -270,27 +293,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview9"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:textSize="@dimen/headingBig"
                         android:text="Fiction"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/fictionRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -298,7 +320,6 @@
                         android:id="@+id/fictionShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -318,27 +339,25 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview10"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
                         android:text="Health"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/healthRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
                         android:scrollbars="none"
                         android:visibility="gone"/>
 
@@ -346,7 +365,6 @@
                         android:id="@+id/healthShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -366,35 +384,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="18dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview11"
                         style="@style/TextAppearance.AppCompat.Title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
+                        android:textSize="@dimen/headingBig"
                         android:text="History"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/historyRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
+                        android:visibility="gone"
                         android:scrollbars="none" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/historyShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -414,35 +430,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/gradient_home_category"
-                    android:orientation="vertical"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="18dp">
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/textview12"
                         style="@style/TextAppearance.AppCompat.Title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="@dimen/default_dimen"
                         android:text="Children's"
-                        android:fontFamily="@font/karla_regular"
-                        android:textColor="@color/colorTextBlack"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/headingBig"
+                        android:fontFamily="@font/open_sans_bold"
+                        android:textColor="@color/colorWhite" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/childrensRV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:paddingLeft="@dimen/half_dimen"
+                        android:paddingRight="@dimen/half_dimen"
+                        android:visibility="gone"
                         android:scrollbars="none" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/childrenShimmer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         app:shimmer_duration="800">
 
                         <include layout="@layout/custom_book_home_shimmer" />
@@ -459,9 +473,7 @@
 
                 </LinearLayout>
 
-
             </LinearLayout>
-
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

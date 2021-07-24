@@ -30,6 +30,17 @@ public class Item {
     @Expose
     private SearchInfo searchInfo;
 
+    //we add isBookmark
+    private Boolean isBookmark;
+
+    public Boolean getBookmark() {
+        return isBookmark;
+    }
+
+    public void setBookmark(Boolean bookmark) {
+        isBookmark = bookmark;
+    }
+
     public String getKind() {
         return kind;
     }

@@ -10,51 +10,45 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#eeeeee">
+        android:background="@color/colorBlackBG">
 
 
         <EditText
-            android:id="@+id/et_searchQuery"
+            android:id="@+id/searchQueryET"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/custom_rounded_input"
-            android:backgroundTint="@android:color/white"
             android:drawableLeft="@drawable/ic_search_black_24dp"
             android:drawablePadding="12dp"
-            android:drawableTint="@color/colorPrimary"
+            android:background="@color/grayTransparent"
+            android:drawableTint="@color/colorWhite"
             android:hint="Search book title, author, etc."
             android:imeOptions="actionSearch"
+            android:textColorHint="#eee"
             android:inputType="text"
             android:padding="12dp"
-            android:textColor="@android:color/black"
+            android:textColor="@color/colorWhite"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:fontFamily="@font/karla_regular"/>
+            android:fontFamily="@font/open_sans"/>
 
         <TextView
             android:id="@+id/textview"
             style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/default_dimen"
+            android:fontFamily="@font/open_sans_bold"
             android:paddingLeft="16dp"
             android:text="New Releases"
-            android:textColor="@color/colorTextBlack"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/headingBig"
+            android:textColor="@color/colorWhite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_searchQuery"
-            android:fontFamily="@font/karla_regular"/>
+            app:layout_constraintTop_toBottomOf="@+id/searchQueryET" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_new_books"
+            android:id="@+id/newBooksRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
@@ -76,20 +70,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview"
-            app:shimmer_duration="800">
+            app:shimmer_duration="800"
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/adapter_new_books" />
+                <include layout="@layout/shimmer_new_books" />
 
-                <include layout="@layout/adapter_new_books" />
+                <include layout="@layout/shimmer_new_books" />
 
-                <include layout="@layout/adapter_new_books" />
+                <include layout="@layout/shimmer_new_books" />
 
-                <include layout="@layout/adapter_new_books" />
+                <include layout="@layout/shimmer_new_books" />
 
 
             </LinearLayout>

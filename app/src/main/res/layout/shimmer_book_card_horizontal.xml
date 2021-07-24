@@ -4,29 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
-    card_view:cardElevation="0dp"
-    card_view:cardCornerRadius="6dp"
+    android:layout_marginBottom="@dimen/half_dimen"
     android:id="@+id/book_layout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.github.siyamed.shapeimageview.RoundedImageView
             android:id="@+id/iv_book_image"
-            android:layout_width="75dp"
-            android:layout_height="110dp"
+            android:layout_width="110dp"
+            android:layout_height="175dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/custom_cornered_image"
+            card_view:siRadius="@dimen/default_dimen"
+            android:src="@drawable/image_placeholder_gray"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintCircleRadius="10dp"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            android:background="@color/colorShimmer"/>
+            card_view:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_publisher"

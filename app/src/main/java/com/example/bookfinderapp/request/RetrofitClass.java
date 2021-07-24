@@ -4,6 +4,7 @@ import com.example.bookfinderapp.helper.Constant;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClass {
     private static String BASE_URL = "https://www.googleapis.com/";
@@ -22,6 +23,7 @@ public class RetrofitClass {
     public static Retrofit getNewBooksInstance() {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

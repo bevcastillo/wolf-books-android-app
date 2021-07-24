@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:paddingBottom="12dp">
+    android:paddingTop="@dimen/half_dimen"
+    android:paddingLeft="@dimen/default_dimen"
+    android:paddingRight="@dimen/half_dimen"
+    android:paddingBottom="@dimen/default_dimen">
 
-    <ImageView
+    <com.github.siyamed.shapeimageview.RoundedImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="160dp"/>
+        android:layout_width="110dp"
+        android:layout_height="175dp"
+        app:siRadius="@dimen/half_dimen"/>
 
     <TextView
         android:id="@+id/titleTV"
@@ -21,11 +23,11 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:minLines="2"
-        android:text=""
-        android:fontFamily="@font/karla_regular"
+        android:fontFamily="@font/bold"
+        android:textSize="@dimen/headingSmall"
         android:textStyle="bold"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/lighterBlack"
+        android:layout_marginTop="@dimen/half_dimen"
+        android:textColor="@color/colorWhite"
         android:layout_marginEnd="0dp"
         android:gravity="top"
         android:layout_marginRight="0dp" />
@@ -35,12 +37,13 @@
         style="@style/TextAppearance.AppCompat.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/dimen_2"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text=""
-        android:fontFamily="@font/lato"
-        android:textColor="@android:color/darker_gray" />
+        android:textSize="@dimen/paragraphMedium"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/colorWhite"
+        android:alpha="0.7"/>
 
     <RatingBar
         android:id="@+id/averageRatingRB"

@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bookfinderapp.adapterV2.CategoriesRecyclerviewAdapter;
+import com.example.bookfinderapp.helper.InternetConnection;
 import com.example.bookfinderapp.modelV2.Books;
 import com.example.bookfinderapp.modelV2.Item;
 import com.example.bookfinderapp.request.RequestService;
@@ -28,13 +30,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     SwipeRefreshLayout homeSRL;
     ShimmerFrameLayout fantasyShimmer, adventureShimmer, romanceShimmer, horrorShimmer, thrillerShimmer, fictionShimmer, healthShimmer, historyShimmer, childrenShimmer;
-    TextView fantasyErr, adventureErr, romanceErr, horrorErr, thrillerErr, fictionErr, healthErr, historyErr, childrenErr;
+    TextView fantasyErr, adventureErr, romanceErr, horrorErr, thrillerErr, fictionErr, healthErr, historyErr, childrenErr, retryTV;
     RecyclerView fictionRV, fantasyRV, romanceRV, adventureRV, horrorRV, thrillerRV, healthRV, historyRV, childrensRV;
     CategoriesRecyclerviewAdapter categoriesAdapter;
     LinearLayoutManager fictionLM, fantasyLM, romanceLM, adventureLM, horrorLM, thrillerLM, healthLM, historyLM, childrenLM;
+    LinearLayout noConnectionLL, layout_parent;
     RequestService requestService;
     Call<Books> fictionCall, fantasyCall, motivationCall, adventureCall, horrorCall, thrillerCall, healthCall, historyCall, childrenCall;
 
@@ -45,8 +48,9 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_v2, container, false);
+
+        getActivity().setTitle("Home");
 
         homeSRL = view.findViewById(R.id.homeSRL);
         fictionRV = view.findViewById(R.id.fictionRV);
@@ -76,10 +80,16 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
         healthErr = view.findViewById(R.id.healthErr);
         historyErr = view.findViewById(R.id.historyErr);
         childrenErr = view.findViewById(R.id.childrenErr);
+        noConnectionLL = view.findViewById(R.id.noConnectionLL);
+        retryTV = view.findViewById(R.id.retryTV);
+        layout_parent = view.findViewById(R.id.layout_parent);
 
         homeSRL.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         homeSRL.setOnRefreshListener(this);
         requestService = RetrofitClass.getAPIInstance();
+
+        InternetConnection.isInternetConnected(getContext(),noConnectionLL,layout_parent);
+        retryTV.setOnClickListener(this);
 
         callFiction();
         callFantasy();
@@ -164,6 +174,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 fictionRV.setVisibility(View.VISIBLE);
                 fictionShimmer.setVisibility(View.GONE);
+                //todo check response code
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupFictionList(response.body().getItems());
                 }
@@ -187,17 +198,18 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 fantasyRV.setVisibility(View.VISIBLE);
                 fantasyShimmer.setVisibility(View.GONE);
-                for (int i=0; i<response.body().getItems().size(); i++) {
-                    setupFantasyList(response.body().getItems());
+                homeSRL.setRefreshing(false);
+                if (response.isSuccessful()) {
+                    for (int i=0; i<response.body().getItems().size(); i++) {
+                        setupFantasyList(response.body().getItems());
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Books> call, Throwable t) {
                 fantasyRV.setVisibility(View.GONE);
-                fantasyShimmer.setVisibility(View.GONE);
-                fantasyErr.setVisibility(View.VISIBLE);
-                fantasyErr.setText(t.getMessage());
+                fantasyShimmer.setVisibility(View.VISIBLE);
                 Log.e("FANTASY CATEGORY @@ : ",t.getMessage());
             }
         });
@@ -210,6 +222,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 romanceRV.setVisibility(View.VISIBLE);
                 romanceShimmer.setVisibility(View.GONE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupRomanceList(response.body().getItems());
                 }
@@ -233,6 +246,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 adventureRV.setVisibility(View.VISIBLE);
                 adventureShimmer.setVisibility(View.GONE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupAdventureList(response.body().getItems());
                 }
@@ -256,6 +270,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 horrorRV.setVisibility(View.VISIBLE);
                 horrorShimmer.setVisibility(View.GONE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupHorrorList(response.body().getItems());
                 }
@@ -279,8 +294,13 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 thrillerRV.setVisibility(View.VISIBLE);
                 thrillerShimmer.setVisibility(View.GONE);
-                for (int i=0; i<response.body().getItems().size(); i++) {
-                    setUpThrillerList(response.body().getItems());
+                homeSRL.setRefreshing(false);
+                if (response.code()==200) {
+                    for (int i=0; i<response.body().getItems().size(); i++) {
+                        setUpThrillerList(response.body().getItems());
+                    }
+                }else {
+
                 }
             }
 
@@ -302,6 +322,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 healthRV.setVisibility(View.VISIBLE);
                 healthShimmer.setVisibility(View.GONE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setUpHealthList(response.body().getItems());
                 }
@@ -325,6 +346,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 historyShimmer.setVisibility(View.GONE);
                 historyRV.setVisibility(View.VISIBLE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupHistoryList(response.body().getItems());
                 }
@@ -348,6 +370,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
             public void onResponse(Call<Books> call, Response<Books> response) {
                 childrensRV.setVisibility(View.VISIBLE);
                 childrenShimmer.setVisibility(View.GONE);
+                homeSRL.setRefreshing(false);
                 for (int i=0; i<response.body().getItems().size(); i++) {
                     setupChildrenList(response.body().getItems());
                 }
@@ -411,5 +434,14 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
         healthShimmer.setVisibility(View.VISIBLE);
         historyShimmer.setVisibility(View.VISIBLE);
         childrenShimmer.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.retryTV:
+                InternetConnection.isInternetConnected(v.getContext(), noConnectionLL, layout_parent);
+                break;
+        }
     }
 }

@@ -5,26 +5,25 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
     card_view:cardElevation="0dp"
     card_view:cardCornerRadius="6dp"
     android:id="@+id/book_layout">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlackBG">
 
-        <ImageView
+        <com.github.siyamed.shapeimageview.RoundedImageView
             android:id="@+id/imageIV"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
+            android:layout_width="110dp"
+            android:layout_height="175dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            card_view:siRadius="@dimen/default_dimen"
             android:layout_marginBottom="8dp"
-            android:background="@color/colorShimmer"
-            android:src="@drawable/custom_cornered_image"
+            android:src="@drawable/image_placeholder_gray"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintCircleRadius="10dp"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -34,7 +33,9 @@
             android:id="@+id/numberTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/button_bg_top"
+            android:backgroundTint="@android:color/darker_gray"
+            android:layout_marginLeft="@dimen/default_dimen"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="4dp"
@@ -50,10 +51,10 @@
             android:id="@+id/descriptionTV"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_15"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/half_dimen"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:text=""
@@ -93,7 +94,7 @@
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/half_dimen"
             android:ellipsize="end"
             android:maxLines="1"
             android:text=""

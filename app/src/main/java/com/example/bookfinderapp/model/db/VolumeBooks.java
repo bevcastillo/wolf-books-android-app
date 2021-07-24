@@ -28,6 +28,12 @@ public class VolumeBooks {
 //    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String price, String currencyCode, String buyLink, String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
 //    }
 
+
+    public VolumeBooks(String volumeId, boolean isBookmark) {
+        this.volumeId = volumeId;
+        this.isBookmark = isBookmark;
+    }
+
     public VolumeBooks(String str_id, String volumeId, String title, String authors, String description,
                        String publisher, String publishedDate, String categories, String thumbnail,
                        String previewLink, String price, String currencyCode, String buyLink,

@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.modelV2.Item;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
+import com.github.siyamed.shapeimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -58,7 +60,7 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
         try {
             Glide.with(context).load(item.getVolumeInfo().getImageLinks().getSmallThumbnail()).centerCrop().into(holder.imageView);
         }catch (Exception e) {
-            Glide.with(context).load("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/488px-No-Image-Placeholder.svg.png")
+            Glide.with(context).load(Constant.N0_IMAGE_PLACEHOLDER)
                     .centerCrop().into(holder.imageView);
         }
 
@@ -97,7 +99,7 @@ public class CategoriesRecyclerviewAdapter extends RecyclerView.Adapter<Categori
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView titleTV, authorTV;
-        ImageView imageView;
+        RoundedImageView imageView;
         RatingBar averageRatingRB;
 
         public ViewHolder(@NonNull View itemView) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="dimen_2">2dp</dimen>
     <dimen name="half_dimen">5dp</dimen>
     <dimen name="dimen_8">8dp</dimen>
     <dimen name="default_dimen">10dp</dimen>
@@ -11,6 +12,8 @@
     <dimen name="input_text">15dp</dimen>
 
     <!--text-->
+    <dimen name="headingBigger">24sp</dimen>
+    <dimen name="headingBig">22sp</dimen>
     <dimen name="heading">20sp</dimen>
     <dimen name="headingMedium">18sp</dimen>
     <dimen name="headingSmall">16sp</dimen>

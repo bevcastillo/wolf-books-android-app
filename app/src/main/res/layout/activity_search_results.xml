@@ -5,37 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.SearchResultsActivity"
-    android:fillViewport="true"
-    android:background="#eeeeee">
+    android:fillViewport="true">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackBG">
 
         <TextView
-            android:id="@+id/tv_results"
-            android:layout_width="match_parent"
+            android:id="@+id/searchQueryTV"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:fontFamily="@font/open_sans"
+            android:textColor="@color/colorWhite"
+            android:alpha="0.7"
             android:text=""
-            android:fontFamily="@font/karla_regular"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_view_container"
+            android:id="@+id/shimmerFL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_results"
+            app:layout_constraintTop_toBottomOf="@+id/searchQueryTV"
             app:shimmer_duration="800">
 
             <LinearLayout
@@ -43,23 +42,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search_results"
+            android:id="@+id/searchResultsRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
@@ -71,12 +69,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_results"
-            android:scrollbars="none"/>
+            app:layout_constraintTop_toBottomOf="@+id/searchQueryTV"
+            android:scrollbars="none"
+            android:visibility="gone"/>
 
         <LinearLayout
+            android:id="@+id/placeholderLL"
             android:visibility="invisible"
-            android:id="@+id/layout_no_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -94,9 +93,10 @@
                 android:src="@drawable/ic_heartbroken_amico" />
 
             <TextView
+                android:id="@+id/placeholderTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Data Found"
+                android:text=""
                 android:fontFamily="@font/karla_regular"
                 style="@style/TextAppearance.AppCompat.Small"/>
 

@@ -1,5 +1,5 @@
 package com.example.bookfinderapp.helper;
-import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 import retrofit2.Call;
 import retrofit2.http.GET;
 

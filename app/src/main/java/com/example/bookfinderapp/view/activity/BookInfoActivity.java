@@ -3,13 +3,19 @@ package com.example.bookfinderapp.view.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -19,53 +25,82 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
+import com.example.bookfinderapp.modelV2.AccessInfo;
+import com.example.bookfinderapp.modelV2.Books;
+import com.example.bookfinderapp.modelV2.Item;
+import com.example.bookfinderapp.modelV2.SaleInfo;
+import com.example.bookfinderapp.modelV2.VolumeInfo;
 import com.example.bookfinderapp.models.VolumeBooks;
+import com.example.bookfinderapp.request.RequestService;
+import com.example.bookfinderapp.request.RetrofitClass;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.google.android.material.snackbar.Snackbar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookInfoActivity extends AppCompatActivity {
 
-    TextView tvTitle, tvAuthor, tvDesc, tvPublisher, tvPublishedOn, tvisbn, tvPageCount, tvLang,
-            tvRatingsCount, tvCategories, tvRatings, tvCategoryChip;
-    ConstraintLayout view;
-    RatingBar rbRatings;
-    ImageView ivThumbnail;
-    Button btnPreview, btnBuy;
-    String strTitle, strAuthor, strDesc, strPublisher, strPublishedOn, strCurrency, strPrice, strLang,
-            strPrevLink, strBuyLink, strThumbnail, strCategories, strVolumeId, strRatings;
-    int pageCount, ratingsCount;
-    double ratings;
+    RoundedImageView bookImageIV;
+    TextView publisherTV, titleTV, authorTV, noRatingPlaceholderTV, reviewCountTV, descriptionTV, categoriesTV,
+            publishedDateTV, pageCountTV, languageTV, isbnsTV, ratingsTV, maturityRatingTV, previewBTN, printTypeTV2,
+            printTypeTV, heightTV, widthTV, thicknessTV;
+    ShimmerFrameLayout  shimmer_view_container;
+    ConstraintLayout layout_parent;
+    Button buyLinkBTN;
+    RatingBar averageRatingRB;
+    RequestService requestService;
+    Call<Item> singleItemCall;
+    String volume_id="", description="", title="";
 
     private DatabaseHelper db;
     private DBManager dbManager;
 
-    RequestOptions requestO = new RequestOptions().centerCrop().placeholder(R.drawable.custom_loading_image).error(R.drawable.custom_loading_image);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_info);
+        setContentView(R.layout.fragment_view_book);
 
-        ivThumbnail = findViewById(R.id.iv_book_thumbnail);
-        tvTitle = findViewById(R.id.tv_title);
-        tvAuthor = findViewById(R.id.tv_author);
-        btnPreview = findViewById(R.id.btn_preview);
-        btnBuy = findViewById(R.id.btn_buy);
-        tvDesc = findViewById(R.id.tv_desc);
-        tvPublisher = findViewById(R.id.tv_publisher);
-        tvPublishedOn = findViewById(R.id.tv_publishedOn);
-        tvPageCount = findViewById(R.id.tv_pageCount);
-        tvLang = findViewById(R.id.tv_language);
-        tvCategories = findViewById(R.id.tv_categories);
-        rbRatings = findViewById(R.id.ratingbar_book);
-        tvRatingsCount = findViewById(R.id.tv_reviews_count);
-        tvRatings = findViewById(R.id.tv_ratings);
-        view = findViewById(R.id.view);
-
+        requestService = RetrofitClass.getAPIInstance();
+        bookImageIV = findViewById(R.id.bookImageIV);
+        ratingsTV = findViewById(R.id.ratingsTV);
+        publisherTV = findViewById(R.id.publisherTV);
+        titleTV = findViewById(R.id.titleTV);
+        authorTV = findViewById(R.id.authorTV);
+        noRatingPlaceholderTV = findViewById(R.id.noRatingPlaceholderTV);
+        reviewCountTV = findViewById(R.id.reviewCountTV);
+        descriptionTV = findViewById(R.id.descriptionTV);
+        categoriesTV = findViewById(R.id.categoriesTV);
+        publishedDateTV = findViewById(R.id.publishedDateTV);
+        isbnsTV = findViewById(R.id.isbnsTV);
+        pageCountTV = findViewById(R.id.pageCountTV);
+        languageTV = findViewById(R.id.languageTV);
+        previewBTN = findViewById(R.id.previewBTN);
+        buyLinkBTN = findViewById(R.id.buyLinkBTN);
+        averageRatingRB  = findViewById(R.id.averageRatingRB);
+        maturityRatingTV = findViewById(R.id.maturityRatingTV);
+        printTypeTV2 = findViewById(R.id.printTypeTV2);
+        printTypeTV = findViewById(R.id.printTypeTV);
+        heightTV = findViewById(R.id.heightTV);
+        widthTV = findViewById(R.id.widthTV);
+        thicknessTV = findViewById(R.id.thicknessTV);
+        shimmer_view_container = findViewById(R.id.shimmer_view_container);
+        layout_parent = findViewById(R.id.layout_parent);
 
         setTitle("Book Details");
+
+        Bundle bundle = this.getIntent().getExtras();
+        if (bundle != null) {
+            volume_id = bundle.getString("volume_id");
+            displayBookItem(volume_id);
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,6 +119,7 @@ public class BookInfoActivity extends AppCompatActivity {
                 addToBookmark();
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -92,78 +128,183 @@ public class BookInfoActivity extends AppCompatActivity {
         dbManager.open();
         db = new DatabaseHelper(this);
 
-        VolumeBooks volumeBooks = new VolumeBooks(strVolumeId, strTitle,strAuthor,strDesc,strPublisher,strPublishedOn,strCategories,
-                strThumbnail,strPrevLink,strPrice,strCurrency,strBuyLink,strLang,
-                pageCount,ratings,ratingsCount,true);
-
+        VolumeBooks volumeBooks = new VolumeBooks(volume_id,true);
         db.addBookmark(volumeBooks);
-        Snackbar.make(view, strTitle+" has been added to bookmarks", Snackbar.LENGTH_LONG).show();
+
+        Toast.makeText(BookInfoActivity.this, title+" has been added to bookmark", Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    void displayBookItem(String id) {
+        singleItemCall = requestService.getBookItem(id);
+        singleItemCall.enqueue(new Callback<Item>() {
+            @Override
+            public void onResponse(Call<Item> call, Response<Item> response) {
+                Item item = response.body();
+                VolumeInfo volume = response.body().getVolumeInfo();
+                SaleInfo saleInfo = response.body().getSaleInfo();
+                AccessInfo accessInfo = response.body().getAccessInfo();
+                Boolean isEbook=true;
 
-        Bundle bundle = this.getIntent().getExtras();
-        if (bundle != null) {
-            strTitle = bundle.getString("book_title");
-            strAuthor = bundle.getString("book_auth");
-            strDesc = bundle.getString("book_desc");
-            strLang = bundle.getString("book_lang");
-            strPublisher = bundle.getString("book_publisher");
-            strPublishedOn = bundle.getString("book_publishedOn");
-            pageCount = bundle.getInt("book_pageCount");
-            ratings = bundle.getDouble("book_ratings");
-            strThumbnail = bundle.getString("book_thumbnail");
-            strPrevLink = bundle.getString("book_prevLink");
-            strBuyLink = bundle.getString("book_buyLink");
-            strPrice = bundle.getString("book_price");
-            strCategories = bundle.getString("book_categories");
-            ratingsCount = bundle.getInt("book_ratingsCount");
-            strCurrency = bundle.getString("book_currency");
-            strVolumeId = bundle.getString("book_vol_id");
+                if (response.code()!=200) {
 
+                }
 
-            tvTitle.setText(strTitle);
-            tvAuthor.setText("by "+strAuthor);
-            tvDesc.setText(strDesc);
-            tvPublisher.setText(strPublisher);
-            tvPublishedOn.setText(strPublishedOn);
-            tvLang.setText(strLang);
-            tvCategories.setText(strCategories);
-            rbRatings.setRating((float) ratings);
-            tvRatingsCount.setText("/"+ratingsCount+" Reviews");
-            tvPageCount.setText(pageCount+" pages");
-            tvRatings.setText(ratings+"");
+                if (response.isSuccessful()) {
+                    shimmer_view_container.setVisibility(View.GONE);
+                    layout_parent.setVisibility(View.VISIBLE);
 
-            Glide.with(this).load(strThumbnail).apply(requestO).into(ivThumbnail);
+                    title = volume.getTitle();
+                    titleTV.setText(volume.getTitle());
+                    publisherTV.setText(volume.getPublisher());
+                    publishedDateTV.setText(volume.getPublishedDate());
+                    pageCountTV.setText(volume.getPageCount()+" pages");
+                    languageTV.setText(volume.getLanguage().toUpperCase());
 
-            final String finalLinkPreview = strPrevLink;
-            final String finalBuyLink = strBuyLink;
+                    try {
+                        averageRatingRB.setVisibility(View.VISIBLE);
+                        averageRatingRB.setRating(volume.getAverageRating());
+                        noRatingPlaceholderTV.setText(volume.getRatingsCount()+" ratings");
+                    }catch (Exception e) {
+                        averageRatingRB.setVisibility(View.GONE);
+                        noRatingPlaceholderTV.setVisibility(View.VISIBLE);
+                        noRatingPlaceholderTV.setText("No Rating");
+                    }
 
-            if (strPrice.equals("Not For Sale")) {
-                btnBuy.setText(strPrice);
-                btnBuy.setEnabled(false); //disable the link button if the book is not for sale
-            }else {
-                btnBuy.setText("Buy for "+strPrice);
-                btnBuy.setOnClickListener(new View.OnClickListener() {
+                    String categories="", authors="", isbns="";
+
+                    try {
+                        for (int i=0; i<volume.getCategories().size(); i++) {
+                            categories = ""+volume.getCategories().get(i)+"\n";
+                            categoriesTV.append(""+categories);
+                        }
+                    }catch (Exception e) {
+                        categoriesTV.setText("Not Available");
+                    }
+
+                    try {
+                        printTypeTV2.setText(volume.getPrintType());
+                        printTypeTV.setText(volume.getPrintType());
+                    }catch (Exception e) {
+
+                    }
+
+                    try {
+                        String result="";
+                        //loop to get authors
+                        for (int j=0; j<volume.getAuthors().size(); j++) {
+                            if (volume.getAuthors().size()==1) {
+                                authors = ""+volume.getAuthors().get(j);
+                            }else {
+                                authors = ""+volume.getAuthors().get(j)+", ";
+                            }
+                            ratingsTV.append(""+authors);
+                        }
+
+                        if (volume.getAuthors().size()==1) {
+                            result = ratingsTV.getText().toString().trim();
+                        }else {
+                            result = ratingsTV.getText().toString().substring(0, ratingsTV.getText().toString().length()-2);
+                        }
+                        authorTV.setText("By "+ result);
+
+                    }catch (Exception e) {
+                        authorTV.setText("Not Available");
+                    }
+
+                    try {
+                        for (int k=0;k<volume.getIndustryIdentifiers().size(); k++) {
+                            isbns = ""+volume.getIndustryIdentifiers().get(k).getIdentifier()+"\n";
+                            isbnsTV.append(""+isbns);
+                        }
+                    }catch (Exception e) {
+                        isbnsTV.setText("Not Available");
+                    }
+
+                    try {
+                        heightTV.setText(volume.getDimension().getHeight());
+                        widthTV.setText(volume.getDimension().getWidth());
+                        thicknessTV.setText(volume.getDimension().getThickness());
+                    }catch (Exception e) {
+                        heightTV.setText("-");
+                        widthTV.setText("-");
+                        thicknessTV.setText("-");
+                    }
+
+                    try {
+                        Glide.with(BookInfoActivity.this).load(volume.getImageLinks().getThumbnail()).placeholder(R.color.colorShimmer).into(bookImageIV);
+                    }catch (Exception e) {
+                        Glide.with(BookInfoActivity.this).load(Constant.N0_IMAGE_PLACEHOLDER)
+                                .into(bookImageIV);
+                    }
+
+                    try {
+                        maturityRatingTV.setText(volume.getMaturityRating());
+                    }catch (Exception e) {
+                        maturityRatingTV.setText("");
+                    }
+
+                    if (accessInfo.getPdf().getIsAvailable()) {
+                        previewBTN.setText("Preview PDF");
+                    }else {
+                        previewBTN.setEnabled(false);
+                    }
+                }
+
+                previewBTN.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalBuyLink));
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getAccessInfo().getWebReaderLink()));
                         startActivity(intent);
                     }
                 });
+
+                if (item.getSaleInfo().getSaleability().equals("FOR_SALE")) {
+                    buyLinkBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(saleInfo.getBuyLink()));
+                            startActivity(intent);
+                        }
+                    });
+
+                    if (saleInfo.getIsEbook()) {
+                        buyLinkBTN.setText("Buy Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                    }else {
+                        buyLinkBTN.setText(saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                    }
+                }else {
+                    try {
+                        buyLinkBTN.setText("Preview");
+                        buyLinkBTN.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getVolumeInfo().getPreviewLink()));
+                                startActivity(intent);
+                            }
+                        });
+                    }catch (Exception e) {
+                        buyLinkBTN.setText("Not For Sale");
+                        buyLinkBTN.setEnabled(false);
+                    }
+
+                }
+
+                try {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        descriptionTV.setText(Html.fromHtml(volume.getDescription(), Html.FROM_HTML_MODE_COMPACT));
+                    } else {
+                        descriptionTV.setText(Html.fromHtml(volume.getDescription()));
+                    }
+                }catch (Exception e) {
+                    descriptionTV.setText("no description available");
+                }
+
             }
 
-            btnPreview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(finalLinkPreview));
-                    startActivity(intent);
-                }
-            });
+            @Override
+            public void onFailure(Call<Item> call, Throwable t) {
 
-
-        }
+            }
+        });
     }
 }

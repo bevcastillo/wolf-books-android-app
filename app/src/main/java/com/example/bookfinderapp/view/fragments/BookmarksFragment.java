@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bookfinderapp.R;
+import com.example.bookfinderapp.adapterV2.BookmarksRecyclerviewAdapter;
+import com.example.bookfinderapp.adapterV2.SearchResultsRecyclerviewAdapter;
 import com.example.bookfinderapp.adapters.BookmarksAdapter;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.models.VolumeBooks;
@@ -29,17 +31,15 @@ import java.util.List;
  */
 public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    TextView tvBookmarkCount;
+    TextView tvBookmarkCount, placeholderTV, retryTV;
     RecyclerView rvBookmarks;
-    LinearLayout layoutNoData;
+    LinearLayout layout_no_data;
     ShimmerFrameLayout shimmerFrameLayout;
     SwipeRefreshLayout bookmarksSRL;
-
+    BookmarksRecyclerviewAdapter bookmarksAdapter; //re-use the existing adapter
     List<VolumeBooks> list;
     BookmarksAdapter adapter;
-
     DatabaseHelper db;
-
 
     public BookmarksFragment() {
         // Required empty public constructor
@@ -53,9 +53,11 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
 
         tvBookmarkCount = view.findViewById(R.id.tv_bookmarks_count);
         rvBookmarks = view.findViewById(R.id.rv_bookmarks);
-        layoutNoData = view.findViewById(R.id.layout_no_data);
+        layout_no_data = view.findViewById(R.id.layout_no_data);
         shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
         bookmarksSRL = view.findViewById(R.id.bookmarksSRL);
+        placeholderTV = view.findViewById(R.id.placeholderTV);
+        retryTV = view.findViewById(R.id.retryTV);
 
         getActivity().setTitle("My Bookmarks");
 
@@ -74,19 +76,18 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
 
     private void loadBookmarks() {
         bookmarksSRL.setRefreshing(false);
-
-        adapter = new BookmarksAdapter(getActivity(), list);
-
+        bookmarksAdapter = new BookmarksRecyclerviewAdapter(getActivity(), list);
         shimmerFrameLayout.stopShimmer();
         shimmerFrameLayout.setVisibility(View.GONE);
-
-        rvBookmarks.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        rvBookmarks.setAdapter(bookmarksAdapter);
+        bookmarksAdapter.notifyDataSetChanged();
 
         if (list.isEmpty()) {
-            layoutNoData.setVisibility(View.VISIBLE);
+            layout_no_data.setVisibility(View.VISIBLE);
+            placeholderTV.setText("No Bookmarks Found");
+            retryTV.setVisibility(View.GONE);
         } else {
-            layoutNoData.setVisibility(View.GONE);
+            layout_no_data.setVisibility(View.GONE);
         }
     }
 

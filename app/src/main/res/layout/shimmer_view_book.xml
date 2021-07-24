@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,34 +35,35 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/printTypeTV2"
+                    android:id="@+id/view1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_bg_transparent"
+                    android:layout_marginTop="@dimen/default_dimen"
+                    android:background="@color/colorShimmer"
+                    android:fontFamily="@font/open_sans"
                     android:paddingLeft="@dimen/dimen_15"
                     android:paddingTop="@dimen/half_dimen"
                     android:paddingRight="@dimen/dimen_15"
                     android:paddingBottom="@dimen/half_dimen"
-                    android:fontFamily="@font/open_sans"
+                    android:text="          "
                     android:textColor="@color/colorWhite"
-                    android:layout_marginTop="@dimen/default_dimen"
                     android:textSize="@dimen/paragraphMedium"
                     app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.github.siyamed.shapeimageview.RoundedImageView
-                    android:id="@+id/bookImageIV"
+                    android:id="@+id/view2"
                     android:layout_width="190dp"
                     android:layout_height="300dp"
                     android:layout_marginTop="@dimen/default_dimen"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/printTypeTV2"
-                    app:siRadius="@dimen/default_dimen" />
+                    app:layout_constraintTop_toBottomOf="@+id/view1"
+                    android:src="@drawable/image_placeholder_gray"/>
 
                 <TextView
-                    android:id="@+id/titleTV"
+                    android:id="@+id/view3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_15"
@@ -71,27 +71,31 @@
                     android:textSize="@dimen/headingBigger"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:alpha="0.9"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:background="@color/colorShimmer"
                     android:fontFamily="@font/open_sans_bold"
                     app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
                     app:layout_constraintStart_toStartOf="@+id/leftGuideline"
-                    app:layout_constraintTop_toBottomOf="@+id/bookImageIV" />
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
 
                 <TextView
-                    android:id="@+id/authorTV"
+                    android:id="@+id/view4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/half_dimen"
-                    android:alpha="0.7"
                     android:gravity="center"
+                    android:layout_marginLeft="@dimen/dimen_40"
+                    android:layout_marginRight="@dimen/dimen_40"
+                    android:background="@color/colorShimmer"
                     android:textColor="@color/colorWhite"
                     android:fontFamily="@font/open_sans"
                     app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
                     app:layout_constraintStart_toStartOf="@+id/leftGuideline"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+                    app:layout_constraintTop_toBottomOf="@+id/view3" />
 
                 <LinearLayout
-                    android:id="@+id/ratingLL"
+                    android:id="@+id/view5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_15"
@@ -99,21 +103,21 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
                     app:layout_constraintStart_toStartOf="@+id/leftGuideline"
-                    app:layout_constraintTop_toBottomOf="@+id/authorTV">
+                    app:layout_constraintTop_toBottomOf="@+id/view4">
 
                     <RatingBar
-                        android:id="@+id/averageRatingRB"
+                        android:id="@+id/view29"
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/half_dimen"
-                        android:numStars="5"
+                        android:background="@color/colorShimmer"
                         android:stepSize="0.5"
                         android:theme="@style/RatingBar"
                         android:visibility="visible" />
 
                     <TextView
-                        android:id="@+id/noRatingPlaceholderTV"
+                        android:id="@+id/view30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.8"
@@ -123,7 +127,7 @@
                         android:visibility="visible" />
 
                     <TextView
-                        android:id="@+id/ratingsTV"
+                        android:id="@+id/view31"
                         android:layout_width="wrap_content"
                         android:visibility="gone"
                         android:layout_height="wrap_content" />
@@ -138,10 +142,11 @@
                         <ImageView
                             android:layout_width="14dp"
                             android:layout_height="14dp"
-                            android:src="@drawable/ic_round_menu_book_24" />
+                            android:background="@color/colorShimmer" />
 
                         <TextView
-                            android:id="@+id/pageCountTV"
+                            android:id="@+id/view32"
+                            android:background="@color/colorShimmer"
                             android:layout_width="wrap_content"
                             android:fontFamily="@font/open_sans"
                             android:layout_height="wrap_content"
@@ -155,10 +160,10 @@
                             android:layout_width="14dp"
                             android:layout_height="14dp"
                             android:layout_marginLeft="@dimen/default_dimen"
-                            android:src="@drawable/ic_baseline_language_24" />
+                            android:background="@color/colorShimmer"/>
 
                         <TextView
-                            android:id="@+id/languageTV"
+                            android:id="@+id/view33"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/half_dimen"
@@ -189,63 +194,103 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:id="@+id/view6"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/half_dimen"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="Overview"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/headingMedium"
                 android:textStyle="bold"
+                android:background="@color/colorShimmer"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
             <TextView
-                android:id="@+id/descriptionTV"
+                android:id="@+id/view34"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dimen_20"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/view6" />
 
             <TextView
-                android:id="@+id/heading"
+                android:id="@+id/view7"
                 android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/default_dimen"
+                android:background="@color/colorShimmer"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraph"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/view34" />
+
+            <TextView
+                android:id="@+id/view8"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/default_dimen"
+                android:background="@color/colorShimmer"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraph"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+            <TextView
+                android:id="@+id/view9"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/default_dimen"
+                android:background="@color/colorShimmer"
+                android:fontFamily="@font/open_sans"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraph"
+                android:layout_marginRight="@dimen/dimen_40"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+            <TextView
+                android:id="@+id/view10"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_20"
-                android:text="More Details"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/open_sans"
+                android:background="@color/colorShimmer"
                 android:textSize="@dimen/headingMedium"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view9" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="0dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Publisher"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/heading" />
+                app:layout_constraintTop_toBottomOf="@+id/view10" />
 
             <TextView
-                android:id="@+id/publisherTV"
+                android:id="@+id/view11"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:gravity="end"
+                android:background="@color/colorShimmer"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
                 android:fontFamily="@font/open_sans"
@@ -254,206 +299,207 @@
                 app:layout_constraintTop_toTopOf="@+id/textView3" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:id="@+id/view12"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Published Date"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/publisherTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view11" />
 
             <TextView
-                android:id="@+id/publishedDateTV"
+                android:id="@+id/view13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@color/colorShimmer"
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:gravity="end"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView4"
-                app:layout_constraintTop_toTopOf="@+id/textView4" />
+                app:layout_constraintStart_toEndOf="@+id/view12"
+                app:layout_constraintTop_toTopOf="@+id/view12" />
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
+                android:id="@+id/view14"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="ISBN"
+                android:background="@color/colorShimmer"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/publishedDateTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view13" />
 
             <TextView
-                android:id="@+id/isbnsTV"
+                android:id="@+id/view15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:gravity="end"
+                android:background="@color/colorShimmer"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraph"
+                android:fontFamily="@font/open_sans"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toEndOf="@+id/view14"
+                app:layout_constraintTop_toTopOf="@+id/view14" />
+
+            <TextView
+                android:id="@+id/view16"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_dimen"
+                android:background="@color/colorShimmer"
+                android:textColor="@color/colorWhite"
+                android:fontFamily="@font/open_sans"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+            <TextView
+                android:id="@+id/view17"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:gravity="end"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="@+id/textView6" />
+                app:layout_constraintStart_toEndOf="@+id/view16"
+                app:layout_constraintTop_toTopOf="@+id/view16" />
 
             <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
+                android:id="@+id/view18"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Category"
+                android:background="@color/colorShimmer"
                 android:textColor="@color/colorWhite"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/isbnsTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view17" />
 
             <TextView
-                android:id="@+id/categoriesTV"
+                android:id="@+id/view19"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:gravity="end"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView7"
-                app:layout_constraintTop_toTopOf="@+id/textView7" />
+                app:layout_constraintStart_toEndOf="@+id/view18"
+                app:layout_constraintTop_toTopOf="@+id/view18" />
 
             <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
+                android:id="@+id/view20"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Maturity Rating"
-                android:textColor="@color/colorWhite"
-                android:fontFamily="@font/open_sans"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/categoriesTV" />
-
-            <TextView
-                android:id="@+id/maturityRatingTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_30"
-                android:gravity="end"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/paragraph"
-                android:fontFamily="@font/open_sans"
-                app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Print Type"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/maturityRatingTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view19" />
 
             <TextView
-                android:id="@+id/printTypeTV"
+                android:id="@+id/view21"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
                 android:layout_marginLeft="@dimen/dimen_30"
                 android:gravity="end"
+                android:background="@color/colorShimmer"
                 android:textSize="@dimen/paragraph"
                 android:fontFamily="@font/open_sans"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView10"
-                app:layout_constraintTop_toTopOf="@+id/textView10" />
+                app:layout_constraintStart_toEndOf="@+id/view20"
+                app:layout_constraintTop_toTopOf="@+id/view20" />
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
+                android:id="@+id/view22"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_20"
-                android:text="Book Dimensions"
                 android:textColor="@color/colorWhite"
+                android:background="@color/colorShimmer"
                 android:textSize="@dimen/headingMedium"
                 android:textStyle="bold"
                 android:fontFamily="@font/open_sans_bold"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/printTypeTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view21" />
 
             <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
+                android:id="@+id/view23"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:background="@color/colorShimmer"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
-                android:text="Height"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                app:layout_constraintTop_toBottomOf="@+id/view22" />
 
             <TextView
-                android:id="@+id/heightTV"
+                android:id="@+id/view24"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:background="@color/colorShimmer"
                 android:textSize="@dimen/paragraph"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView12"
-                app:layout_constraintTop_toTopOf="@+id/textView12" />
+                app:layout_constraintStart_toEndOf="@+id/view23"
+                app:layout_constraintTop_toTopOf="@+id/view23" />
 
             <TextView
-                android:id="@+id/textView13"
-                android:layout_width="wrap_content"
+                android:id="@+id/view25"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
-                android:text="Width"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/heightTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view24" />
 
             <TextView
-                android:id="@+id/widthTV"
+                android:id="@+id/view26"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:fontFamily="@font/open_sans"
                 android:textSize="@dimen/paragraph"
                 android:textColor="@color/colorWhite"
+                android:layout_marginLeft="@dimen/dimen_30"
+                android:background="@color/colorShimmer"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView13"
-                app:layout_constraintTop_toTopOf="@+id/textView13" />
+                app:layout_constraintStart_toEndOf="@+id/view25"
+                app:layout_constraintTop_toTopOf="@+id/view25" />
 
             <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
+                android:id="@+id/view27"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/default_dimen"
-                android:alpha="0.7"
+                android:background="@color/colorShimmer"
                 android:fontFamily="@font/open_sans"
-                android:text="Thickness"
                 android:textColor="@color/colorWhite"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/widthTV" />
+                app:layout_constraintTop_toBottomOf="@+id/view26" />
 
             <TextView
-                android:id="@+id/thicknessTV"
+                android:id="@+id/view28"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dimen_30"
@@ -461,9 +507,10 @@
                 android:fontFamily="@font/open_sans"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/paragraph"
+                android:background="@color/colorShimmer"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                app:layout_constraintStart_toEndOf="@+id/textView14"
-                app:layout_constraintTop_toTopOf="@+id/textView14" />
+                app:layout_constraintStart_toEndOf="@+id/view27"
+                app:layout_constraintTop_toTopOf="@+id/view27" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -482,51 +529,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:weightSum="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlackBG"
-        android:gravity="bottom|end"
-        android:paddingLeft="@dimen/dimen_20"
-        android:paddingRight="@dimen/dimen_20"
-        android:paddingTop="@dimen/default_dimen"
-        android:paddingBottom="@dimen/default_dimen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/previewBTN"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/default_dimen"
-            android:padding="@dimen/default_dimen"
-            android:text="View Pdf"
-            android:fontFamily="@font/open_sans_bold"
-            android:clickable="true"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/paragraph" />
-
-        <Button
-            android:id="@+id/buyLinkBTN"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ripple_main_btn"
-            android:gravity="center"
-            android:minHeight="0dp"
-            android:minWidth="0dp"
-            android:fontFamily="@font/open_sans_bold"
-            android:textAllCaps="false"
-            android:clickable="true"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/paragraph" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
