@@ -25,7 +25,8 @@
             android:layout_marginTop="4dp"
             android:background="@color/colorShimmer"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/linearLayout"

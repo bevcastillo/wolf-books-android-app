@@ -53,10 +53,10 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     RecyclerView rvFiction, rvFantasy, rvMotivational, rvAdventure, rvRomance, rvContemporary,
                 rvMystery, rvHorror, rvThriller, rvScience, rvHealth, rvHistory, rvChildren;
-    private String strFiction = "fiction";
-    private String strFantasy = "fantasy";
-    private String strMotivational = "motivational";
-    private String strAdventure = "adventure";
+    String strFiction = "fiction";
+    String strFantasy = "fantasy";
+    String strMotivational = "motivational";
+    String strAdventure = "adventure";
     private String strRomance = "romance";
     private String strContemp = "contemporary";
     private String strMystery = "mystery";

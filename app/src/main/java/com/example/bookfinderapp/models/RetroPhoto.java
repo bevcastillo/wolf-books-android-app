@@ -1,4 +1,4 @@
-package com.example.sampleretrofitapi.model;
+package com.example.bookfinderapp.models;
 
 import com.google.gson.annotations.SerializedName;
 

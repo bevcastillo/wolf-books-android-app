@@ -97,6 +97,7 @@
         </com.facebook.shimmer.ShimmerFrameLayout>
 
         <com.google.android.gms.ads.AdView
+            android:visibility="gone"
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.bookfinderapp.HomeFragmentV2;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.view.fragments.AboutAppFragment;
 import com.example.bookfinderapp.view.fragments.BookmarksFragment;
@@ -23,10 +24,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-
         bottomNavigationView = findViewById(R.id.bottom_nav);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         if (savedInstanceState == null) {
@@ -44,7 +42,8 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
 
         switch (id) {
             case R.id.nav_home:
-                selectedFragment = new HomeFragment();
+//                selectedFragment = new HomeFragment();
+                selectedFragment = new HomeFragmentV2();
                 break;
             case R.id.nav_search:
                 selectedFragment = new SearchFragment();

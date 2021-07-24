@@ -15,8 +15,8 @@
         android:layout_height="140dp"
         android:background="@color/colorShimmer"
         android:scaleType="centerCrop"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:id="@+id/tv_book_title"
@@ -36,7 +36,10 @@
         android:layout_below="@+id/iv_book_image"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:layout_marginRight="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/tv_book_author"
@@ -52,7 +55,9 @@
         android:background="@color/colorShimmer"
         android:layout_below="@+id/tv_book_title"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
     <RatingBar
         android:id="@+id/ratingbar_book"
@@ -66,7 +71,7 @@
         android:theme="@style/RatingBar"
         android:background="@color/colorShimmer"
         android:layout_below="@+id/tv_book_author"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

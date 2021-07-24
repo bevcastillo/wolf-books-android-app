@@ -3,6 +3,7 @@ package com.example.bookfinderapp.models;
 public class VolumeBooks {
 
     private int id;
+    private String str_id;
     private String volumeId;
     private String title;
     private String authors;
@@ -27,11 +28,11 @@ public class VolumeBooks {
 //    public VolumeBooks(String title, String subtitle, String authors, String description, String publisher, String publishedDate, String categories, String thumbnail, String previewLink, String price, String currencyCode, String buyLink, String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
 //    }
 
-    public VolumeBooks(int id, String volumeId, String title, String authors, String description,
+    public VolumeBooks(String str_id, String volumeId, String title, String authors, String description,
                        String publisher, String publishedDate, String categories, String thumbnail,
                        String previewLink, String price, String currencyCode, String buyLink,
                        String language, int pageCount, double averageRating, int ratingsCount, boolean isBookmark) {
-        this.id = id;
+        this.str_id = str_id;
         this.volumeId = volumeId;
         this.title = title;
         this.authors = authors;
@@ -92,8 +93,16 @@ public class VolumeBooks {
         this.id = id;
     }
 
+    public void setStr_id(String str_id) {
+        this.str_id = str_id;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public String getStr_id() {
+        return str_id;
     }
 
     public void setTitle(String title) {

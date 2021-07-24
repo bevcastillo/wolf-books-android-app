@@ -18,6 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE = "bookmarksdb";
     public static final String BOOKMARKTBL = "bookmarks_tbl";
     public static final String COL_ID = "ID";
+    public static final String COL_BOOK_ID = "book_id";
     public static final String COL_VOL_ID = "volume_id";
     public static final String COL_TITLE = "title";
     public static final String COL_AUTHOR = "author";
@@ -43,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_CONTACTS = "CREATE TABLE "
             + BOOKMARKTBL
             + "(" + COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COL_BOOK_ID + " TEXT, "
             + COL_VOL_ID + " TEXT, "
             + COL_TITLE + " TEXT, "
             + COL_AUTHOR + " TEXT, "
@@ -79,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        values.put(COL_BOOK_ID, volumeBooks.getStr_id());
         values.put(COL_TITLE, volumeBooks.getTitle());
         values.put(COL_VOL_ID, volumeBooks.getVolumeId());
         values.put(COL_AUTHOR, volumeBooks.getAuthors());
@@ -133,6 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 VolumeBooks volumeBooks = new VolumeBooks();
                 volumeBooks.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+                volumeBooks.setStr_id(cursor.getString(cursor.getColumnIndex(COL_BOOK_ID)));
                 volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
                 volumeBooks.setTitle(cursor.getString(cursor.getColumnIndex(COL_TITLE)));
                 volumeBooks.setAuthors(cursor.getString(cursor.getColumnIndex(COL_AUTHOR)));

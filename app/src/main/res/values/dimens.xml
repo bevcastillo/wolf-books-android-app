@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="half_dimen">5dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="default_dimen">10dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
+    <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_15">15dp</dimen>
+
+    <dimen name="input_text">15dp</dimen>
+
+    <!--text-->
+    <dimen name="heading">20sp</dimen>
+    <dimen name="headingMedium">18sp</dimen>
+    <dimen name="headingSmall">16sp</dimen>
+    <dimen name="paragraph">14sp</dimen>
+    <dimen name="paragraphMedium">12sp</dimen>
+    <dimen name="paragraphSmall">10sp</dimen>
+    <dimen name="dimen_25">25dp</dimen>
+
+</resources>

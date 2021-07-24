@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.remote;
+package com.example.bookfinderapp.request;
 
 import com.example.bookfinderapp.helper.Constant;
 
@@ -21,7 +21,7 @@ public class RetrofitClass {
 
     public static Retrofit getNewBooksInstance() {
         return new Retrofit.Builder()
-                .baseUrl(Constant.BASE_URL)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }

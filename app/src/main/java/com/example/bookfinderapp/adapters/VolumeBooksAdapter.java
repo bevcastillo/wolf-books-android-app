@@ -54,6 +54,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
         viewHolder.ivBookmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String str_id = listdata.get(viewHolder.getAdapterPosition()).getStr_id();
                 String title = listdata.get(viewHolder.getAdapterPosition()).getTitle();
                 String author = listdata.get(viewHolder.getAdapterPosition()).getAuthors();
                 double ratings = listdata.get(viewHolder.getAdapterPosition()).getAverageRating();
@@ -75,7 +76,7 @@ public class VolumeBooksAdapter extends RecyclerView.Adapter<VolumeBooksAdapter.
                 dbManager.open();
                 db = new DatabaseHelper(v.getContext());
 
-                VolumeBooks volumeBooks = new VolumeBooks(volumeId, title,author,description,publisher,publishedOn,categories,
+                VolumeBooks volumeBooks = new VolumeBooks(str_id, title,author,description,publisher,publishedOn,categories,
                                                             thumbnail,previewLink,price,currency,buyLink,language,
                                                             pageCount,ratings,ratingsCount,true);
                 db.addBookmark(volumeBooks);

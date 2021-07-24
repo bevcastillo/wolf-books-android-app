@@ -94,6 +94,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
+                        String id="";
                         String volumeId = "";
                         String title = "";
                         String subtitle = "";
@@ -122,6 +123,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                                 //
                                 try{
+                                    id = item.getString("id");
                                     title = volumeInfo.getString("title");
 
                                     //author === json array of authors
@@ -172,7 +174,7 @@ public class SearchResultsActivity extends AppCompatActivity {
 //                                            categories, thumbnail, previewLink, price, currencyCode,
 //                                            buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark
 //                                }
-                                    volumeBooks.add(new VolumeBooks(volumeId, title, authors,
+                                    volumeBooks.add(new VolumeBooks(id, volumeId, title, authors,
                                             description, publisher, publishedDate,
                                             categories, thumbnail, previewLink, price, currencyCode,
                                             buyLink, language, pageCount, averageRating, ratingsCount, false)); //we set false as default value of isBookmark

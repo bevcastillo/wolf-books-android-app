@@ -47,10 +47,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     // For loading and tinting drawables on older versions of the platform
     implementation "androidx.appcompat:appcompat-resources:1.2.0"
     implementation 'com.google.android.gms:play-services-ads:19.3.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
 
 }
