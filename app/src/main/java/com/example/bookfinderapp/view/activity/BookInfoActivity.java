@@ -3,14 +3,12 @@ package com.example.bookfinderapp.view.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
@@ -31,32 +29,38 @@ import com.example.bookfinderapp.request.RequestService;
 import com.example.bookfinderapp.request.RetrofitClass;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.siyamed.shapeimageview.RoundedImageView;
+import com.jackandphantom.blurimage.BlurImage;
+
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BookInfoActivity extends AppCompatActivity {
+public class BookInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     RoundedImageView bookImageIV;
     TextView publisherTV, titleTV, authorTV, noRatingPlaceholderTV, reviewCountTV, descriptionTV, categoriesTV,
             publishedDateTV, pageCountTV, languageTV, isbnsTV, ratingsTV, maturityRatingTV, previewBTN, printTypeTV2,
-            printTypeTV, heightTV, widthTV, thicknessTV;
+            printTypeTV, heightTV, widthTV, thicknessTV, placeholdersample;
     ShimmerFrameLayout  shimmer_view_container;
     ConstraintLayout layout_parent;
-    Button buyLinkBTN;
+    Button buyLinkBTN, activeBookmark, inactiveBookmark;
     RatingBar averageRatingRB;
     RequestService requestService;
     Call<Item> singleItemCall;
-    String volume_id="", description="", title="";
-
-    private DatabaseHelper db;
-    private DBManager dbManager;
+    String volume_id="", description="", title="", bookmarked="";
+    List<VolumeBooks> list = new ArrayList<>();
+    DatabaseHelper db;
+    DBManager dbManager;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_view_book);
+        setContentView(R.layout.activity_book_info);
 
         requestService = RetrofitClass.getAPIInstance();
         bookImageIV = findViewById(R.id.bookImageIV);
@@ -82,47 +86,34 @@ public class BookInfoActivity extends AppCompatActivity {
         thicknessTV = findViewById(R.id.thicknessTV);
         shimmer_view_container = findViewById(R.id.shimmer_view_container);
         layout_parent = findViewById(R.id.layout_parent);
+        activeBookmark = findViewById(R.id.activeBookmark);
+        inactiveBookmark = findViewById(R.id.inactiveBookmark);
+        dialog = new ProgressDialog(BookInfoActivity.this);
 
-        setTitle("Book Details");
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             volume_id = bundle.getString("volume_id");
+            bookmarked = bundle.getString("is_bookmarked");
             displayBookItem(volume_id);
         }
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.bookmark_menu, menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.menu_bookmark:
-                addToBookmark();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        activeBookmark.setOnClickListener(this);
+        inactiveBookmark.setOnClickListener(this);
     }
 
     private void addToBookmark() {
         dbManager = new DBManager(this);
         dbManager.open();
         db = new DatabaseHelper(this);
-
         VolumeBooks volumeBooks = new VolumeBooks(volume_id,true);
         db.addBookmark(volumeBooks);
-
-        Toast.makeText(BookInfoActivity.this, title+" has been added to bookmark", Toast.LENGTH_LONG).show();
+        //refresh
+        displayBookItem(volume_id);
+        dialog.dismiss();
+        inactiveBookmark.setVisibility(View.GONE);
+        activeBookmark.setVisibility(View.VISIBLE);
+        Toast.makeText(BookInfoActivity.this, title+" has been added to bookmarks", Toast.LENGTH_LONG).show();
     }
 
     void displayBookItem(String id) {
@@ -144,7 +135,22 @@ public class BookInfoActivity extends AppCompatActivity {
                     shimmer_view_container.setVisibility(View.GONE);
                     layout_parent.setVisibility(View.VISIBLE);
 
+                    db = new DatabaseHelper(BookInfoActivity.this);
+                    list = db.getAll();
+
+                    for (int i=0; i<list.size(); i++) {
+                        if (list.get(i).getVolumeId().equals(volume_id)) {
+                            activeBookmark.setVisibility(View.VISIBLE);
+                            inactiveBookmark.setVisibility(View.GONE);
+                            break;
+                        }else {
+                            activeBookmark.setVisibility(View.GONE);
+                            inactiveBookmark.setVisibility(View.VISIBLE);
+                        }
+                    }
+
                     title = volume.getTitle();
+                    setTitle(volume.getTitle()+"");
                     titleTV.setText(volume.getTitle());
                     publisherTV.setText(volume.getPublisher());
                     publishedDateTV.setText(volume.getPublishedDate());
@@ -154,7 +160,11 @@ public class BookInfoActivity extends AppCompatActivity {
                     try {
                         averageRatingRB.setVisibility(View.VISIBLE);
                         averageRatingRB.setRating(volume.getAverageRating());
-                        noRatingPlaceholderTV.setText(volume.getRatingsCount()+" ratings");
+                        if (volume.getRatingsCount()==1) {
+                            noRatingPlaceholderTV.setText(volume.getRatingsCount()+" review");
+                        }else {
+                            noRatingPlaceholderTV.setText(volume.getRatingsCount()+" reviews");
+                        }
                     }catch (Exception e) {
                         averageRatingRB.setVisibility(View.GONE);
                         noRatingPlaceholderTV.setVisibility(View.VISIBLE);
@@ -252,10 +262,21 @@ public class BookInfoActivity extends AppCompatActivity {
 
                 if (item.getSaleInfo().getSaleability().equals("FOR_SALE")) {
 
+
                     if (saleInfo.getIsEbook()) {
-                        buyLinkBTN.setText("Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                        try {
+                            Currency currency = Currency.getInstance(saleInfo.getRetailPrice().getCurrencyCode());
+                            buyLinkBTN.setText("Ebook "+currency.getSymbol()+""+saleInfo.getRetailPrice().getAmount());
+                        }catch (Exception e) {
+                            buyLinkBTN.setText("Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+""+saleInfo.getRetailPrice().getAmount());
+                        }
                     }else {
-                        buyLinkBTN.setText("Book "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                        try {
+                            Currency currency = Currency.getInstance(saleInfo.getRetailPrice().getCurrencyCode());
+                            buyLinkBTN.setText("Book "+currency.getSymbol()+" "+saleInfo.getRetailPrice().getAmount());
+                        }catch (Exception e) {
+                            buyLinkBTN.setText("Book "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
+                        }
                     }
 
                     buyLinkBTN.setOnClickListener(new View.OnClickListener() {
@@ -288,5 +309,19 @@ public class BookInfoActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.activeBookmark:
+
+                break;
+            case R.id.inactiveBookmark:
+                dialog.setMessage("Adding ....");
+                dialog.show();
+                addToBookmark();
+                break;
+        }
     }
 }

@@ -72,6 +72,8 @@
             android:layout_marginRight="@dimen/default_dimen"
             android:src="@drawable/ic_bookmark_border_white"
             card_view:layout_constraintEnd_toEndOf="parent"
+            android:visibility="invisible"
+            android:clickable="true"
             card_view:layout_constraintTop_toTopOf="@+id/imageView"/>
 
         <ImageView
@@ -81,6 +83,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:visibility="gone"
+            android:clickable="true"
             android:src="@drawable/ic_bookmark_filled"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/imageView"/>

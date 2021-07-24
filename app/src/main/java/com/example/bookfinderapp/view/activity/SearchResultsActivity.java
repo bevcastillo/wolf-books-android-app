@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.SearchResultsRecyclerviewAdapter;
+import com.example.bookfinderapp.helper.Constant;
 import com.example.bookfinderapp.helper.DBManager;
 import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.model.api.Books;
@@ -26,32 +27,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchResultsActivity extends AppCompatActivity {
+public class SearchResultsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private RecyclerView searchResultsRV;
-    private String strQuery="";
-    private TextView searchQueryTV, placeholderTV;
+    RecyclerView searchResultsRV;
+    String strQuery="";
+    TextView sortRelevanceTV, placeholderTV, sortNewest;
     RequestService requestService;
     Call<Books> searchResultsCall;
     SearchResultsRecyclerviewAdapter searchAdapter;
     LinearLayoutManager layoutManager;
-    private LinearLayout placeholderLL;
-    private ShimmerFrameLayout shimmerFL;
-
-    private DatabaseHelper db;
-    private DBManager dbManager;
+    LinearLayout placeholderLL;
+    ShimmerFrameLayout shimmerFL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
-        searchQueryTV = findViewById(R.id.searchQueryTV);
+        sortRelevanceTV = findViewById(R.id.sortRelevanceTV);
+        sortNewest = findViewById(R.id.sortNewest);
         searchResultsRV = findViewById(R.id.searchResultsRV);
         placeholderTV = findViewById(R.id.placeholderTV);
         placeholderLL = findViewById(R.id.placeholderLL);
         shimmerFL = findViewById(R.id.shimmerFL);
-//        requestService = RetrofitClass.getAPIInstance();
+        sortNewest = findViewById(R.id.sortNewest);
+
+
         requestService = RetrofitClass.getNewBooksAPIInstance();
 
         Bundle bundle = this.getIntent().getExtras();
@@ -63,6 +64,9 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
 
         callSearchResults();
+
+        sortRelevanceTV.setOnClickListener(this);
+        sortNewest.setOnClickListener(this);
     }
 
     private void callSearchResults() {
@@ -110,4 +114,13 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sortRelevanceTV:
+            case R.id.sortNewest:
+                Toast.makeText(this,"Coming Soon", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

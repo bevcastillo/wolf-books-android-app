@@ -33,6 +33,7 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
     private List<Item> items;
     private List<VolumeBooks> localVolumeBooks;
     private Call<Item> itemCall;
+    private Call<Item> itemCall1;
     private RequestService requestService = RetrofitClass.getAPIInstance();
     private String volume_id="";
 
@@ -56,11 +57,24 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                VolumeBooks volumeBooks1 = localVolumeBooks.get(viewHolder.getAdapterPosition());
+                itemCall1 = requestService.getBookItem(volumeBooks1.getVolumeId());
+                itemCall1.enqueue(new Callback<Item>() {
+                    @Override
+                    public void onResponse(Call<Item> call, Response<Item> response) {
+                        if (response.isSuccessful()) {
+                            //passing data from adapter to activity using intent
+                            Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
+                            intent.putExtra("volume_id", response.body().getId());
+                            v.getContext().startActivity(intent);
+                        }
+                    }
 
-                //passing data from adapter to activity using intent
-                Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
-                intent.putExtra("volume_id", volume_id);
-                v.getContext().startActivity(intent);
+                    @Override
+                    public void onFailure(Call<Item> call, Throwable t) {
+
+                    }
+                });
             }
         });
 

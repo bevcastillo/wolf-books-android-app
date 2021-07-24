@@ -18,7 +18,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="32dp"
-            android:src="@drawable/bookify_logo"
+            android:src="@drawable/racoon_logo"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"

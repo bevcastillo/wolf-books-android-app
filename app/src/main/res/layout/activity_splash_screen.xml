@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/bookify_logo"
+        android:src="@drawable/racoon_logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

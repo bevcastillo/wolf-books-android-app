@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/activeBookmark"
+        android:id="@+id/inactiveBookmark"
         android:icon="@drawable/ic_bookmark_border_white"
         android:iconTint="@android:color/white"
-        android:title="bookmark"
+        android:title="inactive bookmark"
+        android:visible="false"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/inactiveBookmark"
+        android:id="@+id/activeBookmark"
         android:icon="@drawable/ic_bookmark_filled"
         android:iconTint="@android:color/white"
-        android:title="bookmark"
+        android:title="active bookmark"
         android:visible="false"
         app:showAsAction="ifRoom"/>
 

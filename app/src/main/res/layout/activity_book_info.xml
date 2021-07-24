@@ -75,6 +75,7 @@
                         android:textColor="@color/colorWhite"
                         android:layout_marginTop="@dimen/default_dimen"
                         android:textSize="@dimen/paragraphMedium"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -215,18 +216,59 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <Button
+                    android:id="@+id/activeBookmark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_main_btn"
+                    android:clickable="true"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/ic_bookmark_border_white"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:visibility="gone"
+                    android:textAllCaps="false"
+                    android:text="Remove From Bookmarks"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/paragraph"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+                <Button
+                    android:id="@+id/inactiveBookmark"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ripple_btn_stroke"
+                    android:clickable="true"
+                    android:fontFamily="@font/bold"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/ic_bookmark_border_white"
+                    android:minWidth="0dp"
+                    android:visibility="visible"
+                    android:minHeight="0dp"
+                    android:text="Add To Bookmarks"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorWhite"
+                    android:drawableTint="@color/colorWhite"
+                    android:textSize="@dimen/paragraph"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                    app:layout_constraintStart_toStartOf="@+id/guideline2"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/half_dimen"
+                    android:layout_marginTop="60dp"
                     android:fontFamily="@font/bold"
                     android:text="Overview"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/headingMedium"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guideline2"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
 
                 <TextView
                     android:id="@+id/descriptionTV"

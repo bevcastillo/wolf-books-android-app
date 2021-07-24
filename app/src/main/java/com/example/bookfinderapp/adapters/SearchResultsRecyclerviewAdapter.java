@@ -3,12 +3,14 @@ package com.example.bookfinderapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,14 +18,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
+import com.example.bookfinderapp.helper.DatabaseHelper;
 import com.example.bookfinderapp.model.api.Item;
+import com.example.bookfinderapp.model.db.VolumeBooks;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<SearchResultsRecyclerviewAdapter.ViewHolder> {
     private Context context;
     private List<Item> items;
+    private List<VolumeBooks> list = new ArrayList<>();;
+    private DatabaseHelper db;
+    private String bookmarkedStatus="";
 
     public SearchResultsRecyclerviewAdapter(Context context, List<Item> items) {
         this.context = context;
@@ -40,10 +48,9 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
             @Override
             public void onClick(View v) {
                 String volumeId = items.get(viewHolder.getAdapterPosition()).getId();
-
-                //passing data from adapter to activity using intent
                 Intent intent = new Intent(v.getContext(), BookInfoActivity.class);
                 intent.putExtra("volume_id", volumeId);
+                intent.putExtra("is_bookmarked", bookmarkedStatus);
                 v.getContext().startActivity(intent);
             }
         });
@@ -55,6 +62,21 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
     public void onBindViewHolder(@NonNull SearchResultsRecyclerviewAdapter.ViewHolder holder, int position) {
         Item item = items.get(position);
         holder.titleTV.setText(item.getVolumeInfo().getTitle());
+
+        db = new DatabaseHelper(context);
+        list = db.getAll();
+
+        for (int i=0; i<list.size(); i++) {
+            if (list.get(i).getVolumeId().equals(item.getId())) {
+                holder.bookmarkActiveIV.setVisibility(View.VISIBLE);
+                holder.bookmarkIV.setVisibility(View.GONE);
+                bookmarkedStatus="yes";
+            }else {
+                holder.bookmarkActiveIV.setVisibility(View.GONE);
+                holder.bookmarkIV.setVisibility(View.VISIBLE);
+                bookmarkedStatus="no";
+            }
+        }
 
         try{
             holder.publisherTV.setText(item.getVolumeInfo().getPublisher());
@@ -70,7 +92,11 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
                     .centerCrop().into(holder.imageView);
         }
         try {
-            holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+")");
+            if (item.getVolumeInfo().getRatingsCount()==1) {
+                holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" review)");
+            }else {
+                holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
+            }
             holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
         }catch (Exception e) {
             holder.ratingsTV.setVisibility(View.INVISIBLE);
@@ -113,7 +139,7 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+        ImageView imageView, bookmarkActiveIV, bookmarkIV;
         TextView publisherTV, titleTV, authorTV, ratingsTV, noRatingTV;
         RatingBar RatingRB;
 
@@ -126,6 +152,8 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
             ratingsTV = itemView.findViewById(R.id.ratingsTV);
             RatingRB = itemView.findViewById(R.id.RatingRB);
             noRatingTV = itemView.findViewById(R.id.noRatingTV);
+            bookmarkActiveIV = itemView.findViewById(R.id.bookmarkActiveIV);
+            bookmarkIV = itemView.findViewById(R.id.bookmarkIV);
         }
     }
 }

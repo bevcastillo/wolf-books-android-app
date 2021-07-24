@@ -59,6 +59,7 @@
             <TextView
                 style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
                 android:layout_width="match_parent"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:layout_height="15dp"
                 android:layout_marginTop="4dp"
                 android:background="@color/colorShimmer"
@@ -71,6 +72,7 @@
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
+                android:layout_marginRight="@dimen/dimen_40"
                 android:layout_marginTop="@dimen/half_dimen"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/regular"
@@ -114,6 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:background="@color/colorShimmer"
                 android:ellipsize="end"
                 android:fontFamily="@font/regular"
@@ -125,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="@dimen/half_dimen"
+                android:layout_marginRight="@dimen/dimen_40"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/regular"
                 android:text=""
@@ -167,6 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:background="@color/colorShimmer"
                 android:ellipsize="end"
                 android:fontFamily="@font/regular"
@@ -178,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="@dimen/half_dimen"
+                android:layout_marginRight="@dimen/dimen_40"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/regular"
                 android:text=""
@@ -222,6 +228,7 @@
                 android:layout_height="15dp"
                 android:layout_marginTop="4dp"
                 android:background="@color/colorShimmer"
+                android:layout_marginRight="@dimen/dimen_20"
                 android:ellipsize="end"
                 android:fontFamily="@font/regular"
                 android:maxLines="2"
@@ -232,64 +239,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_marginTop="@dimen/half_dimen"
+                android:layout_marginRight="@dimen/dimen_40"
                 android:background="@color/colorShimmer"
                 android:fontFamily="@font/regular"
                 android:text=""
                 android:textAllCaps="true" />
 
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/half_dimen"
-            android:paddingRight="@dimen/half_dimen"
-            android:paddingBottom="@dimen/default_dimen"
-            android:paddingTop="@dimen/half_dimen"
-            card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/linearLayout4"
-            card_view:layout_constraintTop_toTopOf="@+id/linearLayout4"
-            card_view:layout_constraintVertical_bias="0.592">
-
-            <com.github.siyamed.shapeimageview.RoundedImageView
-                android:layout_width="110dp"
-                android:layout_height="175dp"
-                card_view:siRadius="@dimen/half_dimen"
-                android:src="@drawable/image_placeholder_gray" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_marginTop="@dimen/half_dimen"
-                android:background="@color/colorShimmer"
-                android:ellipsize="end"
-                android:fontFamily="@font/regular"
-                android:maxLines="2"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/colorShimmer"
-                android:ellipsize="end"
-                android:fontFamily="@font/regular"
-                android:maxLines="2"
-                android:textStyle="bold" />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Caption"
-                android:layout_width="match_parent"
-                android:layout_height="15dp"
-                android:layout_marginTop="@dimen/half_dimen"
-                android:background="@color/colorShimmer"
-                android:fontFamily="@font/regular"
-                android:text=""
-                android:textAllCaps="true" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

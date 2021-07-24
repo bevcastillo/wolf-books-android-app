@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -83,16 +84,20 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
         }catch (Exception e) {
             holder.ratingsRB.setVisibility(View.GONE);
             holder.ratingsTV.setVisibility(View.GONE);
+            holder.noRatingPlaceholderTV.setText("No Rating");
         }
 
         try {
+            holder.noRatingPlaceholderTV.setVisibility(View.GONE);
+
+            if (item.getVolumeInfo().getRatingsCount()==1) {
+                holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" review)");
+            }
             holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
-            holder.ratingsRB.setRating(item.getVolumeInfo().getAverageRating());
         }catch (Exception e) {
-            holder.ratingsTV.setVisibility(View.INVISIBLE);
-            holder.ratingsTV.setTypeface(null, Typeface.ITALIC);
-            holder.ratingsTV.setText("No Rating");
-            holder.ratingsRB.setVisibility(View.INVISIBLE);
+            holder.ratingsTV.setVisibility(View.GONE);
+            holder.ratingsRB.setVisibility(View.GONE);
+            holder.noRatingPlaceholderTV.setVisibility(View.GONE);
         }
 
         try {
@@ -130,7 +135,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder, ratingsTV;
+        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder, ratingsTV, noRatingPlaceholderTV;
         ImageView imageIV;
         RatingBar ratingsRB;
 
@@ -144,6 +149,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
             ratingsRB = itemView.findViewById(R.id.ratingsRB);
             placeholder = itemView.findViewById(R.id.placeholder);
             ratingsTV = itemView.findViewById(R.id.ratingsTV);
+            noRatingPlaceholderTV = itemView.findViewById(R.id.noRatingPlaceholderTV);
         }
     }
 }

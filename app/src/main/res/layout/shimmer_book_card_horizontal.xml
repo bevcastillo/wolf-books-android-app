@@ -32,9 +32,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="@dimen/default_dimen"
+            android:layout_marginEnd="@dimen/dimen_40"
             android:fontFamily="@font/regular"
             android:text=""
             android:textAllCaps="true"
@@ -43,7 +42,8 @@
             card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
             card_view:layout_constraintStart_toEndOf="@+id/iv_book_image"
             card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
-            android:background="@color/colorShimmer"/>
+            android:background="@color/colorShimmer"
+            android:layout_marginRight="@dimen/dimen_20" />
 
         <TextView
             android:id="@+id/tv_book_title"

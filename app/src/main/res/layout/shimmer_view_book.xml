@@ -48,8 +48,9 @@
                     android:text="          "
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraphMedium"
-                    app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"/>
 
                 <com.github.siyamed.shapeimageview.RoundedImageView
                     android:id="@+id/view2"

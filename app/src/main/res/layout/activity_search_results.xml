@@ -13,28 +13,56 @@
         android:layout_height="match_parent"
         android:background="@color/colorBlackBG">
 
-        <TextView
-            android:id="@+id/searchQueryTV"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/topSearchLL"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/regular"
-            android:textColor="@color/colorWhite"
-            android:alpha="0.7"
-            android:text=""
+            android:orientation="horizontal"
+            android:gravity="center_vertical|end"
+            android:paddingRight="@dimen/dimen_15"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="12sp"
+                android:layout_height="12sp"
+                android:layout_marginRight="@dimen/half_dimen"
+                android:alpha="0.7"
+                android:src="@drawable/sort"/>
+
+            <TextView
+                android:id="@+id/sortRelevanceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/half_dimen"
+                android:fontFamily="@font/bold"
+                android:text="Relevance"
+                android:textSize="@dimen/paragraphMedium"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/sortNewest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.5"
+                android:padding="@dimen/half_dimen"
+                android:fontFamily="@font/bold"
+                android:text="Newest"
+                android:textSize="@dimen/paragraphMedium"
+                android:textColor="@color/colorWhite" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerFL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/half_dimen"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchQueryTV"
+            app:layout_constraintTop_toBottomOf="@+id/topSearchLL"
             app:shimmer_duration="800">
 
             <LinearLayout
@@ -62,14 +90,14 @@
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/half_dimen"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchQueryTV"
+            app:layout_constraintTop_toBottomOf="@+id/topSearchLL"
             android:scrollbars="none"
             android:visibility="gone"/>
 
@@ -87,17 +115,13 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.437">
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_heartbroken_amico" />
-
             <TextView
                 android:id="@+id/placeholderTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:fontFamily="@font/regular"
+                android:textColor="@color/colorWhite"
                 style="@style/TextAppearance.AppCompat.Small"/>
 
         </LinearLayout>
