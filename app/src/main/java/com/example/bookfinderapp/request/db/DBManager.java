@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.helper;
+package com.example.bookfinderapp.request.db;
 
 import android.content.ContentValues;
 import android.content.Context;

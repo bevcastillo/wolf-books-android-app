@@ -7,7 +7,6 @@
     tools:context=".view.activity.SearchResultsActivity"
     android:fillViewport="true">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,15 +18,27 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical|end"
+            android:paddingLeft="@dimen/dimen_15"
             android:paddingRight="@dimen/dimen_15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/totalItemsTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/half_dimen"
+                android:fontFamily="@font/regular"
+                android:layout_gravity="start"
+                android:visibility="invisible"
+                android:textSize="@dimen/paragraphMedium"
+                android:textColor="@color/colorWhite" />
+
             <ImageView
-                android:layout_width="12sp"
-                android:layout_height="12sp"
-                android:layout_marginRight="@dimen/half_dimen"
+                android:layout_width="11sp"
+                android:layout_height="11sp"
                 android:alpha="0.7"
                 android:src="@drawable/sort"/>
 
@@ -54,12 +65,23 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:indeterminateTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/topSearchLL" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerFL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/half_dimen"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topSearchLL"

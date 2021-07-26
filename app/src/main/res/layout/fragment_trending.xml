@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragments.TrendingFragment"
+    android:id="@+id/searchSRL">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackBG">
+
+        <include
+            android:id="@+id/noConnectionLL"
+            layout="@layout/dialog_error_layout"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/searchQueryET"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:drawablePadding="12dp"
+            android:background="@color/grayTransparent"
+            android:drawableTint="@color/colorWhite"
+            android:hint="Search book title, author, etc."
+            android:imeOptions="actionSearch"
+            android:textColorHint="#eee"
+            android:inputType="text"
+            android:visibility="gone"
+            android:padding="12dp"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:fontFamily="@font/regular"/>
+
+        <LinearLayout
+            android:id="@+id/parentLL"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchQueryET">
+
+            <TextView
+                android:id="@+id/textview"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_15"
+                android:layout_marginTop="@dimen/default_dimen"
+                android:fontFamily="@font/bold"
+                android:text="New Releases"
+                android:visibility="gone"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/heading"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchQueryET" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newBooksRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/adView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_view_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textview"
+                app:shimmer_duration="800">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/shimmer_book_card_horizontal" />
+
+                    <include layout="@layout/shimmer_book_card_horizontal" />
+
+                    <include layout="@layout/shimmer_book_card_horizontal" />
+
+                    <include layout="@layout/shimmer_book_card_horizontal" />
+
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-3940256099942544~3347511713"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

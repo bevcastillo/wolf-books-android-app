@@ -1,4 +1,4 @@
-package com.example.bookfinderapp.helper;
+package com.example.bookfinderapp.vendor;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -11,17 +11,26 @@ public class InternetConnection {
     * noInternetLL is the "no internet connection" layout, parentLL is the layout of your main view that should be hidden
     */
 
-    public static boolean isInternetConnected(Context context, LinearLayout noInternetLL, LinearLayout parentLL) {
+    public static boolean isInternetConnected(Context context, View view, View mainView) {
         NetworkInfo networkInfo = (NetworkInfo) ((ConnectivityManager)
                                     context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
         if (networkInfo==null) {
-            noInternetLL.setVisibility(View.VISIBLE);
-            parentLL.setVisibility(View.GONE);
+            view.setVisibility(View.VISIBLE);
+            mainView.setVisibility(View.GONE);
             return false;
         }
-        noInternetLL.setVisibility(View.GONE);
-        parentLL.setVisibility(View.VISIBLE);
+        view.setVisibility(View.GONE);
+        mainView.setVisibility(View.VISIBLE);
+        return true;
+    }
+
+    public static boolean checkInternet(Context context) {
+        NetworkInfo networkInfo = (NetworkInfo) ((ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        if (networkInfo==null) {
+            return false;
+        }
         return true;
     }
 }

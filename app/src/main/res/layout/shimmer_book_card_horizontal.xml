@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/half_dimen"
+    card_view:cardElevation="0dp"
     android:id="@+id/book_layout">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/grayTransparent"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingRight="@dimen/dimen_15"
+        android:paddingTop="@dimen/default_dimen"
+        android:paddingBottom="@dimen/default_dimen">
 
         <com.github.siyamed.shapeimageview.RoundedImageView
             android:id="@+id/iv_book_image"
-            android:layout_width="110dp"
-            android:layout_height="175dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
             card_view:siRadius="@dimen/half_dimen"
             android:src="@drawable/image_placeholder_gray"
             card_view:layout_constraintBottom_toBottomOf="parent"
@@ -50,9 +52,8 @@
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="@dimen/half_dimen"
+            android:layout_marginRight="70dp"
             android:ellipsize="end"
             android:fontFamily="@font/bold"
             android:maxLines="1"
@@ -80,7 +81,8 @@
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/half_dimen"
+            android:layout_marginRight="20dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text=""

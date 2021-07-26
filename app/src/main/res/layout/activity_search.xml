@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlackBG">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/half_dimen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grayTransparent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dimen_15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/searchQueryET"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/grayTransparent"
+                android:drawableLeft="@drawable/ic_search_black_24dp"
+                android:drawablePadding="@dimen/default_dimen"
+                android:drawableTint="@color/colorGray"
+                android:fontFamily="@font/regular"
+                android:hint="Search for a book title, author, etc."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingLeft="@dimen/dimen_15"
+                android:paddingTop="@dimen/default_dimen"
+                android:paddingRight="@dimen/default_dimen"
+                android:paddingBottom="@dimen/default_dimen"
+                android:textColor="@color/colorGray"
+                android:textColorHint="@color/colorGray60" />
+
+            <ImageView
+                android:id="@+id/micIV"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:src="@drawable/ic_mic" />
+
+            <ImageView
+                android:id="@+id/clearBTN"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:src="@drawable/ic_close_white"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="11sp"
+            android:layout_height="11sp"
+            android:alpha="0.7"
+            android:src="@drawable/sort"
+            app:layout_constraintBottom_toBottomOf="@+id/sortRelevanceTV"
+            app:layout_constraintEnd_toStartOf="@+id/sortRelevanceTV"
+            app:layout_constraintTop_toTopOf="@+id/sortRelevanceTV" />
+
+        <TextView
+            android:id="@+id/sortRelevanceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_dimen"
+            android:fontFamily="@font/bold"
+            android:padding="@dimen/half_dimen"
+            android:text="Relevance"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/paragraphMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sortNewest"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+        <TextView
+            android:id="@+id/sortNewest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/half_dimen"
+            android:layout_marginRight="@dimen/dimen_15"
+            android:alpha="0.5"
+            android:fontFamily="@font/bold"
+            android:padding="@dimen/half_dimen"
+            android:text="Newest"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/paragraphMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchResultsRV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:scrollbars="none"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <include
+        android:id="@+id/noConnectionLL"
+        layout="@layout/dialog_error_layout"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/placeholderTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="Start Searching"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/heading"
+        app:layout_constraintBottom_toTopOf="@+id/placeholderTextTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/placeholderTextTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_dimen"
+        android:alpha="0.5"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="Type something to get started."
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/paragraph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/placeholderTitleTV"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/placeholderTitleTV"
+        app:layout_constraintTop_toBottomOf="@+id/placeholderTitleTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

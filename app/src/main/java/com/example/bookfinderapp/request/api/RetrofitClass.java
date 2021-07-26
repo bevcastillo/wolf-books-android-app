@@ -1,6 +1,6 @@
-package com.example.bookfinderapp.request;
+package com.example.bookfinderapp.request.api;
 
-import com.example.bookfinderapp.helper.Constant;
+import com.example.bookfinderapp.request.api.RequestService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

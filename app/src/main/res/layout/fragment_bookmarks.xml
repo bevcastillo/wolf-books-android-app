@@ -20,86 +20,60 @@
             android:layout_marginRight="@dimen/dimen_15"
             android:textColor="@color/colorWhite"
             android:alpha="0.7"
+            android:textSize="@dimen/paragraphMedium"
             android:fontFamily="@font/regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/shimmer_view_container"
+            android:id="@+id/shimmerFrameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/default_dimen"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count"
-            app:shimmer_duration="800"
-            android:visibility="gone">
+            app:shimmer_duration="800">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include layout="@layout/adapter_book_card_horizontal" />
-                <include layout="@layout/adapter_book_card_horizontal" />
-                <include layout="@layout/adapter_book_card_horizontal" />
+                <include layout="@layout/shimmer_book_card_horizontal" />
+
+                <include layout="@layout/shimmer_book_card_horizontal" />
+
+                <include layout="@layout/shimmer_book_card_horizontal" />
 
             </LinearLayout>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bookmarks"
+            android:id="@+id/bookmarksRV"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/default_dimen"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count"
-            android:visibility="visible"
+            android:visibility="gone"
             android:scrollbars="none"/>
 
-        <LinearLayout
-            android:id="@+id/layout_no_data"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
+        <include
+            android:id="@+id/noConnectionLL"
+            layout="@layout/dialog_error_layout"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_bookmarks_count">
-
-            <TextView
-                android:id="@+id/placeholderTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/regular"
-                android:gravity="center"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/headingSmall" />
-
-            <TextView
-                android:id="@+id/retryTV"
-                style="?android:selectableItemBackgroundBorderless"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/half_dimen"
-                android:alpha="0.7"
-                android:padding="@dimen/default_dimen"
-                android:text="Retry"
-                android:textColor="@color/colorWhite"
-                tools:targetApi="lollipop" />
-
-        </LinearLayout>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

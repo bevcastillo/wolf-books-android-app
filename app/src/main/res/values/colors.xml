@@ -15,10 +15,11 @@
     <color name="colorLighterBlue">#fbfdff</color>
     <color name="colorLightBlue">#c1e0ff</color>
     <color name="colorShimmer">#dddddd</color>
-    <color name="colorBookmarkTint">#303030</color>
     <color name="colorTextBlack">#303030</color>
 
     <color name="colorBlackBG">#121212</color>
     <color name="colorLightGray">#ddd</color>
     <color name="grayTransparent">#484848</color>
+    <color name="colorGray60">#999999</color>
+    <color name="colorGray">#d8d8d8</color>
 </resources>

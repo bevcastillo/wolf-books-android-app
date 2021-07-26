@@ -18,18 +18,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.helper.DBManager;
-import com.example.bookfinderapp.helper.DatabaseHelper;
+import com.example.bookfinderapp.request.db.DBManager;
+import com.example.bookfinderapp.request.db.DatabaseHelper;
 import com.example.bookfinderapp.model.api.AccessInfo;
 import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.model.api.SaleInfo;
 import com.example.bookfinderapp.model.api.VolumeInfo;
 import com.example.bookfinderapp.model.db.VolumeBooks;
-import com.example.bookfinderapp.request.RequestService;
-import com.example.bookfinderapp.request.RetrofitClass;
+import com.example.bookfinderapp.request.api.RequestService;
+import com.example.bookfinderapp.request.api.RetrofitClass;
+import com.example.bookfinderapp.vendor.CurrencyConverter;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.github.siyamed.shapeimageview.RoundedImageView;
-import com.jackandphantom.blurimage.BlurImage;
 
 import java.util.ArrayList;
 import java.util.Currency;
@@ -51,7 +51,10 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
     RatingBar averageRatingRB;
     RequestService requestService;
     Call<Item> singleItemCall;
-    String volume_id="", description="", title="", bookmarked="";
+    List<VolumeBooks> localVolumeBooks;
+    String title="",volume_id="";
+    String bookmarked="";
+    int bookmark_id=0;
     List<VolumeBooks> list = new ArrayList<>();
     DatabaseHelper db;
     DBManager dbManager;
@@ -88,14 +91,20 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
         layout_parent = findViewById(R.id.layout_parent);
         activeBookmark = findViewById(R.id.activeBookmark);
         inactiveBookmark = findViewById(R.id.inactiveBookmark);
-        dialog = new ProgressDialog(BookInfoActivity.this);
 
+        dialog = new ProgressDialog(BookInfoActivity.this);
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             volume_id = bundle.getString("volume_id");
             bookmarked = bundle.getString("is_bookmarked");
             displayBookItem(volume_id);
+
+            try {
+                bookmark_id = bundle.getInt("bookmark_id");
+            }catch (Exception e) {
+
+            }
         }
 
         activeBookmark.setOnClickListener(this);
@@ -108,12 +117,22 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
         db = new DatabaseHelper(this);
         VolumeBooks volumeBooks = new VolumeBooks(volume_id,true);
         db.addBookmark(volumeBooks);
-        //refresh
-        displayBookItem(volume_id);
-        dialog.dismiss();
+
         inactiveBookmark.setVisibility(View.GONE);
         activeBookmark.setVisibility(View.VISIBLE);
-        Toast.makeText(BookInfoActivity.this, title+" has been added to bookmarks", Toast.LENGTH_LONG).show();
+        Toast.makeText(BookInfoActivity.this, title+" has been added", Toast.LENGTH_LONG).show();
+    }
+
+    private void removeFromBookmark() {
+        dbManager = new DBManager(this);
+        dbManager.open();
+        db = new DatabaseHelper(this);
+
+        db.removeBookmark(bookmark_id);
+        inactiveBookmark.setVisibility(View.VISIBLE);
+        activeBookmark.setVisibility(View.GONE);
+        Toast.makeText(BookInfoActivity.this, title+" has been removed", Toast.LENGTH_LONG).show();
+
     }
 
     void displayBookItem(String id) {
@@ -152,10 +171,26 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
                     title = volume.getTitle();
                     setTitle(volume.getTitle()+"");
                     titleTV.setText(volume.getTitle());
-                    publisherTV.setText(volume.getPublisher());
-                    publishedDateTV.setText(volume.getPublishedDate());
-                    pageCountTV.setText(volume.getPageCount()+" pages");
+
                     languageTV.setText(volume.getLanguage().toUpperCase());
+
+                    try {
+                        publisherTV.setText(volume.getPublisher());
+                    }catch (Exception e) {
+                        publisherTV.setText("");
+                    }
+
+                    try {
+                        publishedDateTV.setText(volume.getPublishedDate());
+                    }catch (Exception e) {
+                        publishedDateTV.setText("");
+                    }
+
+                    try {
+                        pageCountTV.setText(volume.getPageCount()+" pages");
+                    }catch (Exception e) {
+                        pageCountTV.setText(R.string.not_available);
+                    }
 
                     try {
                         averageRatingRB.setVisibility(View.VISIBLE);
@@ -264,19 +299,10 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
 
 
                     if (saleInfo.getIsEbook()) {
-                        try {
-                            Currency currency = Currency.getInstance(saleInfo.getRetailPrice().getCurrencyCode());
-                            buyLinkBTN.setText("Ebook "+currency.getSymbol()+""+saleInfo.getRetailPrice().getAmount());
-                        }catch (Exception e) {
-                            buyLinkBTN.setText("Ebook "+saleInfo.getRetailPrice().getCurrencyCode()+""+saleInfo.getRetailPrice().getAmount());
-                        }
+                        buyLinkBTN.setText("Ebook "+CurrencyConverter.convertCurrency(saleInfo.getRetailPrice().getCurrencyCode())+saleInfo.getRetailPrice().getAmount());
+
                     }else {
-                        try {
-                            Currency currency = Currency.getInstance(saleInfo.getRetailPrice().getCurrencyCode());
-                            buyLinkBTN.setText("Book "+currency.getSymbol()+" "+saleInfo.getRetailPrice().getAmount());
-                        }catch (Exception e) {
-                            buyLinkBTN.setText("Book "+saleInfo.getRetailPrice().getCurrencyCode()+" "+saleInfo.getRetailPrice().getAmount());
-                        }
+                        buyLinkBTN.setText("Book "+CurrencyConverter.convertCurrency(saleInfo.getRetailPrice().getCurrencyCode())+saleInfo.getRetailPrice().getAmount());
                     }
 
                     buyLinkBTN.setOnClickListener(new View.OnClickListener() {
@@ -315,13 +341,18 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activeBookmark:
-
+                removeFromBookmark();
                 break;
             case R.id.inactiveBookmark:
-                dialog.setMessage("Adding ....");
-                dialog.show();
                 addToBookmark();
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
 }

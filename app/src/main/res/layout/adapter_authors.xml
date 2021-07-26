@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/half_dimen"
+    android:paddingLeft="@dimen/default_dimen"
+    android:paddingRight="@dimen/half_dimen"
+    android:paddingBottom="@dimen/default_dimen">
+
+    <com.github.siyamed.shapeimageview.RoundedImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:siRadius="100dp"
+        app:siBorderWidth="1dp"
+        app:siBorderColor="@color/colorWhite"
+        android:scaleType="centerCrop"
+        android:src="@drawable/author_dan_brown"/>
+
+    <TextView
+        android:id="@+id/authorTV"
+        style="@style/TextAppearance.AppCompat.Small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:fontFamily="@font/regular"
+        android:textSize="@dimen/paragraph"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/half_dimen"
+        android:textColor="@color/colorWhite"
+        android:layout_marginEnd="0dp"
+        android:gravity="top"
+        android:layout_marginRight="0dp" />
+
+</LinearLayout>

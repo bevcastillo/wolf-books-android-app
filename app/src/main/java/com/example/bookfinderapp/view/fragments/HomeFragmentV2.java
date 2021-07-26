@@ -2,6 +2,7 @@ package com.example.bookfinderapp.view.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,18 +10,21 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.CategoriesRecyclerviewAdapter;
-import com.example.bookfinderapp.helper.InternetConnection;
+import com.example.bookfinderapp.vendor.InternetConnection;
 import com.example.bookfinderapp.model.api.Books;
 import com.example.bookfinderapp.model.api.Item;
-import com.example.bookfinderapp.request.RequestService;
-import com.example.bookfinderapp.request.RetrofitClass;
+import com.example.bookfinderapp.request.api.RequestService;
+import com.example.bookfinderapp.request.api.RetrofitClass;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
@@ -32,16 +36,23 @@ import retrofit2.Response;
 public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     SwipeRefreshLayout homeSRL;
     ShimmerFrameLayout fantasyShimmer, adventureShimmer, romanceShimmer, horrorShimmer, thrillerShimmer, fictionShimmer, healthShimmer, historyShimmer, childrenShimmer;
-    TextView fantasyErr, adventureErr, romanceErr, horrorErr, thrillerErr, fictionErr, healthErr, historyErr, childrenErr, retryTV;
+    TextView fantasyErr, adventureErr, romanceErr, horrorErr, thrillerErr, fictionErr, healthErr, historyErr, childrenErr, headerTV, textTV;
+    Button errorBTN;
     RecyclerView fictionRV, fantasyRV, romanceRV, adventureRV, horrorRV, thrillerRV, healthRV, historyRV, childrensRV;
     CategoriesRecyclerviewAdapter categoriesAdapter;
     LinearLayoutManager fictionLM, fantasyLM, romanceLM, adventureLM, horrorLM, thrillerLM, healthLM, historyLM, childrenLM;
-    LinearLayout noConnectionLL, layout_parent;
+    View noConnectionLL, layout_parent;
     RequestService requestService;
     Call<Books> fictionCall, fantasyCall, motivationCall, adventureCall, horrorCall, thrillerCall, healthCall, historyCall, childrenCall;
 
     public HomeFragmentV2() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -80,15 +91,22 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
         historyErr = view.findViewById(R.id.historyErr);
         childrenErr = view.findViewById(R.id.childrenErr);
         noConnectionLL = view.findViewById(R.id.noConnectionLL);
-        retryTV = view.findViewById(R.id.retryTV);
         layout_parent = view.findViewById(R.id.layout_parent);
+        headerTV = view.findViewById(R.id.headerTV);
+        textTV = view.findViewById(R.id.textTV);
+        errorBTN = view.findViewById(R.id.errorBTN);
 
         homeSRL.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         homeSRL.setOnRefreshListener(this);
         requestService = RetrofitClass.getAPIInstance();
 
         InternetConnection.isInternetConnected(getContext(),noConnectionLL,layout_parent);
-        retryTV.setOnClickListener(this);
+        headerTV.setText(R.string.no_internet_header);
+        textTV.setText(R.string.no_internet_text);
+        errorBTN.setVisibility(View.VISIBLE);
+        errorBTN.setText(R.string.try_again);
+
+        errorBTN.setOnClickListener(this);
 
         callFiction();
         callFantasy();
@@ -167,7 +185,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callFiction() {
-        fictionCall = requestService.getVolumeBooks("subject:fiction");
+        fictionCall = requestService.getVolumeBooks("categories:young+fiction");
         fictionCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -191,7 +209,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callFantasy() {
-        fantasyCall = requestService.getVolumeBooks("subject:fantasy");
+        fantasyCall = requestService.getVolumeBooks("categories:fantasy");
         fantasyCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -215,7 +233,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callRomance() {
-        motivationCall = requestService.getVolumeBooks("subject:romance");
+        motivationCall = requestService.getVolumeBooks("categories:romance");
         motivationCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -239,7 +257,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callAdventure() {
-        adventureCall = requestService.getVolumeBooks("subject:adventure");
+        adventureCall = requestService.getVolumeBooks("categories:adventure");
         adventureCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -263,7 +281,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callHorror() {
-        horrorCall = requestService.getVolumeBooks("subject:horror");
+        horrorCall = requestService.getVolumeBooks("categories:horror");
         horrorCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -287,7 +305,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callThriller() {
-        thrillerCall = requestService.getVolumeBooks("subject:thriller");
+        thrillerCall = requestService.getVolumeBooks("categories:thriller");
         thrillerCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -315,7 +333,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callHealth() {
-        healthCall = requestService.getVolumeBooks("subject:health");
+        healthCall = requestService.getVolumeBooks("categories:health");
         healthCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -339,7 +357,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callHistory() {
-        historyCall = requestService.getVolumeBooks("subject:history");
+        historyCall = requestService.getVolumeBooks("categories:history");
         historyCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -363,7 +381,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void callChildren() {
-        childrenCall = requestService.getVolumeBooks("subject:children");
+        childrenCall = requestService.getVolumeBooks("categories:children");
         childrenCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
@@ -438,8 +456,9 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.retryTV:
+            case R.id.errorBTN:
                 InternetConnection.isInternetConnected(v.getContext(), noConnectionLL, layout_parent);
+                onRefresh();
                 break;
         }
     }

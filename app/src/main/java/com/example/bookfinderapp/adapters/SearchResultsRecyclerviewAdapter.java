@@ -3,14 +3,12 @@ package com.example.bookfinderapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.helper.DatabaseHelper;
+import com.example.bookfinderapp.request.db.DatabaseHelper;
 import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.model.db.VolumeBooks;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
@@ -29,8 +27,6 @@ import java.util.List;
 public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<SearchResultsRecyclerviewAdapter.ViewHolder> {
     private Context context;
     private List<Item> items;
-    private List<VolumeBooks> list = new ArrayList<>();;
-    private DatabaseHelper db;
     private String bookmarkedStatus="";
 
     public SearchResultsRecyclerviewAdapter(Context context, List<Item> items) {
@@ -63,25 +59,25 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
         Item item = items.get(position);
         holder.titleTV.setText(item.getVolumeInfo().getTitle());
 
-        db = new DatabaseHelper(context);
-        list = db.getAll();
+//        holder.bookmarkIV.setVisibility(View.GONE);
+//        holder.bookmarkActiveIV.setVisibility(View.GONE);
 
-        for (int i=0; i<list.size(); i++) {
-            if (list.get(i).getVolumeId().equals(item.getId())) {
-                holder.bookmarkActiveIV.setVisibility(View.VISIBLE);
-                holder.bookmarkIV.setVisibility(View.GONE);
-                bookmarkedStatus="yes";
-            }else {
-                holder.bookmarkActiveIV.setVisibility(View.GONE);
-                holder.bookmarkIV.setVisibility(View.VISIBLE);
-                bookmarkedStatus="no";
-            }
-        }
+//        for (int i=0; i<list.size(); i++) {
+//            if (list.get(i).getVolumeId().equals(item.getId())) {
+//                holder.bookmarkActiveIV.setVisibility(View.VISIBLE);
+//                holder.bookmarkIV.setVisibility(View.GONE);
+//                bookmarkedStatus="yes";
+//                break;
+//            }else {
+//                holder.bookmarkActiveIV.setVisibility(View.GONE);
+//                holder.bookmarkIV.setVisibility(View.VISIBLE);
+//                bookmarkedStatus="no";
+//            }
+//        }
 
         try{
             holder.publisherTV.setText(item.getVolumeInfo().getPublisher());
         }catch (Exception e) {
-            holder.publisherTV.setTypeface(null, Typeface.ITALIC);
             holder.publisherTV.setText("Not Available");
         }
 
@@ -99,10 +95,16 @@ public class SearchResultsRecyclerviewAdapter extends RecyclerView.Adapter<Searc
             }
             holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
         }catch (Exception e) {
-            holder.ratingsTV.setVisibility(View.INVISIBLE);
-            holder.noRatingTV.setTypeface(null, Typeface.ITALIC);
-            holder.noRatingTV.setText("No Rating");
-            holder.RatingRB.setVisibility(View.INVISIBLE);
+            holder.ratingsTV.setText(R.string.no_reviews);
+            holder.ratingsTV.setVisibility(View.GONE);
+        }
+
+        try {
+            holder.RatingRB.setVisibility(View.VISIBLE);
+            holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
+        }catch (Exception e) {
+            holder.RatingRB.setVisibility(View.GONE);
+            holder.ratingsTV.setText(R.string.no_reviews);
         }
 
         try {

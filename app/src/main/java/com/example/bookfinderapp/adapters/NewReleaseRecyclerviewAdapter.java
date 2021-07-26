@@ -3,6 +3,7 @@ package com.example.bookfinderapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Build;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_new_books, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_book_card_horizontal, parent, false);
         final ViewHolder viewHolder = new ViewHolder(view);
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -59,45 +60,43 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
         Item item = items.get(position);
         holder.titleTV.setText(item.getVolumeInfo().getTitle());
         int pos = position+1;
-        holder.numberTV.setText("#"+pos);
+
+        holder.titleTV.setText(item.getVolumeInfo().getTitle());
+        holder.bookmarkIV.setVisibility(View.GONE);
+        holder.bookmarkActiveIV.setVisibility(View.GONE);
+
+        try{
+            holder.publisherTV.setText(item.getVolumeInfo().getPublisher());
+        }catch (Exception e) {
+            holder.publisherTV.setText("Not Available");
+        }
 
         try {
-            Glide.with(context).load(item.getVolumeInfo().getImageLinks().getSmallThumbnail()).centerCrop().into(holder.imageIV);
+            Glide.with(context).load(item.getVolumeInfo().getImageLinks().getSmallThumbnail()).centerCrop().into(holder.imageView);
         }catch (Exception e) {
             Glide.with(context).load(Constant.N0_IMAGE_PLACEHOLDER)
-                    .centerCrop().into(holder.imageIV);
+                    .centerCrop().into(holder.imageView);
         }
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                holder.descriptionTV.setText(Html.fromHtml(item.getSearchInfo().getTextSnippet(), Html.FROM_HTML_MODE_COMPACT));
-            } else {
-                holder.descriptionTV.setText(Html.fromHtml(item.getSearchInfo().getTextSnippet()));
-            }
+            holder.RatingRB.setVisibility(View.VISIBLE);
+            holder.noRatingTV.setVisibility(View.GONE);
+            holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
         }catch (Exception e) {
-            holder.descriptionTV.setText("No description");
+            holder.noRatingTV.setText("No Rating");
+            holder.RatingRB.setVisibility(View.GONE);
         }
 
         try {
-            holder.ratingsRB.setVisibility(View.VISIBLE);
-            holder.ratingsRB.setRating(item.getVolumeInfo().getAverageRating());
-        }catch (Exception e) {
-            holder.ratingsRB.setVisibility(View.GONE);
-            holder.ratingsTV.setVisibility(View.GONE);
-            holder.noRatingPlaceholderTV.setText("No Rating");
-        }
-
-        try {
-            holder.noRatingPlaceholderTV.setVisibility(View.GONE);
-
             if (item.getVolumeInfo().getRatingsCount()==1) {
+                holder.ratingsTV.setVisibility(View.VISIBLE);
                 holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" review)");
+            }else {
+                holder.ratingsTV.setVisibility(View.VISIBLE);
+                holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
             }
-            holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
         }catch (Exception e) {
             holder.ratingsTV.setVisibility(View.GONE);
-            holder.ratingsRB.setVisibility(View.GONE);
-            holder.noRatingPlaceholderTV.setVisibility(View.GONE);
         }
 
         try {
@@ -124,8 +123,7 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
                     holder.authorTV.setText("By "+item.getVolumeInfo().getAuthors().get(0));
             }
         }catch (Exception e) {
-            holder.authorTV.setTypeface(null, Typeface.ITALIC);
-            holder.authorTV.setText("Not Available");
+            holder.authorTV.setText("No Author");
         }
     }
 
@@ -135,21 +133,22 @@ public class NewReleaseRecyclerviewAdapter extends RecyclerView.Adapter<NewRelea
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTV, numberTV, authorTV, descriptionTV, placeholder, ratingsTV, noRatingPlaceholderTV;
-        ImageView imageIV;
-        RatingBar ratingsRB;
+        ImageView imageView, bookmarkIV, bookmarkActiveIV;
+        TextView publisherTV, titleTV, authorTV, noRatingTV, ratingsTV, tv_ratingsCount;
+        RatingBar RatingRB;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
+            publisherTV = itemView.findViewById(R.id.publisherTV);
             titleTV = itemView.findViewById(R.id.titleTV);
-            numberTV = itemView.findViewById(R.id.numberTV);
             authorTV = itemView.findViewById(R.id.authorTV);
-            descriptionTV = itemView.findViewById(R.id.descriptionTV);
-            imageIV = itemView.findViewById(R.id.imageIV);
-            ratingsRB = itemView.findViewById(R.id.ratingsRB);
-            placeholder = itemView.findViewById(R.id.placeholder);
+            noRatingTV = itemView.findViewById(R.id.noRatingTV);
             ratingsTV = itemView.findViewById(R.id.ratingsTV);
-            noRatingPlaceholderTV = itemView.findViewById(R.id.noRatingPlaceholderTV);
+            tv_ratingsCount = itemView.findViewById(R.id.tv_ratingsCount);
+            RatingRB = itemView.findViewById(R.id.RatingRB);
+            bookmarkIV = itemView.findViewById(R.id.bookmarkIV);
+            bookmarkActiveIV = itemView.findViewById(R.id.bookmarkActiveIV);
         }
     }
 }

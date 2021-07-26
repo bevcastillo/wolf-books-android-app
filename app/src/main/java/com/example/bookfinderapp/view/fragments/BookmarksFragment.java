@@ -3,38 +3,43 @@ package com.example.bookfinderapp.view.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.adapters.BookmarksRecyclerviewAdapter;
-import com.example.bookfinderapp.helper.DatabaseHelper;
+import com.example.bookfinderapp.request.db.DatabaseHelper;
 import com.example.bookfinderapp.model.db.VolumeBooks;
+import com.example.bookfinderapp.vendor.InternetConnection;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    TextView tvBookmarkCount, placeholderTV, retryTV;
-    RecyclerView rvBookmarks;
-    LinearLayout layout_no_data;
+    TextView tvBookmarkCount, placeholderTV, headerTV, textTV;
+    RecyclerView bookmarksRV;
     ShimmerFrameLayout shimmerFrameLayout;
     SwipeRefreshLayout bookmarksSRL;
-    BookmarksRecyclerviewAdapter bookmarksAdapter; //re-use the existing adapter
+    View noConnectionLL;
+    Button errorBTN;
+    BookmarksRecyclerviewAdapter bookmarksAdapter;
     List<VolumeBooks> list;
     DatabaseHelper db;
 
@@ -48,43 +53,76 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_bookmarks, container, false);
 
+        setHasOptionsMenu(true);
+
         tvBookmarkCount = view.findViewById(R.id.tv_bookmarks_count);
-        rvBookmarks = view.findViewById(R.id.rv_bookmarks);
-        layout_no_data = view.findViewById(R.id.layout_no_data);
-        shimmerFrameLayout = view.findViewById(R.id.shimmer_view_container);
+        bookmarksRV = view.findViewById(R.id.bookmarksRV);
+        noConnectionLL = view.findViewById(R.id.noConnectionLL);
+        shimmerFrameLayout = view.findViewById(R.id.shimmerFrameLayout);
         bookmarksSRL = view.findViewById(R.id.bookmarksSRL);
-        placeholderTV = view.findViewById(R.id.placeholderTV);
-        retryTV = view.findViewById(R.id.retryTV);
+        headerTV = view.findViewById(R.id.headerTV);
+        textTV = view.findViewById(R.id.textTV);
+        errorBTN = view.findViewById(R.id.errorBTN);
 
         getActivity().setTitle("My Bookmarks");
-
-        db = new DatabaseHelper(view.getContext());
-        list = new ArrayList<>();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        rvBookmarks.setLayoutManager(layoutManager);
-        list = db.getAll();
-
-        tvBookmarkCount.setText(list.size()+" item/s found");
+        bookmarksSRL.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         bookmarksSRL.setOnRefreshListener(this);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
 
+        checkInternetConnection();
         loadBookmarks();
+
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+    }
+
+    private void checkInternetConnection() {
+        InternetConnection.isInternetConnected(getContext(),noConnectionLL,bookmarksRV);
+        headerTV.setText(R.string.no_internet_header);
+        textTV.setText(R.string.no_internet_text);
+        errorBTN.setVisibility(View.VISIBLE);
+        errorBTN.setText(R.string.try_again);
     }
 
     private void loadBookmarks() {
         bookmarksSRL.setRefreshing(false);
+        db = new DatabaseHelper(getContext());
+        list = new ArrayList<>();
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        bookmarksRV.setLayoutManager(layoutManager);
+        list = db.getAll();
+
+        if (list.size()==1) {
+            tvBookmarkCount.setText(list.size()+" item found");
+        }else if (list.size()==0){
+            tvBookmarkCount.setText("");
+        }else {
+            tvBookmarkCount.setText(list.size()+" items found");
+        }
+
         bookmarksAdapter = new BookmarksRecyclerviewAdapter(getActivity(), list);
-        shimmerFrameLayout.stopShimmer();
         shimmerFrameLayout.setVisibility(View.GONE);
-        rvBookmarks.setAdapter(bookmarksAdapter);
+        bookmarksRV.setAdapter(bookmarksAdapter);
         bookmarksAdapter.notifyDataSetChanged();
 
         if (list.isEmpty()) {
-            layout_no_data.setVisibility(View.VISIBLE);
-            placeholderTV.setText("No Bookmarks Found");
-            retryTV.setVisibility(View.GONE);
+            noConnectionLL.setVisibility(View.VISIBLE);
+            bookmarksRV.setVisibility(View.GONE);
+            headerTV.setText(R.string.no_bookmarks);
+            textTV.setText(R.string.no_bookmarks_placeholder);
+            errorBTN.setVisibility(View.GONE);
+            onRefresh();
+            db.close();
         } else {
-            layout_no_data.setVisibility(View.GONE);
+            bookmarksRV.setVisibility(View.VISIBLE);
+            noConnectionLL.setVisibility(View.GONE);
+            shimmerFrameLayout.setVisibility(View.GONE);
         }
     }
 
@@ -96,6 +134,8 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onRefresh() {
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        bookmarksRV.setVisibility(View.GONE);
         loadBookmarks();
     }
 }
