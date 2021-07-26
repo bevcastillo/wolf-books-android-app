@@ -117,8 +117,6 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
             headerTV.setText(R.string.no_bookmarks);
             textTV.setText(R.string.no_bookmarks_placeholder);
             errorBTN.setVisibility(View.GONE);
-            onRefresh();
-            db.close();
         } else {
             bookmarksRV.setVisibility(View.VISIBLE);
             noConnectionLL.setVisibility(View.GONE);
@@ -137,5 +135,11 @@ public class BookmarksFragment extends Fragment implements SwipeRefreshLayout.On
         shimmerFrameLayout.setVisibility(View.VISIBLE);
         bookmarksRV.setVisibility(View.GONE);
         loadBookmarks();
+    }
+
+    @Override
+    public void onDestroyView() {
+        db.close();
+        super.onDestroyView();
     }
 }

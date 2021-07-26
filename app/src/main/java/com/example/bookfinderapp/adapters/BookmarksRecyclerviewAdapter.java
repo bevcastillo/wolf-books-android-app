@@ -34,13 +34,11 @@ import retrofit2.Response;
 
 public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<BookmarksRecyclerviewAdapter.ViewHolder> {
     private Context context;
-    private List<Item> items;
     private List<VolumeBooks> localVolumeBooks;
-    private List<VolumeBooks> list = new ArrayList<>();
     private Call<Item> itemCall, itemCall1, itemCall2;
     private RequestService requestService = RetrofitClass.getAPIInstance();
     DatabaseHelper db;
-    DBManager dbManager;
+//    DBManager dbManager;
 
     public BookmarksRecyclerviewAdapter(Context context, List<VolumeBooks> localVolumeBooks) {
         this.context = context;
@@ -56,8 +54,8 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
         viewHolder.bookmarkActiveIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbManager = new DBManager(context);
-                dbManager.open();
+//                dbManager = new DBManager(context);
+//                dbManager.open();
                 db = new DatabaseHelper(context);
 
                 VolumeBooks volumeBooks1 = localVolumeBooks.get(viewHolder.getAdapterPosition());
@@ -80,6 +78,7 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
                 });
             }
         });
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
