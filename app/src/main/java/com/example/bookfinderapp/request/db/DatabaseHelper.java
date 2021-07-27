@@ -54,6 +54,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //getting the VolumeId
+    public ArrayList<VolumeBooks> getVolumeId(String volumeId) {
+        ArrayList<VolumeBooks> volumeBooksArrayList = new ArrayList<VolumeBooks>();
+
+        String selectQuery = " SELECT * FROM " + BOOKMARKTBL + " WHERE " + DatabaseHelper.COL_VOL_ID + " = " + volumeId;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                VolumeBooks volumeBooks = new VolumeBooks();
+                volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
+                volumeBooksArrayList.add(volumeBooks);
+            } while (cursor.moveToNext());
+        }
+        return volumeBooksArrayList;
+    }
+
     //displaying all data
     public ArrayList<VolumeBooks> getAll() {
         ArrayList<VolumeBooks> volumeBooksArrayList = new ArrayList<VolumeBooks>();
@@ -61,33 +79,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT * FROM " + BOOKMARKTBL;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
-        VolumeBooks volumeBooks = new VolumeBooks();
+
         //
-
-
-//        try {
-//            if (cursor.moveToFirst()) {
-//                do {
-//                    volumeBooks.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
-//                    volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
-//                    volumeBooks.setBookmark(Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(COL_IS_BOOKMARK))));
-//                    volumeBooksArrayList.add(volumeBooks);
-//                } while (cursor.moveToNext());
-//            }
-//        } finally {
-//            cursor.close();
-//        }
-
-
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
+        if (cursor.moveToFirst()) {
+            do {
+                VolumeBooks volumeBooks = new VolumeBooks();
                 volumeBooks.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
                 volumeBooks.setVolumeId(cursor.getString(cursor.getColumnIndex(COL_VOL_ID)));
                 volumeBooks.setBookmark(Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex(COL_IS_BOOKMARK))));
                 volumeBooksArrayList.add(volumeBooks);
-            }
-            cursor.close();
-            db.close();
+
+            } while (cursor.moveToNext());
         }
 
         return volumeBooksArrayList;

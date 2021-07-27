@@ -10,7 +10,7 @@
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_fire"
-        android:title="Trending"
+        android:title="Top"
         app:showAsAction="ifRoom"/>
 
     <item

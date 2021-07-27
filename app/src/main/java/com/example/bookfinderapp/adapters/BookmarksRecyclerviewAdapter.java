@@ -2,7 +2,6 @@ package com.example.bookfinderapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.helper.Constant;
-import com.example.bookfinderapp.request.db.DBManager;
 import com.example.bookfinderapp.request.db.DatabaseHelper;
 import com.example.bookfinderapp.model.api.Item;
 import com.example.bookfinderapp.model.db.VolumeBooks;
@@ -25,7 +23,6 @@ import com.example.bookfinderapp.request.api.RequestService;
 import com.example.bookfinderapp.request.api.RetrofitClass;
 import com.example.bookfinderapp.view.activity.BookInfoActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -121,6 +118,8 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
                     holder.bookmarkIV.setVisibility(View.GONE);
                     holder.bookmarkActiveIV.setVisibility(View.VISIBLE);
 
+                    holder.RatingRB.setVisibility(View.VISIBLE);
+
                     try{
                         holder.publisherTV.setText(item.getVolumeInfo().getPublisher());
                     }catch (Exception e) {
@@ -135,17 +134,13 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
                     }
 
                     try {
-                        holder.RatingRB.setVisibility(View.VISIBLE);
                         if (item.getVolumeInfo().getRatingsCount()==1) {
-                            holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" review)");
+                            holder.ratingsTV.setText(item.getVolumeInfo().getAverageRating()+" avg rating — "+item.getVolumeInfo().getRatingsCount()+" rating");
                         }else {
-                            holder.ratingsTV.setText("("+item.getVolumeInfo().getRatingsCount()+" reviews)");
+                            holder.ratingsTV.setText(item.getVolumeInfo().getAverageRating()+" avg rating — "+item.getVolumeInfo().getRatingsCount()+" ratings");
                         }
-                        holder.RatingRB.setRating(item.getVolumeInfo().getAverageRating());
                     }catch (Exception e) {
-                        holder.ratingsTV.setVisibility(View.INVISIBLE);
-                        holder.noRatingTV.setText("No Rating");
-                        holder.RatingRB.setVisibility(View.INVISIBLE);
+                        holder.ratingsTV.setText(R.string.no_reviews);
                     }
 
                     try {

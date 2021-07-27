@@ -42,9 +42,9 @@ import retrofit2.Response;
 public class BookInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     RoundedImageView bookImageIV;
-    TextView publisherTV, titleTV, authorTV, noRatingPlaceholderTV, reviewCountTV, descriptionTV, categoriesTV,
+    TextView publisherTV, titleTV, authorTV, noRatingPlaceholderTV, descriptionTV, categoriesTV,
             publishedDateTV, pageCountTV, languageTV, isbnsTV, ratingsTV, maturityRatingTV, previewBTN, printTypeTV2,
-            printTypeTV, heightTV, widthTV, thicknessTV, placeholdersample;
+            printTypeTV, heightTV, widthTV, thicknessTV;
     ShimmerFrameLayout  shimmer_view_container;
     ConstraintLayout layout_parent;
     Button buyLinkBTN, activeBookmark, inactiveBookmark;
@@ -71,10 +71,10 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
         publisherTV = findViewById(R.id.publisherTV);
         titleTV = findViewById(R.id.titleTV);
         authorTV = findViewById(R.id.authorTV);
-        noRatingPlaceholderTV = findViewById(R.id.noRatingPlaceholderTV);
         descriptionTV = findViewById(R.id.descriptionTV);
         categoriesTV = findViewById(R.id.categoriesTV);
         publishedDateTV = findViewById(R.id.publishedDateTV);
+        noRatingPlaceholderTV = findViewById(R.id.noRatingPlaceholderTV);
         isbnsTV = findViewById(R.id.isbnsTV);
         pageCountTV = findViewById(R.id.pageCountTV);
         languageTV = findViewById(R.id.languageTV);
@@ -146,10 +146,6 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
                 AccessInfo accessInfo = response.body().getAccessInfo();
                 Boolean isEbook=true;
 
-                if (response.code()!=200) {
-
-                }
-
                 if (response.isSuccessful()) {
                     shimmer_view_container.setVisibility(View.GONE);
                     layout_parent.setVisibility(View.VISIBLE);
@@ -193,17 +189,9 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
                     }
 
                     try {
-                        averageRatingRB.setVisibility(View.VISIBLE);
-                        averageRatingRB.setRating(volume.getAverageRating());
-                        if (volume.getRatingsCount()==1) {
-                            noRatingPlaceholderTV.setText(volume.getRatingsCount()+" review");
-                        }else {
-                            noRatingPlaceholderTV.setText(volume.getRatingsCount()+" reviews");
-                        }
+                        noRatingPlaceholderTV.setText(volume.getAverageRating()+" avg rating — "+volume.getRatingsCount()+" ratings");
                     }catch (Exception e) {
-                        averageRatingRB.setVisibility(View.GONE);
-                        noRatingPlaceholderTV.setVisibility(View.VISIBLE);
-                        noRatingPlaceholderTV.setText("No Rating");
+                        noRatingPlaceholderTV.setText(R.string.no_reviews);
                     }
 
                     String categories="", authors="", isbns="";
@@ -279,21 +267,28 @@ public class BookInfoActivity extends AppCompatActivity implements View.OnClickL
                         maturityRatingTV.setText("");
                     }
 
-                    if (accessInfo.getPdf().getIsAvailable()) {
-                        previewBTN.setText("Free Sample");
-                    }else {
-                        previewBTN.setVisibility(View.INVISIBLE);
-                        previewBTN.setEnabled(false);
-                    }
+//                    if (accessInfo.getPdf().getIsAvailable()) {
+//                        previewBTN.setText("Free Sample");
+//                    }else {
+//                        previewBTN.setVisibility(View.INVISIBLE);
+//                        previewBTN.setEnabled(false);
+//                    }
+
                 }
 
-                previewBTN.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getAccessInfo().getWebReaderLink()));
-                        startActivity(intent);
-                    }
-                });
+                try {
+                    previewBTN.setText("Read Ebook");
+                    previewBTN.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getAccessInfo().getWebReaderLink()));
+                            startActivity(intent);
+                        }
+                    });
+                }catch (Exception e) {
+                    previewBTN.setVisibility(View.INVISIBLE);
+                }
+
 
                 if (item.getSaleInfo().getSaleability().equals("FOR_SALE")) {
 

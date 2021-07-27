@@ -3,7 +3,9 @@
     <array name="preloaded_fonts" translatable="false">
         <!--        <item>@font/amaranth</item>-->
         <!--        <item>@font/chivo</item>-->
+        <item>@font/inknut_antiqua_bold</item>
         <item>@font/regular</item>
         <item>@font/bold</item>
+        <item>@font/yeseva_one</item>
     </array>
 </resources>

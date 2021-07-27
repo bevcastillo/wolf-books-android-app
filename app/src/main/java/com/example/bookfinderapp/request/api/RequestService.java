@@ -19,5 +19,9 @@ public interface RequestService {
     Call<Books> getNewReleaseBooks();
 
     @GET("/books/v1/volumes")
+    Call<Books> getCategories(@Query(value = "q") String searchText, @Query("filter") String filter, @Query("orderBy") String orderBy, @Query("maxResults") int maxResults);
+
+
+    @GET("/books/v1/volumes")
     Call<Books> getSearchResults(@Query(value = "q") String searchText, @Query("startIndex") int startIndex, @Query("orderBy") String orderBy, @Query("maxResults") int maxResults);
 }

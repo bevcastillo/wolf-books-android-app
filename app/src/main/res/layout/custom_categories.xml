@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textview9"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:fontFamily="@font/bold"
+        android:text="Category"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/heading" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_15"
+            android:paddingRight="@dimen/dimen_15"
+            android:paddingTop="@dimen/half_dimen">
+
+            <Button
+                android:id="@+id/artsBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Arts &amp; entertainment"
+                android:background="@drawable/ripple_categories"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="@dimen/half_dimen"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/bioBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Biography &amp; memoirs"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="@dimen/half_dimen"
+                android:background="@drawable/ripple_categories"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textAllCaps="false"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/businessBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Business &amp; investing"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/childrensBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Children's"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+
+
+            <Button
+                android:id="@+id/computers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Computer's &amp; Technology"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/educBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Education"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/religionBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Religion &amp; spirituality"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/romanceBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Romance"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/travelBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Travel"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_15"
+            android:paddingRight="@dimen/dimen_15">
+
+            <Button
+                android:id="@+id/comicsBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Comics"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/cookingBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Cooking, food &amp; wine"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/fictionBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Fiction &amp; literary collections"
+                android:layout_margin="@dimen/half_dimen"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/foreignBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Foreign language &amp; study aids"
+                android:layout_margin="@dimen/half_dimen"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/healthBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Health, mind &amp; body"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/historyBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#History"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/parentingBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Parenting &amp; families"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/scienceBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Science &amp; math"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/fantasy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Science fiction &amp; fantasy"
+                android:fontFamily="@font/regular"
+                android:textAllCaps="false"
+                android:background="@drawable/ripple_categories"
+                android:layout_margin="@dimen/half_dimen"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/paragraphMedium"/>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</LinearLayout>

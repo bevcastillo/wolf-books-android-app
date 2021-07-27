@@ -4,7 +4,7 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 
 ### This repo contains:
 * [Google Books API](https://developers.google.com/books/docs/v1/reference/volumes)
-* [Volley](https://developer.android.com/training/volley)
+* [Retrofit](https://github.com/square/retrofit)
 
 # Preview
 ![Home Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/home_screen.jpg)
@@ -16,7 +16,4 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 ![Book Info Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/book_details.jpg)
 
 ![Bookmark Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/bookmarks.jpg)
-
-To download this app, please go to this link:
-(https://we.tl/t-BzYy8ji0K8)
 

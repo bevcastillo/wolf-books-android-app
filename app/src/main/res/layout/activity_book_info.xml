@@ -135,7 +135,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/half_dimen"
-                            android:numStars="5"
+                            android:numStars="1"
+                            android:rating="1"
                             android:stepSize="0.5"
                             android:theme="@style/RatingBar"
                             android:visibility="visible" />
@@ -144,7 +145,7 @@
                             android:id="@+id/noRatingPlaceholderTV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:alpha="0.8"
+                            android:alpha="0.7"
                             android:fontFamily="@font/regular"
                             android:textSize="@dimen/paragraphMedium"
                             android:textColor="@color/colorWhite"
