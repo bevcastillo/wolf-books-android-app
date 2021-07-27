@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bookfinderapp">
+    package="com.example.wolfbooksapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.CategoriesListActivity"></activity>
-        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name="com.example.wolfbooksapp.view.activity.CategoriesListActivity"></activity>
+        <activity android:name="com.example.wolfbooksapp.view.activity.SearchActivity" />
         <activity
-            android:name=".view.activity.SplashScreenActivity"
+            android:name="com.example.wolfbooksapp.view.activity.SplashScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteThemeNoActionBar">
             <intent-filter>
@@ -32,16 +32,16 @@
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
-            android:name=".view.activity.BookInfoActivity"
-            android:parentActivityName=".view.activity.SearchResultsActivity"
+            android:name="com.example.wolfbooksapp.view.activity.BookInfoActivity"
+            android:parentActivityName="com.example.wolfbooksapp.view.activity.SearchResultsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.NavigationActivity"
+            android:name="com.example.wolfbooksapp.view.activity.NavigationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".view.activity.SearchResultsActivity"
-            android:parentActivityName=".view.activity.NavigationActivity"
+            android:name="com.example.wolfbooksapp.view.activity.SearchResultsActivity"
+            android:parentActivityName="com.example.wolfbooksapp.view.activity.NavigationActivity"
             android:screenOrientation="portrait" />
 
         <meta-data

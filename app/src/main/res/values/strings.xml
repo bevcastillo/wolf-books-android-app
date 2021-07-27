@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bookify</string>
+    <string name="app_name">Wolf Books</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,4 +17,5 @@
     <string name="start_search">Start Searching</string>
     <string name="no_reviews">No Rating</string>
     <string name="best_books_desc">The following are the best books ever, as voted on by the general Goodreads community.</string>
+    <string name="dash">-</string>
 </resources>

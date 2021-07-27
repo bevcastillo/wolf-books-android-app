@@ -582,7 +582,9 @@
             android:fontFamily="@font/bold"
             android:clickable="true"
             android:textColor="@color/colorWhite"
-            android:textSize="@dimen/paragraph" />
+            android:textSize="@dimen/paragraph"
+            style="?android:selectableItemBackgroundBorderless"
+            tools:targetApi="lollipop" />
 
         <Button
             android:id="@+id/buyLinkBTN"
