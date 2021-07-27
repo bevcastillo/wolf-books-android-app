@@ -1,15 +1,27 @@
 package com.example.bookfinderapp.view.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -27,7 +39,9 @@ import com.example.bookfinderapp.request.api.RequestService;
 import com.example.bookfinderapp.request.api.RetrofitClass;
 import com.example.bookfinderapp.vendor.InternetConnection;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +49,7 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
     EditText searchQueryET;
-    ImageView micIV, clearBTN;
+    ImageView micIV, clearBTN, micActive;
     TextView sortRelevanceTV, sortNewest, headerTV, textTV, placeholderTitleTV, placeholderTextTV;
     RecyclerView searchResultsRV;
     ProgressBar progressBar;
@@ -48,7 +62,10 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     RequestService requestService;
     Call<Books> searchResultsCall;
     int page;
+    SpeechRecognizer speechRecognizer;
+    public static final Integer RecordAudioRequestCode = 1;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +88,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         errorBTN = findViewById(R.id.errorBTN);
         placeholderTitleTV = findViewById(R.id.placeholderTitleTV);
         placeholderTextTV = findViewById(R.id.placeholderTextTV);
+        micActive = findViewById(R.id.micActive);
 
         requestService = RetrofitClass.getNewBooksAPIInstance();
 
@@ -84,6 +102,77 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         clearBTN.setOnClickListener(this);
         sortRelevanceTV.setOnClickListener(this);
         sortNewest.setOnClickListener(this);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            checkPermission();
+        }
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(SearchActivity.this);
+        final Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        speechIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Please speak");
+
+        speechRecognizer.setRecognitionListener(new RecognitionListener() {
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+                searchQueryET.setText("");
+                searchQueryET.setHint("Listening ...");
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+
+            }
+
+            @Override
+            public void onError(int error) {
+                micIV.setImageResource(R.drawable.ic_mic);
+                searchQueryET.setHint("Search for a book title, author, etc.");
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                micIV.setImageResource(R.drawable.ic_mic);
+                ArrayList<String> data = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                searchQueryET.setText(data.get(0));
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+            }
+        });
+
+        micIV.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    speechRecognizer.stopListening();
+                }
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    micIV.setImageResource(R.drawable.ic_mic_dark);
+                    speechRecognizer.startListening(speechIntent);
+                }
+                return false;
+            }
+        });
 
         searchQueryET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -143,6 +232,31 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         });
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == RecordAudioRequestCode && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(SearchActivity.this, "Permission granted", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(SearchActivity.this, "Permission is required to continue using mic", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(SearchActivity.this, new String[]{Manifest.permission.RECORD_AUDIO}, RecordAudioRequestCode);
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

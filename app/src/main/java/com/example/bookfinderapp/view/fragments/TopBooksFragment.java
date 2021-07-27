@@ -36,7 +36,7 @@ import retrofit2.Call;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrendingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class TopBooksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     BestBooksRecyclerviewAdapter bestBooksdAdapter;
     LinearLayoutManager layoutManager;
@@ -50,7 +50,7 @@ public class TrendingFragment extends Fragment implements SwipeRefreshLayout.OnR
     TextView headerTV, textTV;
     Button errorBTN;
 
-    public TrendingFragment() {
+    public TopBooksFragment() {
         // Required empty public constructor
 
     }

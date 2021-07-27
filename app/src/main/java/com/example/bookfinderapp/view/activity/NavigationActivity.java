@@ -9,13 +9,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.bookfinderapp.view.fragments.HomeFragmentV2;
 import com.example.bookfinderapp.R;
 import com.example.bookfinderapp.view.fragments.AboutAppFragment;
 import com.example.bookfinderapp.view.fragments.BookmarksFragment;
-import com.example.bookfinderapp.view.fragments.TrendingFragment;
+import com.example.bookfinderapp.view.fragments.TopBooksFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class NavigationActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -71,7 +70,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 selectedFragment = new HomeFragmentV2();
                 break;
             case R.id.nav_search:
-                selectedFragment = new TrendingFragment();
+                selectedFragment = new TopBooksFragment();
                 break;
             case R.id.nav_bookmarks:
                 selectedFragment = new BookmarksFragment();
@@ -80,7 +79,7 @@ public class NavigationActivity extends AppCompatActivity implements BottomNavig
                 selectedFragment = new AboutAppFragment();
                 break;
             default:
-                selectedFragment = new TrendingFragment();
+                selectedFragment = new TopBooksFragment();
                 break;
         }
         getSupportFragmentManager().beginTransaction().replace(R.id.content_container, selectedFragment).commit();

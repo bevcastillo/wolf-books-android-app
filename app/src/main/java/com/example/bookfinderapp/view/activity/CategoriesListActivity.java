@@ -81,6 +81,8 @@ public class CategoriesListActivity extends AppCompatActivity implements View.On
         authorResultsCall.enqueue(new Callback<Books>() {
             @Override
             public void onResponse(Call<Books> call, Response<Books> response) {
+                authorListRV.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
                 if (response.isSuccessful()) {
                     for (int i=0; i<response.body().getItems().size(); i++) {
                         setUpCategoriesList(response.body().getItems());

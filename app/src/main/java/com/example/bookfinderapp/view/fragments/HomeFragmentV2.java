@@ -38,7 +38,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
     TextView romanceErr, thrillerErr, fictionErr, headerTV, textTV;
     Button errorBTN, artsBTN, bioBTN, businessBTN, childrensBTN, computers, educBTN, religionBTN, romanceBTN, travelBTN,
             comicsBTN, cookingBTN, fictionBTN, foreignBTN, healthBTN, historyBTN, parentingBTN, scienceBTN, fantasy;
-    RecyclerView fictionRV, romanceRV, thrillerRV, childrensRV, topAuthorRV, selfHelpRV;
+    RecyclerView fictionRV, romanceRV, thrillerRV, childrensRV, selfHelpRV;
     CategoriesRecyclerviewAdapter categoriesAdapter;
     LinearLayoutManager fictionLM, romanceLM, thrillerLM, authorsLM, selfhelpLM;
     View noConnectionLL, layout_parent;
@@ -303,10 +303,10 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
                 onRefresh();
                 break;
             case R.id.artsBTN:
-                intentToViewCategory(v.getContext(),"categories:arts+arts,entertainment", "Arts & entertainment");
+                intentToViewCategory(v.getContext(),"categories:music", "Arts & entertainment");
                 break;
             case R.id.bioBTN:
-                intentToViewCategory(v.getContext(), "categories:biography", "Biography & memoirs");
+                intentToViewCategory(v.getContext(), "categories:biography&autobiography", "Biography & memoirs");
                 break;
             case R.id.businessBTN:
                 intentToViewCategory(v.getContext(), "categories:business, investing+business+investing", "Business & investing");
@@ -330,7 +330,7 @@ public class HomeFragmentV2 extends Fragment implements SwipeRefreshLayout.OnRef
                 intentToViewCategory(v.getContext(), "categories:travel", "Travel");
                 break;
             case R.id.comicsBTN:
-                intentToViewCategory(v.getContext(), "categories:comics+graphicnovel+manga", "Comics");
+                intentToViewCategory(v.getContext(), "categories:comics&graphic novels", "Comics");
                 break;
             case R.id.cookingBTN:
                 intentToViewCategory(v.getContext(), "categories:cooking", "Cooking, food & wine");

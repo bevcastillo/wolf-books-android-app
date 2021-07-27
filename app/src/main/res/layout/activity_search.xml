@@ -55,6 +55,13 @@
                 android:src="@drawable/ic_mic" />
 
             <ImageView
+                android:id="@+id/micActive"
+                android:layout_width="24sp"
+                android:layout_height="24sp"
+                android:visibility="gone"
+                android:src="@drawable/ic_mic_dark" />
+
+            <ImageView
                 android:id="@+id/clearBTN"
                 android:layout_width="24sp"
                 android:layout_height="24sp"
