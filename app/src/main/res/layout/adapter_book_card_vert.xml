@@ -25,6 +25,7 @@
         android:minLines="2"
         android:fontFamily="@font/bold"
         android:textSize="@dimen/headingSmall"
+        android:alpha="0.9"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/half_dimen"
         android:textColor="@color/colorWhite"

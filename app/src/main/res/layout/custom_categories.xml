@@ -12,6 +12,7 @@
         android:layout_marginLeft="@dimen/dimen_15"
         android:fontFamily="@font/bold"
         android:text="Category"
+        android:alpha="0.9"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/heading" />
 
@@ -48,6 +49,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="#Biography &amp; memoirs"
+                android:fontFamily="@font/regular"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="@dimen/half_dimen"
+                android:background="@drawable/ripple_categories"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:textAllCaps="false"
+                android:textSize="@dimen/paragraphMedium"/>
+
+            <Button
+                android:id="@+id/selfHelpBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="#Self-help"
                 android:fontFamily="@font/regular"
                 android:textColor="@color/colorWhite"
                 android:layout_margin="@dimen/half_dimen"

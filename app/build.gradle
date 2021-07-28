@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 
 //def KEYSTORE_PATH = "D:\\MOBILE\\KEYSTORE\\ziacare.jks"
-def KEYSTORE_PASS = "bookify"
-def ALIAS_NAME = "bookify"
-def ALIAS_PASS = "bookify"
+def KEYSTORE_PASS = "wolfbooks"
+def ALIAS_NAME = "wolfbooks"
+def ALIAS_PASS = "wolfbooks"
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.example.bookfinderapp"
+        applicationId "com.bevstudio.wolfbooksapp"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.2.0" //1.0 old
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -34,8 +34,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     //
-    implementation 'com.android.support:cardview-v7:29.0.0'
-    implementation 'com.android.support:recyclerview-v7:29.0.0'
+    implementation 'com.android.support:cardview-v7:30.0.0'
+    implementation 'com.android.support:recyclerview-v7:30.0.0'
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.2.0'

@@ -165,6 +165,8 @@
                             android:orientation="horizontal">
 
                             <ImageView
+                                android:id="@+id/menuIV"
+                                android:contentDescription="page count icon"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:src="@drawable/ic_round_menu_book_24" />
@@ -184,6 +186,7 @@
                                 android:layout_width="14dp"
                                 android:layout_height="14dp"
                                 android:layout_marginLeft="@dimen/default_dimen"
+                                android:contentDescription="language icon"
                                 android:src="@drawable/ic_baseline_language_24" />
 
                             <TextView
@@ -223,6 +226,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_main_btn"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:drawableLeft="@drawable/ic_bookmark_border_white"
@@ -243,6 +247,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ripple_btn_stroke"
                     android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/bold"
                     android:gravity="center"
                     android:drawableLeft="@drawable/ic_bookmark_border_white"
@@ -267,6 +272,7 @@
                     android:text="Overview"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/headingMedium"
+                    android:alpha="0.9"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guideline2"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
@@ -293,6 +299,7 @@
                     android:textColor="@color/colorWhite"
                     android:fontFamily="@font/regular"
                     android:textSize="@dimen/headingMedium"
+                    android:alpha="0.9"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/guideline2"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionTV" />
@@ -318,6 +325,7 @@
                     android:gravity="end"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraph"
+                    android:alpha="0.9"
                     android:fontFamily="@font/regular"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
                     app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -368,6 +376,7 @@
                     android:gravity="end"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraph"
+                    android:alpha="0.9"
                     android:fontFamily="@font/regular"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
                     app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -416,6 +425,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dimen_30"
                     android:gravity="end"
+                    android:alpha="0.9"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraph"
                     android:fontFamily="@font/regular"
@@ -482,6 +492,8 @@
                     android:fontFamily="@font/regular"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraph"
+                    android:alpha="0.9"
+                    android:layout_marginLeft="@dimen/dimen_30"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
                     app:layout_constraintStart_toEndOf="@+id/textView12"
                     app:layout_constraintTop_toTopOf="@+id/textView12" />
@@ -502,10 +514,12 @@
                     android:id="@+id/widthTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
+                    android:alpha="0.9"
                     android:fontFamily="@font/regular"
-                    android:textSize="@dimen/paragraph"
+                    android:gravity="end"
+                    android:layout_marginLeft="@dimen/dimen_30"
                     android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/paragraph"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
                     app:layout_constraintTop_toTopOf="@+id/textView13" />
@@ -531,6 +545,7 @@
                     android:fontFamily="@font/regular"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/paragraph"
+                    android:alpha="0.9"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
                     app:layout_constraintTop_toTopOf="@+id/textView14" />
@@ -581,6 +596,8 @@
             android:padding="@dimen/default_dimen"
             android:fontFamily="@font/bold"
             android:clickable="true"
+            android:focusable="true"
+            android:alpha="0.9"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/paragraph"
             style="?android:selectableItemBackgroundBorderless"
@@ -598,6 +615,7 @@
             android:fontFamily="@font/bold"
             android:textAllCaps="false"
             android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/paragraph" />
 

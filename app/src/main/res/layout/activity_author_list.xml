@@ -22,6 +22,7 @@
             android:layout_height="11sp"
             android:alpha="0.7"
             android:src="@drawable/sort"
+            android:contentDescription="Sort Image"
             app:layout_constraintBottom_toBottomOf="@+id/sortRelevanceTV"
             app:layout_constraintEnd_toStartOf="@+id/sortRelevanceTV"
             app:layout_constraintTop_toTopOf="@+id/sortRelevanceTV" />
@@ -34,6 +35,7 @@
             android:fontFamily="@font/bold"
             android:padding="@dimen/half_dimen"
             android:text="Relevance"
+            android:alpha="0.9"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/paragraphMedium"
             app:layout_constraintBottom_toBottomOf="parent"

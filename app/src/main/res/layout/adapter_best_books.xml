@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -21,6 +20,7 @@
             android:fontFamily="@font/yeseva_one"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/headingBigger"
+            android:alpha="0.9"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/imageView" />
 
@@ -46,6 +46,7 @@
             android:maxLines="2"
             android:layout_marginLeft="@dimen/dimen_15"
             android:text=""
+            android:alpha="0.9"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/headingMedium"
             card_view:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +65,7 @@
             android:text=""
             android:fontFamily="@font/regular"
             android:textSize="@dimen/paragraph"
-            android:alpha="0.7"
+            android:alpha="0.9"
             android:textColor="@color/colorWhite"
             card_view:layout_constraintEnd_toEndOf="@+id/titleTV"
             card_view:layout_constraintStart_toStartOf="@+id/titleTV"

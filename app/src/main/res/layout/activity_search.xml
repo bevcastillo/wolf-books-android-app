@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBlackBG">
@@ -65,6 +64,7 @@
                 android:id="@+id/clearBTN"
                 android:layout_width="24sp"
                 android:layout_height="24sp"
+                android:contentDescription="clear button"
                 android:src="@drawable/ic_close_white"
                 android:visibility="gone" />
 
@@ -75,6 +75,7 @@
             android:layout_height="11sp"
             android:alpha="0.7"
             android:src="@drawable/sort"
+            android:contentDescription="sort icon"
             app:layout_constraintBottom_toBottomOf="@+id/sortRelevanceTV"
             app:layout_constraintEnd_toStartOf="@+id/sortRelevanceTV"
             app:layout_constraintTop_toTopOf="@+id/sortRelevanceTV" />
@@ -87,6 +88,7 @@
             android:fontFamily="@font/bold"
             android:padding="@dimen/half_dimen"
             android:text="Relevance"
+            android:alpha="0.9"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/paragraphMedium"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -111,17 +113,38 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchResultsRV"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:scrollbars="none"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchResultsRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:scrollbars="none"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorPrimary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -143,12 +166,13 @@
         android:id="@+id/placeholderTitleTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="0.7"
+        android:alpha="0.9"
         android:fontFamily="@font/bold"
         android:gravity="center"
         android:text="Start Searching"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/heading"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/placeholderTextTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,6 +190,7 @@
         android:text="Type something to get started."
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/paragraph"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/placeholderTitleTV"
         app:layout_constraintHorizontal_bias="0.5"

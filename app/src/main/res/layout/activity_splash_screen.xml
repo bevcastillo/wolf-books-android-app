@@ -13,6 +13,7 @@
         android:layout_height="80dp"
         android:scaleType="centerCrop"
         android:src="@drawable/wolf_logo"
+        android:contentDescription="wolf books logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
