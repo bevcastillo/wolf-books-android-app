@@ -10,6 +10,4 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 
 ![Get it on Google PLay](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/wolf_books_screenshot.png)
 
-[![Get it on Google PLay](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/google_play_badge.png)](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
-
-[<img src="https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/google_play_badge.png" width="100">](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
+[<img src="https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable/google_play_badge.png" width="80%">](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
