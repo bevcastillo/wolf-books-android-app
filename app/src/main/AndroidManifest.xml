@@ -16,14 +16,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/wolfbooks_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.bevstudio.wolfbooksapp.view.activity.CategoriesListActivity"/>
-        <activity android:name="com.bevstudio.wolfbooksapp.view.activity.SearchActivity" />
+        <activity android:name="com.bevstudio.wolfbooksapp.view.activity.CategoriesListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.bevstudio.wolfbooksapp.view.activity.SearchActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.bevstudio.wolfbooksapp.view.activity.SplashScreenActivity"
             android:screenOrientation="portrait"

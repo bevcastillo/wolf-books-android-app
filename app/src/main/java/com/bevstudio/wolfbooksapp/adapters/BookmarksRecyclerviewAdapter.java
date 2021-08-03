@@ -118,13 +118,10 @@ public class BookmarksRecyclerviewAdapter extends RecyclerView.Adapter<Bookmarks
                 if (response.isSuccessful()) {
                     holder.shimmerFrameLayout.setVisibility(View.GONE);
                     holder.parentLL.setVisibility(View.VISIBLE);
-
+                    holder.RatingRB.setVisibility(View.VISIBLE);
                     holder.titleTV.setText(item.getVolumeInfo().getTitle());
                     holder.bookmarkIV.setVisibility(View.GONE);
                     holder.bookmarkActiveIV.setVisibility(View.VISIBLE);
-
-                    holder.RatingRB.setVisibility(View.VISIBLE);
-
                     try{
                         holder.publisherTV.setText(item.getVolumeInfo().getPublisher());
                     }catch (Exception e) {

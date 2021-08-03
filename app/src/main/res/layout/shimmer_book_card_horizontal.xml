@@ -18,7 +18,7 @@
         android:paddingBottom="@dimen/default_dimen">
 
         <com.github.siyamed.shapeimageview.RoundedImageView
-            android:id="@+id/iv_book_image"
+            android:id="@+id/v1"
             android:layout_width="100dp"
             android:layout_height="150dp"
             card_view:siRadius="@dimen/half_dimen"
@@ -29,7 +29,7 @@
             card_view:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_publisher"
+            android:id="@+id/v2"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,14 +41,14 @@
             android:textAllCaps="true"
             android:maxLines="2"
             android:ellipsize="end"
-            card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
-            card_view:layout_constraintStart_toEndOf="@+id/iv_book_image"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
+            card_view:layout_constraintEnd_toStartOf="@+id/v4"
+            card_view:layout_constraintStart_toEndOf="@+id/v1"
+            card_view:layout_constraintTop_toTopOf="@+id/v1"
             android:background="@color/colorShimmer"
             android:layout_marginRight="@dimen/dimen_20" />
 
         <TextView
-            android:id="@+id/tv_book_title"
+            android:id="@+id/v3"
             style="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -59,14 +59,14 @@
             android:maxLines="1"
             android:text=""
             android:textStyle="bold"
-            card_view:layout_constraintEnd_toStartOf="@+id/iv_bookmark"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_publisher"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_publisher"
+            card_view:layout_constraintEnd_toStartOf="@+id/v4"
+            card_view:layout_constraintStart_toStartOf="@+id/v2"
+            card_view:layout_constraintTop_toBottomOf="@+id/v2"
             android:background="@color/colorShimmer"
             android:textColor="@color/colorTextBlack"/>
 
         <ImageView
-            android:id="@+id/iv_bookmark"
+            android:id="@+id/v4"
             android:layout_width="24dp"
             android:layout_height="26dp"
             android:layout_marginEnd="8dp"
@@ -74,11 +74,11 @@
             android:contentDescription="bookmark placeholder"
             android:src="@drawable/custom_cornered_image"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/iv_book_image"
+            card_view:layout_constraintTop_toTopOf="@+id/v1"
             android:background="@color/colorShimmer"/>
 
         <TextView
-            android:id="@+id/tv_book_author"
+            android:id="@+id/v5"
             style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,13 +89,13 @@
             android:text=""
             android:fontFamily="@font/regular"
             android:textColor="@android:color/darker_gray"
-            card_view:layout_constraintEnd_toEndOf="@+id/tv_book_title"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_book_title"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_book_title"
+            card_view:layout_constraintEnd_toEndOf="@+id/v3"
+            card_view:layout_constraintStart_toStartOf="@+id/v3"
+            card_view:layout_constraintTop_toBottomOf="@+id/v3"
             android:background="@color/colorShimmer"/>
 
         <RatingBar
-            android:id="@+id/RatingRB"
+            android:id="@+id/v6"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,12 +105,12 @@
             android:rating="0"
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_book_author"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_book_author"
+            card_view:layout_constraintStart_toStartOf="@+id/v5"
+            card_view:layout_constraintTop_toBottomOf="@+id/v5"
             android:background="@color/colorShimmer"/>
 
         <TextView
-            android:id="@+id/tv_ratings"
+            android:id="@+id/v7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -118,15 +118,15 @@
             android:text=""
             android:fontFamily="@font/regular"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toBottomOf="@+id/RatingRB"
-            card_view:layout_constraintStart_toEndOf="@+id/RatingRB"
-            card_view:layout_constraintTop_toTopOf="@+id/RatingRB"
+            card_view:layout_constraintBottom_toBottomOf="@+id/v6"
+            card_view:layout_constraintStart_toEndOf="@+id/v6"
+            card_view:layout_constraintTop_toTopOf="@+id/v6"
             style="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/lighterBlack"
             android:background="@color/colorShimmer"/>
 
         <TextView
-            android:id="@+id/tv_ratingsCount"
+            android:id="@+id/v8"
             style="@style/TextAppearance.AppCompat.Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,9 +134,9 @@
             android:layout_marginLeft="8dp"
             android:text=""
             android:fontFamily="@font/regular"
-            card_view:layout_constraintBottom_toBottomOf="@+id/tv_ratings"
-            card_view:layout_constraintStart_toEndOf="@+id/tv_ratings"
-            card_view:layout_constraintTop_toTopOf="@+id/tv_ratings"
+            card_view:layout_constraintBottom_toBottomOf="@+id/v7"
+            card_view:layout_constraintStart_toEndOf="@+id/v7"
+            card_view:layout_constraintTop_toTopOf="@+id/v7"
             android:background="@color/colorShimmer"/>
 
 

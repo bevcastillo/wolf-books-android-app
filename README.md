@@ -7,13 +7,4 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 * [Retrofit](https://github.com/square/retrofit)
 
 # Preview
-![Home Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/home_screen.jpg)
-
-![Search Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/search_screen.jpg)
-
-![Search Results Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/search_results.jpg)
-
-![Book Info Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/book_details.jpg)
-
-![Bookmark Screen](https://github.com/bevcastillo/android-bookfinder/blob/master/app/src/main/res/drawable-v24/bookmarks.jpg)
-
+![Get it on Google Play](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
