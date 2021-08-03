@@ -7,4 +7,4 @@ Search Google Books anytime, anywhere. Save discovered books in different catego
 * [Retrofit](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
 
 # Preview
-![Get it on Google Play](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
+[Get it on Google Play](https://play.google.com/store/apps/details?id=com.bevstudio.wolfbooksapp)
