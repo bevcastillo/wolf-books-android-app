@@ -5,7 +5,8 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/colorBlackBG"
-    android:padding="@dimen/dimen_40">
+    android:padding="@dimen/dimen_40"
+    android:id="@+id/dialog_error_layout">
 
     <TextView
         android:id="@+id/headerTV"

@@ -45,6 +45,7 @@
                         android:visibility="visible">
 
                         <include
+                            android:id="@+id/custom_categories_layout"
                             layout="@layout/custom_categories"/>
 
                         <LinearLayout

@@ -28,6 +28,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name="com.bevstudio.wolfbooksapp.view.activity.SplashScreenActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/WhiteThemeNoActionBar">
             <intent-filter>
